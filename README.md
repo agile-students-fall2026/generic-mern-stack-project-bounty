@@ -14,10 +14,10 @@ Students could post an item they lost or found with details such as a photo, des
 The project is reasonable because it involves several connected parts, including user accounts, different types of posts, image uploads, search and filtering, messaging or responses, notifications, and bounty tracking. These features provide enough work to divide among team members without making the project too large for one semester. Thenmain goal would be to build a complete system where students can post, search, respond, and resolve listings. Features such as automatic matching between lost and found items, reputation scores, or location-based suggestions could be added in the future.
 
 ## Team
-- a ([GitHub]())
+- Leonardo Villalobos ([GitHub](https://github.com/LeoLobo9906))
 - Alyssa Lai ([GitHub](https://github.com/AlyssaLai111))
-- c ([GitHub]())
-- d ([GitHub]())
+- Natt Hong ([GitHub](https://github.com/nmh6063-star))
+- Sunny Chen ([GitHub](https://github.com/ynnsnxhc))
 
 ## History
 We've all lost something at some point, whether it be something as trivial as a pencil or something as important as our keys. Between trying to find that item yourself or frantically asking social media for help, it might feel a bit futile. So, as a team of NYU students, we decided to work on a project where students can get their items lost on campus back with the help of the community. 

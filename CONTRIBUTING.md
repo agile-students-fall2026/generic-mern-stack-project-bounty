@@ -10,5 +10,8 @@ The team uses the [feature branch version control workflow](https://knowledge.ki
 ## Rules for Contributing
 This is a project for a university class, so it is not expected that people contribute until December (or even afterwards). 
 
+## Project Setup
+Clone the repo via git@github.com:agile-students-fall2026/generic-mern-stack-project-bounty.git using git and checkout to an aptly named branch to complete work on a given task
+
 ## Instructions
 To be updated once the project reaches that stage. 
