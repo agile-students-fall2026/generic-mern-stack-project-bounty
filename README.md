@@ -1,19 +1,28 @@
-# Project Repository
+# Bounty
+A web app for NYU students who want to find items they've lost on campus by speaking to fellow members of the community.  
 
-This repository will be used for team projects.
+## What and why?
+Bounty would be a campus-based platform where students can post belongings they have lost, report items they have found, or ask the community for something they need on short notice. At NYU, these situations are usually handled through separate group chats, social media posts, or individual building lost-and-found desks. Bringing everything into one system would make it easier for students to reach the right people quickly. Users could also attach a reward to a lost-item post to motivate others to help search for something important.
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+## For whom?
+The platform would primarily serve NYU students who spend time across different campus buildings and locations. Our first users could be friends, classmates, roommates, and other students we regularly interact with, allowing us to test the system with people who could realistically use it.
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+## How?
+Students could post an item they lost or found with details such as a photo, description, location, category, and approximate time. Lost-item posts could include an optional bounty. The platform would also let students ask for items they temporarily need, such as a charger, calculator, textbook, or umbrella. Other students could respond to these posts and coordinate with the person who created them. Search tools and filters would help users find relevant listings, and completed posts could be marked as resolved.
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+## Scope
+The project is reasonable because it involves several connected parts, including user accounts, different types of posts, image uploads, search and filtering, messaging or responses, notifications, and bounty tracking. These features provide enough work to divide among team members without making the project too large for one semester. Thenmain goal would be to build a complete system where students can post, search, respond, and resolve listings. Features such as automatic matching between lost and found items, reputation scores, or location-based suggestions could be added in the future.
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+## Team
+- a ([GitHub]())
+- Alyssa Lai ([GitHub](https://github.com/AlyssaLai111))
+- c ([GitHub]())
+- d ([GitHub]())
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+## History
+We've all lost something at some point, whether it be something as trivial as a pencil or something as important as our keys. Between trying to find that item yourself or frantically asking social media for help, it might feel a bit futile. So, as a team of NYU students, we decided to work on a project where students can get their items lost on campus back with the help of the community. 
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+Open to [contributions](https://github.com/agile-students-fall2026/generic-mern-stack-project-bounty/blob/master/CONTRIBUTING.md).
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
-
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+## Instructions
+To be updated once the project reaches that stage.
