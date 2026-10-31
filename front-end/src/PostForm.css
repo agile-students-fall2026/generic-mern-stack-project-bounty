@@ -1,0 +1,50 @@
+.postForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    gap: 5px;
+    margin: 0 20px 0 20px;
+}
+
+.dateTimeField {
+    display: flex;
+}
+
+.field > label {
+    align-self: start;
+}
+
+.field > input {
+    height: 20px;
+}
+
+#descField {
+    width: 500px;
+}
+
+textarea {
+    resize: none;
+    field-sizing: content;
+    min-height: 50px;
+    max-height: 100px;
+}
+
+#includeBountyField {
+    margin-top: 5px;
+    flex-direction: row;
+}
+
+.postForm > input {
+    margin-top: 10px;
+    width: 250px;
+    height: 50px;
+    border: none;
+    background-color: black;
+}
