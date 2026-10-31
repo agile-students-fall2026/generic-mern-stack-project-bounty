@@ -1,0 +1,32 @@
+.newPost {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+}
+
+.types {
+    display: flex;
+    justify-content: center;
+}
+
+.types > button {
+    border-radius: 0px;
+    border: solid black 1px;
+    width: 200px;
+    height: 50px;
+}
+
+.types > .inactive:hover {
+    background-color: gray;
+}
+
+.inactive {
+    background-color: white;
+    color: black;
+}
+
+.active {
+    background-color: black;
+    color: white;
+}
