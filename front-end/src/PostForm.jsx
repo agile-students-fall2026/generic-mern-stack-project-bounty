@@ -71,7 +71,7 @@ const PostForm = props => {
                 />
             </div>
             <div className='field'>
-                <label htmlFor='title'>Title</label>
+                <label htmlFor='title' className='label'>Title</label>
                 <input
                     type='text'
                     id='title'
@@ -84,7 +84,7 @@ const PostForm = props => {
                 />
             </div>
             <div className='field' id='descField'>
-                <label htmlFor='description'>Description</label>
+                <label htmlFor='description' className='label'>Description</label>
                 <textarea
                     id='description'
                     value={formData.desc}
@@ -97,7 +97,7 @@ const PostForm = props => {
             </div>
             <div className='dateTimeField'>
                 <div className='field'>
-                    <label htmlFor='date'>Date</label>
+                    <label htmlFor='date' className='label'>Date</label>
                     <input
                         type='date'
                         id='date'
@@ -109,7 +109,7 @@ const PostForm = props => {
                     />
                 </div>
                 <div className='field'>
-                    <label htmlFor='time'>Time</label>
+                    <label htmlFor='time' className='label'>Time</label>
                     <input 
                         type='time'
                         id='time'
@@ -122,7 +122,7 @@ const PostForm = props => {
                 </div>
             </div>
             <div className='field'>
-                <label htmlFor='location'>Location</label>
+                <label htmlFor='location' className='label'>Location</label>
                 <input
                     type='text'
                     id='location'
@@ -136,14 +136,14 @@ const PostForm = props => {
             {/* would like to change this so that it looks nicer, but will keep it
             as is for now for functionality */}
             <div className='field'>
-                <label htmlFor='image'>Image</label>
+                <label htmlFor='image' className='label'>Image</label>
                 <input
                     type='file'
                     id='image'
                 />
             </div>
             <div id='includeBountyField'>
-                <label htmlFor='includeBounty'>Include Bounty?</label>
+                <label htmlFor='includeBounty' className='label'>Include Bounty?</label>
                 <input
                     type='checkbox'
                     id='includeBounty'
@@ -155,7 +155,7 @@ const PostForm = props => {
                 />
             </div>
             {formData.includeBounty && <div className='field'>
-                <label htmlFor='bounty'>Bounty</label>
+                <label htmlFor='bounty' className='label'>Bounty</label>
                 <input
                     type='text'
                     id='bounty'
@@ -167,7 +167,7 @@ const PostForm = props => {
                     })}
                 />
             </div>}
-            <input type="submit" value={formData.submitType} />
+            <input type='submit' className='submit' value={formData.submitType} />
         </form>
     )
 }
