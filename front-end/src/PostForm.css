@@ -5,6 +5,32 @@
     gap: 10px;
 }
 
+.types {
+    display: flex;
+    justify-content: center;
+}
+
+.types > input {
+    border-radius: 0px;
+    border: solid black 1px;
+    width: 200px;
+    height: 50px;
+}
+
+.types > .inactive:hover {
+    background-color: gray;
+}
+
+.inactive {
+    background-color: white;
+    color: black;
+}
+
+.active {
+    background-color: black;
+    color: white;
+}
+
 .field {
     display: flex;
     flex-direction: column;

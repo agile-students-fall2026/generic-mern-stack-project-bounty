@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 const PostForm = props => {
     const [formData, setFormData] = useState({
+        category: props.category ?? 'lost',
         title: props.title ?? '',
         desc: props.desc ?? '',
         date: props.date ?? '',
@@ -10,6 +11,8 @@ const PostForm = props => {
         location: props.location ?? '', 
         includeBounty: props.includeBounty ?? false,
         bounty: props.bounty ?? '',
+        submit: props.submit ?? '', 
+        submitType: props.submitType ?? ''
     })
 
     // actually put the post form data into backend... will do in next sprint(?)
@@ -22,7 +25,51 @@ const PostForm = props => {
     }
 
     return (
-        <form className='postForm' onSubmit={submitForm}>
+        <form className='postForm' onSubmit={formData.submit || submitForm}>
+            <div className='types'>
+                <input 
+                    type='button' 
+                    className={formData.category === 'lost' ? 'active' : 'inactive'} 
+                    onClick={() => {
+                        // must set to true instead of just !isLost b/c this choice is
+                        // necessary, so can't unselect
+                            setFormData({
+                                ...formData,
+                                category: 'lost'
+                            })
+                        }
+                    }
+                    value='Lost'
+                />
+                <input 
+                    type='button' 
+                    className={formData.category === 'found' ? 'active' : 'inactive'} 
+                    onClick={() => {
+                        // must set to true instead of just !isLost b/c this choice is
+                        // necessary, so can't unselect
+                            setFormData({
+                                ...formData,
+                                category: 'found'
+                            })
+                        }
+                    }
+                    value='Found'
+                />
+                <input 
+                    type='button' 
+                    className={formData.category === 'req' ? 'active' : 'inactive'} 
+                    onClick={() => {
+                        // must set to true instead of just !isLost b/c this choice is
+                        // necessary, so can't unselect
+                            setFormData({
+                                ...formData,
+                                category: 'req'
+                            })
+                        }
+                    }
+                    value='Request'
+                />
+            </div>
             <div className='field'>
                 <label htmlFor='title'>Title</label>
                 <input
@@ -120,7 +167,7 @@ const PostForm = props => {
                     })}
                 />
             </div>}
-            <input type="submit" value="Publish Post" />
+            <input type="submit" value={formData.submitType} />
         </form>
     )
 }
