@@ -17,13 +17,14 @@
     height: 50px;
 }
 
-.types > .inactive:hover {
-    background-color: gray;
-}
-
 .inactive {
     background-color: white;
     color: black;
+}
+
+.types > .inactive:hover {
+    background-color: gray;
+    cursor: pointer;
 }
 
 .active {
@@ -73,4 +74,9 @@ textarea {
     height: 50px;
     border: none;
     background-color: black;
+}
+
+.postForm > input:hover {
+    cursor: pointer;
+    color: gray;
 }

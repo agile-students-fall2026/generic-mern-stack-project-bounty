@@ -6,6 +6,7 @@ import viteLogo from './assets/vite.svg'
 import './App.css'
 // below is mine; noting for inevitable merge conflict
 import NewPost from './NewPost'
+import EditPost from './EditPost'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -127,7 +128,11 @@ function App() {
       <Routes>
         {/* a route for the create post page; only here to check working code, 
         should be changed when finished as this is meant to be the home screen */}
-        <Route path="/" element={<NewPost />} />
+        <Route path="/new-post" element={<NewPost />} />
+
+        {/* a route for the create post page; only here to check working code, 
+        should be changed when finished as this is meant to be the home screen */}
+        <Route path="/" element={<EditPost />} />
       </Routes>
     </Router>
   )
