@@ -1,11 +1,14 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+// import heroImg from './assets/hero.png'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from './assets/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { Link } from "react-router-dom"
 import './App.css'
 // below is mine; noting for inevitable merge conflict
 import NewPost from './NewPost'
+import Home from './Home'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -123,13 +126,20 @@ function App() {
 
   // below is mine; noting for inevitable merge conflict
   return (
-    <Router>
-      <Routes>
-        {/* a route for the create post page; only here to check working code, 
-        should be changed when finished as this is meant to be the home screen */}
-        <Route path="/" element={<NewPost />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <nav className="header">
+          <Link className="link" to="/new-post" style={{textDecoration: 'none'}}>New</Link>
+          <Link className="link" to="/" style={{textDecoration: 'none'}}>Bounty</Link>
+          <Link className="link" to="/animals" style={{textDecoration: 'none'}}>Profile</Link>
+        </nav>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/new-post" element={<NewPost />} />
+        </Routes>
+
+      </Router>
+    </>
   )
 }
 
