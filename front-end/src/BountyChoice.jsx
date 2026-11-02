@@ -1,8 +1,12 @@
 import './BountyChoice.css'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-// import PostForm from './PostForm'
 import pfpA from './assets/1-pfp-placeholder.jpg'
+import pfpB from './assets/2-pfp-placeholder.jpg'
+// probably an easier way; sunny suggested to make dir
+// specifically for these images to import instead of
+// each one individually, like with the map function
+// for the buttons
 
 const BountyChoice = props => {
     const [bounty, setBounty] = useState('')
@@ -51,31 +55,16 @@ const BountyChoice = props => {
             <div className='choices'>
                 {/* need to make list out of people in mesages history */}
                 {/* for this part, might be better to change to mapping for each */}
-                <button 
-                    className={personChosen === choices[0] ? 'active' : 'choice'} 
-                    onClick={() => chose(choices[0])}>
-                    <img src={pfpA} className='pfp' />
-                    <p className='name'>{choices[0]}</p>
-                </button>
-                <button 
-                    className={personChosen === choices[1] ? 'active' : 'choice'} 
-                    onClick={() => chose(choices[1])}>
-                    <img src={pfpA} className='pfp' />
-                    <p className='name'>{choices[1]}</p>
-                </button>
-                <button 
-                    className={personChosen === choices[2] ? 'active' : 'choice'} 
-                    onClick={() => chose(choices[2])}>
-                    <img src={pfpA} className='pfp' />
-                    <p className='name'>{choices[2]}</p>
-                </button>
-                <button 
-                    className={personChosen === choices[3] ? 'active' : 'choice'} 
-                    onClick={() => chose(choices[3])}>
-                    <img src={pfpA} className='pfp' />
-                    <p className='name'>{choices[3]}</p>
-                </button>
                 
+                {choices.map(choice => (
+                    <button
+                        key={choice}
+                        className={personChosen === choice ? 'active' : 'choice'}
+                        onClick={() => chose(choice)}>
+                        <img src={pfpA} className='pfp' alt="" />
+                        <p className='name'>{choice}</p>
+                    </button>
+                ))}
             </div>
 
             <form onSubmit={submit}>
