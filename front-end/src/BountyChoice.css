@@ -1,0 +1,86 @@
+.bountyChoice {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    align-items: center;
+}
+
+#text {
+    width: 500px;
+    margin-bottom: 20px;
+}
+
+.bountyDisplay {
+    border: solid gray 1px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+    width: 200px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.choice, 
+.active {
+    flex: 0 0 calc((100% - (3 * 10px)) / 4);
+    box-sizing: border-box;
+    color: inherit;
+    font: inherit;
+    background: none;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 150px;
+    height: 200px;
+}
+
+.choice:hover, 
+.active:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+.active {
+    background-color: black;
+}
+
+.pfp {
+    border: none;
+    border-radius: 50%;
+    width: 100px;
+}
+
+#submit, 
+#disabled, 
+#cancel {
+    width: 250px;
+    height: 50px;
+    border: none;
+}
+
+#disabled {
+    background-color: rgb(18, 18, 20);
+}
+
+#submit, 
+#cancel {
+    background-color: black;
+}
+
+#submit:hover, 
+#cancel:hover {
+    cursor: pointer;
+}
