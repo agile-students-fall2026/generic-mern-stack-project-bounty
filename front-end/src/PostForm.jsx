@@ -11,21 +11,17 @@ const PostForm = props => {
         location: props.location ?? '', 
         includeBounty: props.includeBounty ?? false,
         bounty: props.bounty ?? '',
-        submit: props.submit ?? '', 
-        submitType: props.submitType ?? ''
+        submitLabel: props.submitLabel ?? ''
     })
 
-    // actually put the post form data into backend... will do in next sprint(?)
-    // am thinking of changing this so that each page that uses this form just passes
-    // their own function into it (ex. publish button sends to publish confirmation screen vs.
-    // edit button sends to edit confirmation screen)
+    // actually put the post form data into backend... will do in next sprint
     const submitForm = e => {
         e.preventDefault() // prevent normal browser submit behavior
         console.log('Form Submitted')
     }
 
     return (
-        <form className='postForm' onSubmit={formData.submit || submitForm}>
+        <form className='postForm' onSubmit={submitForm}>
             <div className='types'>
                 <input 
                     type='button' 
@@ -167,7 +163,7 @@ const PostForm = props => {
                     })}
                 />
             </div>}
-            <input type='submit' className='submit' value={formData.submitType} />
+            <input type='submit' className='submit' value={formData.submitLabel} />
         </form>
     )
 }

@@ -3,5 +3,14 @@
     flex-direction: column;
     gap: 20px;
     margin: 20px;
+    align-items: center;
 }
 
+.newPost > .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    height: 50px;
+    background-color: black;
+}
