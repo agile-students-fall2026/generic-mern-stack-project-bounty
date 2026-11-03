@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import './App.css'
 import NewPost from './NewPost'
 import Home from './Home'
+import Notifications from './Notifications'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-post" element={<NewPost />} />
+          <Route path="/notifications" element={<Notifications />} />
         </Routes>
 
       </Router>
