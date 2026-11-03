@@ -1,12 +1,6 @@
 import './BountyChoice.css'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import pfpA from './assets/1-pfp-placeholder.jpg'
-import pfpB from './assets/2-pfp-placeholder.jpg'
-// probably an easier way; sunny suggested to make dir
-// specifically for these images to import instead of
-// each one individually, like with the map function
-// for the buttons
 
 const BountyChoice = props => {
     const [bounty, setBounty] = useState('')
@@ -20,7 +14,7 @@ const BountyChoice = props => {
         setBounty('$20')
         // should get choices from list of people in user's messages screen
         // for now, placeholder:
-        setChoices(['User A', 'User B', 'User C', 'User D'])
+        setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
     }, [])
 
     const chose = name => {
@@ -42,6 +36,10 @@ const BountyChoice = props => {
         // redirect to confirmation page afterwards
     }
 
+    // should get the associated pfps from back-end according to users
+    // from messages
+    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
+
     return (
         <div className='bountyChoice'>
             <h1>Choose Bounty Receiver</h1>
@@ -56,12 +54,12 @@ const BountyChoice = props => {
                 {/* need to make list out of people in mesages history */}
                 {/* for this part, might be better to change to mapping for each */}
                 
-                {choices.map(choice => (
+                {choices.map((choice, index) => (
                     <button
                         key={choice}
                         className={personChosen === choice ? 'active' : 'choice'}
                         onClick={() => chose(choice)}>
-                        <img src={pfpA} className='pfp' alt="" />
+                        <img className='pfp' src={`../public/pfps/${pfps[index]}`} />
                         <p className='name'>{choice}</p>
                     </button>
                 ))}
