@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    font-family: inherit;
 }
 
 .types {
@@ -16,15 +17,17 @@
     border: solid black 1px;
     width: 200px;
     height: 50px;
-}
-
-.types > .inactive:hover {
-    background-color: gray;
+    font-size: inherit;
 }
 
 .inactive {
     background-color: white;
     color: black;
+}
+
+.types > .inactive:hover {
+    background-color: gray;
+    cursor: pointer;
 }
 
 .active {
@@ -74,10 +77,21 @@
     flex-direction: row;
 }
 
-.postForm > .submit {
+.postForm > .submit, 
+.postForm > .disabled {
     margin-top: 10px;
     width: 250px;
     height: 50px;
     border: none;
     background-color: black;
+    font-size: inherit;
+}
+
+.postForm > .disabled {
+    background-color: rgb(18, 18, 20);
+    color: gray;
+}
+
+.postForm > .submit:hover {
+    cursor: pointer;
 }
