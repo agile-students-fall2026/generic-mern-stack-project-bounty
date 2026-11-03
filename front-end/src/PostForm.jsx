@@ -180,6 +180,7 @@ const PostForm = props => {
                 type='submit' 
                 className={isValid ? 'submit' : 'disabled'} 
                 value={formData.submitLabel} 
+                disabled={!isValid}
             />
         </form>
     )

@@ -4,11 +4,17 @@ import { useState } from 'react'
 import PostForm from './PostForm'
 
 const NewPost = props => {
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     return (
         <div className='newPost'>
-            <h1>Create Post</h1>
-            <PostForm submitLabel='Publish Post' destination='/new-post/publish-confirmation' />
+            {!isSubmitted && <h1>Create Post</h1>}
+            <PostForm 
+                origin='edit' // publish, edit, or resolve
+                submitLabel='Publish Post' 
+                isSubmitted={isSubmitted}
+                setIsSubmitted={setIsSubmitted} />
+            {!isSubmitted && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
         </div>
     );
 }
