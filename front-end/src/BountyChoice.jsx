@@ -6,6 +6,7 @@ const BountyChoice = props => {
     const [bounty, setBounty] = useState('')
     const [choices, setChoices] = useState([])
     const [personChosen, setPersonChosen] = useState('')
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     // the bounty amount should be taken from data of the post the user came from
     // where they clicked resolve
@@ -73,8 +74,9 @@ const BountyChoice = props => {
                     value='Confirm'
                 />
             </form>
-            {/* return to post user came from */}
-            <button id='cancel'>Cancel</button>
+            {/* return to post user came from; for now, as we don't have post view screen,
+            this is going to route to home */}
+            {!isSubmitted && <Link className="link" id='cancel' to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
         </div>
     );
 }
