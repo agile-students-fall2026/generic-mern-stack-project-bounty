@@ -1,5 +1,6 @@
 import './PostForm.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 const PostForm = props => {
     const [formData, setFormData] = useState({
@@ -11,21 +12,27 @@ const PostForm = props => {
         location: props.location ?? '', 
         includeBounty: props.includeBounty ?? false,
         bounty: props.bounty ?? '',
-        submit: props.submit ?? '', 
-        submitType: props.submitType ?? ''
+        submitLabel: props.submitLabel ?? ''
     })
+    const [isValid, setIsValid] = useState(false)
 
-    // actually put the post form data into backend... will do in next sprint(?)
-    // am thinking of changing this so that each page that uses this form just passes
-    // their own function into it (ex. publish button sends to publish confirmation screen vs.
-    // edit button sends to edit confirmation screen)
+    useEffect(() => {
+        if (formData.includeBounty) {
+            setIsValid(formData.title && formData.desc && formData.bounty)
+        }
+        else {
+            setIsValid(formData.title && formData.desc)
+        }
+    }, [formData.includeBounty, formData.title, formData.desc, formData.bounty])
+
+    // actually put the post form data into backend... will do in next sprint
     const submitForm = e => {
         e.preventDefault() // prevent normal browser submit behavior
-        console.log('Form Submitted')
+        alert('Form Submitted')
     }
 
     return (
-        <form className='postForm' onSubmit={formData.submit || submitForm}>
+        <form className='postForm' onSubmit={submitForm}>
             <div className='types'>
                 <input 
                     type='button' 
@@ -71,7 +78,7 @@ const PostForm = props => {
                 />
             </div>
             <div className='field'>
-                <label htmlFor='title'>Title</label>
+                <label htmlFor='title' className='label'>Title*</label>
                 <input
                     type='text'
                     id='title'
@@ -84,7 +91,7 @@ const PostForm = props => {
                 />
             </div>
             <div className='field' id='descField'>
-                <label htmlFor='description'>Description</label>
+                <label htmlFor='description' className='label'>Description*</label>
                 <textarea
                     id='description'
                     value={formData.desc}
@@ -97,7 +104,7 @@ const PostForm = props => {
             </div>
             <div className='dateTimeField'>
                 <div className='field'>
-                    <label htmlFor='date'>Date</label>
+                    <label htmlFor='date' className='label'>Date</label>
                     <input
                         type='date'
                         id='date'
@@ -109,7 +116,7 @@ const PostForm = props => {
                     />
                 </div>
                 <div className='field'>
-                    <label htmlFor='time'>Time</label>
+                    <label htmlFor='time' className='label'>Time</label>
                     <input 
                         type='time'
                         id='time'
@@ -122,7 +129,7 @@ const PostForm = props => {
                 </div>
             </div>
             <div className='field'>
-                <label htmlFor='location'>Location</label>
+                <label htmlFor='location' className='label'>Location</label>
                 <input
                     type='text'
                     id='location'
@@ -136,26 +143,28 @@ const PostForm = props => {
             {/* would like to change this so that it looks nicer, but will keep it
             as is for now for functionality */}
             <div className='field'>
-                <label htmlFor='image'>Image</label>
+                <label htmlFor='image' className='label'>Image</label>
                 <input
                     type='file'
                     id='image'
                 />
             </div>
             <div id='includeBountyField'>
-                <label htmlFor='includeBounty'>Include Bounty?</label>
+                <label htmlFor='includeBounty' className='label'>Include Bounty?</label>
                 <input
                     type='checkbox'
                     id='includeBounty'
                     checked={formData.includeBounty}
-                    onChange={() => setFormData({
-                        ...formData, 
-                        includeBounty: !formData.includeBounty
-                    })}
+                    onChange={() => {
+                        setFormData({
+                            ...formData, 
+                            includeBounty: !formData.includeBounty
+                        })
+                    }}
                 />
             </div>
             {formData.includeBounty && <div className='field'>
-                <label htmlFor='bounty'>Bounty</label>
+                <label htmlFor='bounty' className='label'>Bounty*</label>
                 <input
                     type='text'
                     id='bounty'
@@ -167,7 +176,11 @@ const PostForm = props => {
                     })}
                 />
             </div>}
-            <input type="submit" value={formData.submitType} />
+            <input 
+                type='submit' 
+                className={isValid ? 'submit' : 'disabled'} 
+                value={formData.submitLabel} 
+            />
         </form>
     )
 }

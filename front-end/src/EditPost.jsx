@@ -1,42 +1,52 @@
 import './EditPost.css'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PostForm from './PostForm'
 
 const EditPost = props => {
-    // this should redirect to some confirmation page. for now, i will make it an alert
-    const saveEditForm = e => {
-        e.preventDefault()
-        alert("Successfully Edited")
-    }
+    const [formData, setFormData] = useState({
+        category: 'lost',
+        title: '',
+        desc: '',
+        date: '',
+        time: '',
+        location: '', 
+        includeBounty: false,
+        bounty: '',
+        submitLabel: ''
+    })
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
-    // return to previous page (the post this form corresponds to) without saving changes
-    const cancel = () => {
-        alert("Go Back to Previous Page")
-    }
+    useEffect(() => {
+        // take data from back-end
+        setFormData({
+            category: 'lost', 
+            title: 'Missing Airpods', 
+            desc: 'Lost them during class', 
+            date: '2026-10-30', 
+            time: '14:00', 
+            location: 'Bobst Library', 
+            includeBounty: true, 
+            bounty: '$20', 
+            submitLabel: 'Save Changes'
+        })
+    }, [])
 
-    // remove post data; redirects to confirmation screen
+    // remove post data; later shows confirmation screen
     const deletePost = () => {
-        alert("Removed Post")
+        console.log("Removed Post")
+        // remove data from back-end
     }
 
     return (
         <div className='editPost'>
             <h1>Edit Post</h1>
             <PostForm 
-                category='lost'
-                title='Lorem ipsum'
-                desc='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud'
-                date='2026-10-19'
-                time='12:00'
-                location='Lorem ipsum'
-                includeBounty={true}
-                bounty='$XXX'
-                submit={saveEditForm} 
-                submitType='Save Changes' />
-
-            <button className='cancel' onClick={cancel}>Cancel</button>
-            <button onClick={deletePost}>Delete</button>
+                key={formData.title}
+                {...formData}
+                submitLabel='Save Changes' />
+            {!isSubmitted && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
+            <button id='delete' onClick={deletePost}>Delete</button>
         </div>
     );
 }
