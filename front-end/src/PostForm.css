@@ -77,13 +77,19 @@
     flex-direction: row;
 }
 
-.postForm > .submit {
-    font-size: inherit;
+.postForm > .submit, 
+.postForm > .disabled {
     margin-top: 10px;
     width: 250px;
     height: 50px;
     border: none;
     background-color: black;
+    font-size: inherit;
+}
+
+.postForm > .disabled {
+    background-color: rgb(18, 18, 20);
+    color: gray;
 }
 
 .postForm > .submit:hover {
