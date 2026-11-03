@@ -63,6 +63,8 @@
 }
 
 .notificationContent a {
+    display: block;
+    margin-top: 15px;
     color: black;
     font-weight: bold;
 }
