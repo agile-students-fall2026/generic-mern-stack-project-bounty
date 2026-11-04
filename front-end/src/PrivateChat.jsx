@@ -8,9 +8,9 @@ const PrivateChat = () => {
         { id: 1, text: 'yo you got my stuff', sender: 'other', time: '1:58 PM' },
         { id: 2, text: 'yea i got it', sender: 'you', time: '2:00 PM' },
         { id: 3, text: 'where', sender: 'other', time: '2:04 PM' },
-        { id: 4, text: 'yo mama crib', sender: 'you', time: '2:04 PM' },
-        { id: 5, text: '?', sender: 'other', time: '2:04 PM' },
-        { id: 6, text: '?', sender: 'you', time: '2:04 PM' }
+        { id: 4, text: 'bobst', sender: 'you', time: '2:04 PM' },
+        { id: 5, text: 'ok coming', sender: 'other', time: '2:04 PM' },
+        { id: 6, text: 'dub', sender: 'you', time: '2:05 PM' }
     ])
 
     return (
