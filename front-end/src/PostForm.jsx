@@ -211,13 +211,6 @@ const PostForm = props => {
                     viewPost={true} />
             </div>}
         </>
-            <input 
-                type='submit' 
-                className={isValid ? 'submit' : 'disabled'} 
-                value={formData.submitLabel} 
-                disabled={!isValid}
-            />
-        </form>
     )
 }
 
