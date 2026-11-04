@@ -5,7 +5,9 @@ import './App.css'
 import NewPost from './NewPost'
 import EditPost from './EditPost'
 import Home from './Home'
-import PublishConfirmation from './PublishConfirmation'
+import Notifications from './Notifications'
+import Messages from './Messages'
+import PrivateChat from './PrivateChat'
 import BountyChoice from './BountyChoice'
 
 function App() {
@@ -32,8 +34,13 @@ function App() {
           <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} />} />
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} />} />
           {/* currently non-functional; i'll try it after demo */}
-          <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} />
+          {/* <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} /> */}
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/new-post" element={<NewPost />} /> */}
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/1" element={<PrivateChat />} />
         </Routes>
 
       </Router>
