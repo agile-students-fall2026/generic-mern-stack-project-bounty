@@ -1,6 +1,6 @@
 import './PostForm.css'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Confirmation from './Confirmation'
 
 const PostForm = props => {
@@ -16,6 +16,7 @@ const PostForm = props => {
         submitLabel: props.submitLabel ?? ''
     })
     const [isValid, setIsValid] = useState(false)
+    // const navigate = useNavigate()
 
     useEffect(() => {
         if (formData.includeBounty) {
@@ -31,6 +32,7 @@ const PostForm = props => {
         e.preventDefault() // prevent normal browser submit behavior
         console.log('Form Submitted')
         props.setIsSubmitted(true)
+        // navigate('/new-post/publish-confirmation')
     }
 
     return (
@@ -67,13 +69,13 @@ const PostForm = props => {
                     />
                     <input 
                         type='button' 
-                        className={formData.category === 'req' ? 'active' : 'inactive'} 
+                        className={formData.category === 'request' ? 'active' : 'inactive'} 
                         onClick={() => {
                             // must set to true instead of just !isLost b/c this choice is
                             // necessary, so can't unselect
                                 setFormData({
                                     ...formData,
-                                    category: 'req'
+                                    category: 'request'
                                 })
                             }
                         }
@@ -179,11 +181,12 @@ const PostForm = props => {
                         })}
                     />
                 </div>}
-                <input 
+                <button 
                     type='submit' 
                     className={isValid ? 'submit' : 'disabled'} 
-                    value={formData.submitLabel} 
-                />
+                    // value={formData.submitLabel} 
+                    disabled={!isValid}
+                >{formData.submitLabel}</button>
             </form>}
             {props.isSubmitted && <div className='confirm'>
                 <Confirmation 
