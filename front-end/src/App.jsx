@@ -9,6 +9,7 @@ import Notifications from './Notifications'
 import Messages from './Messages'
 import PrivateChat from './PrivateChat'
 import BountyChoice from './BountyChoice'
+import Profile from './profile/Profile'
 
 function App() {
   const [postsData, setPostsData] = useState([])
@@ -41,6 +42,7 @@ function App() {
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/messages/1" element={<PrivateChat />} />
+          <Route path='/profile' element={<Profile />} />
         </Routes>
 
       </Router>
