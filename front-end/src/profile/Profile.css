@@ -1,0 +1,109 @@
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: left;
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-header h2,
+.profile-header p {
+  margin: 0;
+}
+
+.profile-pfp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+
+.profile-pfp img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-pfp-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-links button {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 12px 0;
+  border: none;
+  border-top: 1px solid #ddd;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile-links li:last-child button {
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-page label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.profile-page input,
+.profile-page textarea {
+  padding: 8px;
+  border: 1px solid #000;
+  font: inherit;
+}
+
+.profile-btn-outline,
+.profile-btn-solid {
+  align-self: center;
+  width: 220px;
+  padding: 14px;
+  border: 1px solid #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.profile-btn-outline {
+  background: #fff;
+  color: #000;
+}
+
+.profile-btn-solid {
+  background: #000;
+  color: #fff;
+}
+
+.profile-btn-link {
+  align-self: center;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+}
