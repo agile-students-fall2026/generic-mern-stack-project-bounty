@@ -41,3 +41,37 @@
     min-height: 350px;
     margin-top: 25px;
 }
+
+.chatMessages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chatMessage {
+    max-width: 70%;
+}
+
+.chatMessage.other {
+    align-self: flex-start;
+}
+
+.chatMessage.you {
+    align-self: flex-end;
+}
+
+.chatBubble {
+    padding: 15px;
+    border: 1px solid lightgray;
+}
+
+.chatMessage.you .chatBubble {
+    background: lightgray;
+}
+
+.chatMessage span {
+    display: block;
+    margin-top: 5px;
+    color: gray;
+    font-size: 14px;
+}
