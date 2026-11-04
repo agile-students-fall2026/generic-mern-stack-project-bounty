@@ -1,6 +1,7 @@
 import './NewPost.css'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import PostForm from './PostForm'
 
 const NewPost = props => {
@@ -10,10 +11,11 @@ const NewPost = props => {
         <div className='newPost'>
             {!isSubmitted && <h1>Create Post</h1>}
             <PostForm 
-                origin='edit' // publish, edit, or resolve
+                origin='publish' // publish, edit, or resolve
                 submitLabel='Publish Post' 
-                isSubmitted={isSubmitted}
-                setIsSubmitted={setIsSubmitted} />
+                isSubmitted={isSubmitted} 
+                setIsSubmitted={setIsSubmitted} 
+                />
             {!isSubmitted && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
         </div>
     );
