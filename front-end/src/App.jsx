@@ -5,8 +5,9 @@ import './App.css'
 import NewPost from './NewPost'
 import EditPost from './EditPost'
 import Home from './Home'
-import PublishConfirmation from './PublishConfirmation'
-import BountyChoice from './BountyChoice'
+import Notifications from './Notifications'
+import Messages from './Messages'
+import PrivateChat from './PrivateChat'
 
 function App() {
 
@@ -21,7 +22,7 @@ function App() {
             {/* placeholder until actual post view screen is created */}
             <Link className="nav-link" to="/edit-post" style={{textDecoration: 'none'}}>Edit</Link>
             <Link className="nav-link" to="/messages" style={{textDecoration: 'none'}}>Messages</Link>
-            <Link className="nav-link" to="/messages" style={{textDecoration: 'none'}}>Notifications</Link>
+            <Link className="nav-link" to="/notifications" style={{textDecoration: 'none'}}>Notifications</Link>
             <Link className="nav-link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link>
             <Link className='nav-link' to='/resolve-post' style={{textDecoration: 'none'}}>Resolve</Link>
           </div>
@@ -29,10 +30,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/new-post" element={<NewPost />} />
-          <Route path='/edit-post' element={<EditPost />} />
-          {/* currently non-functional; i'll try it after demo */}
-          <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} />
-          <Route path='/resolve-post' element={<BountyChoice />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/1" element={<PrivateChat />} />
         </Routes>
 
       </Router>
