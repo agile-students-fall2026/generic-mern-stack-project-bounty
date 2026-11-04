@@ -7,6 +7,7 @@ import EditPost from './EditPost'
 import Home from './Home'
 import PublishConfirmation from './PublishConfirmation'
 import BountyChoice from './BountyChoice'
+import Profile from './profile/Profile'
 
 function App() {
 
@@ -33,6 +34,8 @@ function App() {
           {/* currently non-functional; i'll try it after demo */}
           <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} />
           <Route path='/resolve-post' element={<BountyChoice />} />
+          <Route path='/profile' element={<Profile />} />
+
         </Routes>
 
       </Router>

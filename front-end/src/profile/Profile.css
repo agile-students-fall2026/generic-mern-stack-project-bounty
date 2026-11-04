@@ -5,6 +5,7 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
+  text-align: left;
 }
 
 .profile-header {
@@ -18,7 +19,7 @@
   margin: 0;
 }
 
-.pfp {
+.profile-pfp {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,13 +28,13 @@
   background: #d9d9d9;
 }
 
-.pfp img {
+.profile-pfp img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.pfp-upload {
+.profile-pfp-upload {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -76,8 +77,8 @@
   font: inherit;
 }
 
-.btn-outline,
-.btn-solid {
+.profile-btn-outline,
+.profile-btn-solid {
   align-self: center;
   width: 220px;
   padding: 14px;
@@ -86,17 +87,17 @@
   cursor: pointer;
 }
 
-.btn-outline {
+.profile-btn-outline {
   background: #fff;
   color: #000;
 }
 
-.btn-solid {
+.profile-btn-solid {
   background: #000;
   color: #fff;
 }
 
-.btn-link {
+.profile-btn-link {
   align-self: center;
   border: none;
   background: none;

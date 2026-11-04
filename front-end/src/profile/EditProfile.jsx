@@ -35,9 +35,9 @@ function EditProfile({ profile, onSave, onCancel }) {
     <form className="profile-page" onSubmit={handleSubmit}>
       <h1>Edit Profile</h1>
 
-      <div className="pfp-upload">
+      <div className="profile-pfp-upload">
         <ProfilePicture src={picture} />
-        <button type="button" className="btn-link" onClick={() => fileInput.current.click()}>
+        <button type="button" className="profile-btn-link" onClick={() => fileInput.current.click()}>
           Upload profile picture
         </button>
         <input ref={fileInput} type="file" accept="image/*" hidden onChange={handlePictureChange} />
@@ -53,8 +53,8 @@ function EditProfile({ profile, onSave, onCancel }) {
         <textarea rows="5" value={bio} onChange={(e) => setBio(e.target.value)} />
       </label>
 
-      <button type="submit" className="btn-solid">Save Changes</button>
-      <button type="button" className="btn-link" onClick={handleCancel}>Cancel</button>
+      <button type="submit" className="profile-btn-solid">Save Changes</button>
+      <button type="button" className="profile-btn-link" onClick={handleCancel}>Cancel</button>
     </form>
   )
 }
