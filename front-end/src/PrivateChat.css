@@ -1,14 +1,16 @@
 .privateChat {
-    max-width: 850px;
+    width: 500px;
+    max-width: 100%;
+    box-sizing: border-box;
     margin: auto;
     padding: 30px;
     background: white;
     color: black;
-    min-height: 100vh;
     text-align: left;
 }
 
-.privateChat a {
+.privateChat a,
+.chatUser h2 {
     color: black;
 }
 
@@ -17,10 +19,6 @@
     align-items: center;
     gap: 15px;
     margin: 25px 0;
-}
-
-.chatUser h2 {
-    color: black;
 }
 
 .chatAvatar {
@@ -38,14 +36,11 @@
 }
 
 .chatMessages {
-    min-height: 350px;
-    margin-top: 25px;
-}
-
-.chatMessages {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    min-height: 350px;
+    margin: 25px 0;
 }
 
 .chatMessage {
@@ -71,7 +66,25 @@
 
 .chatMessage span {
     display: block;
-    margin-top: 5px;
     color: gray;
     font-size: 14px;
+}
+
+.chatInput {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.chatInput input {
+    flex: 1;
+    padding: 10px;
+    background: white;
+    color: black;
+}
+
+.chatInput button {
+    padding: 10px 20px;
+    background: black;
+    color: white;
 }

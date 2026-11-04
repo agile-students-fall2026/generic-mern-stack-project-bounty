@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const PrivateChat = () => {
-    const [messages, setMessages] = useState([
+    const [messages] = useState([
         { id: 1, text: 'yo you got my stuff', sender: 'other', time: '1:58 PM' },
         { id: 2, text: 'yea i got it', sender: 'you', time: '2:00 PM' },
         { id: 3, text: 'where', sender: 'other', time: '2:04 PM' },
@@ -15,7 +15,7 @@ const PrivateChat = () => {
 
     return (
         <div className="privateChat">
-            <Link to="/messages"> Back to Messages</Link>
+            <Link to="/messages">Back to Messages</Link>
 
             <div className="chatUser">
                 <div className="chatAvatar">pic</div>
@@ -35,6 +35,18 @@ const PrivateChat = () => {
                     </div>
                 ))}
             </div>
+
+            <form className="chatForm">
+                <label htmlFor="messageInput">Message</label>
+                <div className="chatInput">
+                    <input
+                        id="messageInput"
+                        type="text"
+                        placeholder="Type a message..."
+                    />
+                    <button type="button">Send</button>
+                </div>
+            </form>
         </div>
     )
 }
