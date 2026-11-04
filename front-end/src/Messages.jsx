@@ -39,20 +39,30 @@ const Messages = () => {
         }
     ])
 
+    const [search, setSearch] = useState('')
+
+    const filtered = conversations.filter(c =>
+        c.username.toLowerCase().includes(search.toLowerCase()) ||
+        c.item.toLowerCase().includes(search.toLowerCase())
+    )
+
     return (
         <div className="messages">
             <h1>Messages</h1>
 
             <div className="messageSearch">
-                <label>Search conversations</label>
+                <label htmlFor="search">Search conversations</label>
                 <input
+                    id="search"
                     type="text"
                     placeholder="Search students or items"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
                 />
             </div>
 
             <div className="messageList">
-                {conversations.map(c => (
+                {filtered.map(c => (
                     <div className="messageItem" key={c.id}>
                         <div className="messageImage">pic</div>
 
