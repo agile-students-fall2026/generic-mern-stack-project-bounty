@@ -75,11 +75,13 @@
 
 #disabled {
     background-color: rgb(18, 18, 20);
+    color: gray;
 }
 
 #submit, 
 #cancel {
     background-color: black;
+    color: white;
 }
 
 #cancel {

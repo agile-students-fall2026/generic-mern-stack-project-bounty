@@ -1,0 +1,90 @@
+.privateChat {
+    width: 900px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    color: black;
+    text-align: left;
+}
+
+.privateChat a,
+.chatUser h2 {
+    color: black;
+}
+
+.chatUser {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.chatAvatar {
+    width: 60px;
+    height: 60px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatItem {
+    border: 1px solid lightgray;
+    padding: 15px;
+}
+
+.chatMessages {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-height: 350px;
+    margin: 25px 0;
+}
+
+.chatMessage {
+    max-width: 70%;
+}
+
+.chatMessage.other {
+    align-self: flex-start;
+}
+
+.chatMessage.you {
+    align-self: flex-end;
+}
+
+.chatBubble {
+    padding: 15px;
+    border: 1px solid lightgray;
+}
+
+.chatMessage.you .chatBubble {
+    background: lightgray;
+}
+
+.chatMessage span {
+    display: block;
+    color: gray;
+    font-size: 14px;
+}
+
+.chatInput {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.chatInput input {
+    flex: 1;
+    padding: 10px;
+    background: white;
+    color: black;
+}
+
+.chatInput button {
+    padding: 10px 20px;
+    background: black;
+    color: white;
+}

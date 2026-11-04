@@ -86,6 +86,7 @@
     border: none;
     background-color: black;
     font-size: inherit;
+    color: white;
 }
 
 .postForm > .disabled {
