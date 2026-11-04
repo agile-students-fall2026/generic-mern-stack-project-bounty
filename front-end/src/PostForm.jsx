@@ -46,6 +46,8 @@ const PostForm = props => {
         console.log('Form Submitted')
         props.setIsSubmitted(true)
         // navigate('/new-post/publish-confirmation')
+
+        props.setPostsData(prev => [...prev, formData])
     }
 
     return (

@@ -18,6 +18,19 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 16px;
+}
+
+.profile > .icon {
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.profile > p {
+  margin: 0;
+  padding: 0;
 }
 
 .bounty-image {
@@ -30,4 +43,37 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  gap: 20px;
+}
+
+#docs {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+#docs > p {
+  margin-bottom: 16px;
+}
+
+#docs > h4 {
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.buttons > .nav-link {
+  background-color: black;
+  color: white;
+  width: 250px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+
 }

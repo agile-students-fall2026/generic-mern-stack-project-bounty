@@ -21,17 +21,18 @@ const EditPost = props => {
 
     useEffect(() => {
         // take data from back-end
-        setFormData({
-            category: 'lost', 
-            title: 'Missing Airpods', 
-            desc: 'Lost them during class', 
-            date: '2026-10-30', 
-            time: '14:00', 
-            location: 'Bobst Library', 
-            includeBounty: true, 
-            bounty: '$20', 
-            submitLabel: 'Save Changes'
-        })
+        // setFormData({
+        //     category: 'lost', 
+        //     title: 'Missing Airpods', 
+        //     desc: 'Lost them during class', 
+        //     date: '2026-10-30', 
+        //     time: '14:00', 
+        //     location: 'Bobst Library', 
+        //     includeBounty: true, 
+        //     bounty: '$20', 
+        //     submitLabel: 'Save Changes'
+        // })
+        setFormData(props.postsData.at(-1))
     }, [])
 
     // remove post data; later shows confirmation screen
@@ -45,6 +46,8 @@ const EditPost = props => {
         <div className='editPost'>
             {(!isSubmitted && !isDeleted) && <h1>Edit Post</h1>}
             {!isDeleted && <PostForm 
+                postsData={props.postsData}
+                setPostsData={props.setPostsData}
                 key={formData.title}
                 {...formData}
                 origin='edit'
