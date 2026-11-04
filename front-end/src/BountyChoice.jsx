@@ -1,6 +1,7 @@
 import './BountyChoice.css'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import Confirmation from './Confirmation'
 
 const BountyChoice = props => {
     const [bounty, setBounty] = useState('')
@@ -35,6 +36,7 @@ const BountyChoice = props => {
         e.preventDefault()
         console.log(`Final decision made: give bounty to ${personChosen}!`)
         // redirect to confirmation page afterwards
+        setIsSubmitted(true)
     }
 
     // should get the associated pfps from back-end according to users
@@ -43,15 +45,15 @@ const BountyChoice = props => {
 
     return (
         <div className='bountyChoice'>
-            <h1>Choose Bounty Receiver</h1>
-            <p id='text'>Among the people you have messaged, you may select who will receive 
-                the bounty you have set. Selecting them will notify them immediately. </p>
-            <div className='bountyDisplay'>
+            {!isSubmitted && <h1>Choose Bounty Receiver</h1>}
+            {!isSubmitted && <p id='text'>Among the people you have messaged, you may select who will receive 
+                the bounty you have set. Selecting them will notify them immediately. </p>}
+            {!isSubmitted && <div className='bountyDisplay'>
                 <h2>Bounty</h2>
                 <p>{bounty}</p>
-            </div>
+            </div>}
                 
-            <div className='choices'>
+            {!isSubmitted && <div className='choices'>
                 {/* need to make list out of people in mesages history */}
                 {/* for this part, might be better to change to mapping for each */}
                 
@@ -64,19 +66,23 @@ const BountyChoice = props => {
                         <p className='name'>{choice}</p>
                     </button>
                 ))}
-            </div>
+            </div>}
 
-            <form onSubmit={submit}>
-                <input 
+            {!isSubmitted && <form onSubmit={submit}>
+                <button 
                     type='submit' 
                     id={!personChosen ? 'disabled' : 'submit'} 
-                    disabled={!personChosen} 
-                    value='Confirm'
-                />
-            </form>
+                    disabled={!personChosen}>
+                    Confirm
+                </button>
+            </form>}
             {/* return to post user came from; for now, as we don't have post view screen,
             this is going to route to home */}
             {!isSubmitted && <Link className="link" id='cancel' to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
+            {isSubmitted && <Confirmation 
+                title={`Post Resolved!`}
+                message={`Your post has been marked as resolved.`}
+                viewPost={false} />}
         </div>
     );
 }
