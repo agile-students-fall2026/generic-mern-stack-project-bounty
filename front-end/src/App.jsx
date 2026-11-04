@@ -6,6 +6,7 @@ import NewPost from './NewPost'
 import EditPost from './EditPost'
 import Home from './Home'
 import PublishConfirmation from './PublishConfirmation'
+import BountyChoice from './BountyChoice'
 
 function App() {
 
@@ -14,11 +15,12 @@ function App() {
     <>
       <Router>
         <nav className="header">
-          <Link className="link" to="/new-post" style={{textDecoration: 'none'}}>New</Link>
-          <Link className="link" to="/" style={{textDecoration: 'none'}}>Bounty</Link>
-          <Link className="link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link>
+          <Link className="link" to="/new-post">New</Link>
+          <Link className="link" to="/">Bounty</Link>
+          <Link className="link" to="/profile">Profile</Link>
           {/* placeholder until actual post view screen is created */}
-          <Link className="link" to="/edit-post" style={{textDecoration: 'none'}}>Edit</Link>
+          <Link className="link" to="/edit-post">Edit</Link>
+          <Link className='link' to='/resolve-post'>Resolve</Link>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,6 +28,7 @@ function App() {
           <Route path='/edit-post' element={<EditPost />} />
           {/* currently non-functional; i'll try it after demo */}
           <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} />
+          <Route path='/resolve-post' element={<BountyChoice />} />
         </Routes>
 
       </Router>
