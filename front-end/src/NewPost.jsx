@@ -15,6 +15,7 @@ const NewPost = props => {
                 submitLabel='Publish Post' 
                 isSubmitted={isSubmitted} 
                 setIsSubmitted={setIsSubmitted} 
+                // edit={false}
                 />
             {!isSubmitted && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
         </div>

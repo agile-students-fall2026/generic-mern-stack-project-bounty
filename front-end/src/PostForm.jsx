@@ -12,10 +12,10 @@ const PostForm = props => {
         time: props.time ?? '',
         location: props.location ?? '', 
         includeBounty: props.includeBounty ?? false,
-        bounty: props.bounty ?? '',
-        submitLabel: props.submitLabel ?? ''
+        bounty: props.bounty ?? ''
     })
     const [isValid, setIsValid] = useState(false)
+    const [isEdited, setIsEdited] = useState(false)
     // const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,6 +26,19 @@ const PostForm = props => {
             setIsValid(formData.title && formData.desc)
         }
     }, [formData.includeBounty, formData.title, formData.desc, formData.bounty])
+
+    useEffect(() => {
+        setIsEdited(
+            formData.category !== props.category ||
+            formData.title !== props.title ||
+            formData.desc !== props.desc ||
+            formData.date !== props.date ||
+            formData.time !== props.time ||
+            formData.location !== props.location ||
+            formData.includeBounty !== props.includeBounty ||
+            formData.bounty !== props.bounty
+        )
+    }, [formData])
 
     // actually put the post form data into backend... will do in next sprint
     const submitForm = e => {
@@ -183,10 +196,9 @@ const PostForm = props => {
                 </div>}
                 <button 
                     type='submit' 
-                    className={isValid ? 'submit' : 'disabled'} 
-                    // value={formData.submitLabel} 
-                    disabled={!isValid}
-                >{formData.submitLabel}</button>
+                    className={isValid && isEdited ? 'submit' : 'disabled'} 
+                    disabled={!isValid || !isEdited}
+                >{props.submitLabel}</button>
             </form>}
             {props.isSubmitted && <div className='confirm'>
                 <Confirmation 
