@@ -6,6 +6,7 @@ import NewPost from './NewPost'
 import Home from './Home'
 import Notifications from './Notifications'
 import Messages from './Messages'
+import PrivateChat from './PrivateChat'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/new-post" element={<NewPost />} />
           <Route path="/notifications" element={<Notifications />} />
           <Route path="/messages" element={<Messages />} />
+          <Route path="/messages/1" element={<PrivateChat />} />
         </Routes>
 
       </Router>

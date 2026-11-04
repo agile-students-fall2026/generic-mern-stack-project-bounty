@@ -1,0 +1,43 @@
+.privateChat {
+    max-width: 850px;
+    margin: auto;
+    padding: 30px;
+    background: white;
+    color: black;
+    min-height: 100vh;
+    text-align: left;
+}
+
+.privateChat a {
+    color: black;
+}
+
+.chatUser {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 25px 0;
+}
+
+.chatUser h2 {
+    color: black;
+}
+
+.chatAvatar {
+    width: 60px;
+    height: 60px;
+    background: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatItem {
+    border: 1px solid lightgray;
+    padding: 15px;
+}
+
+.chatMessages {
+    min-height: 350px;
+    margin-top: 25px;
+}
