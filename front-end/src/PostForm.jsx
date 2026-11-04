@@ -202,6 +202,7 @@ const PostForm = props => {
             </form>}
             {props.isSubmitted && <div className='confirm'>
                 <Confirmation 
+                data={formData}
                     title={`Post ${props.origin === 'publish' ? 'Published!' : props.origin === 'edit' ? 'Edited!' : 'Resolved!'}`}
                     message={`Your ${formData.category} item post is now visible to NYU students.`}
                     info={`${formData.category.charAt(0).toUpperCase() + formData.category.slice(1)} Item
