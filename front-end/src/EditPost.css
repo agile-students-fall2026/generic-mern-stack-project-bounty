@@ -7,8 +7,7 @@
     font: inherit;
 }
 
-.editPost > .link, 
-.editPost > #delete {
+.editPost > .link {
     font: inherit;
     border: none;
     display: flex;
