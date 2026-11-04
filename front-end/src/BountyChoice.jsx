@@ -17,6 +17,9 @@ const BountyChoice = props => {
         // should get choices from list of people in user's messages screen
         // for now, placeholder:
         setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
+        if (!props.postsData.at(-1).bounty) {
+            setIsSubmitted(true)
+        }
     }, [])
 
     const chose = name => {

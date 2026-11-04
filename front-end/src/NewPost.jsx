@@ -16,8 +16,10 @@ const NewPost = props => {
                 isSubmitted={isSubmitted} 
                 setIsSubmitted={setIsSubmitted} 
                 // edit={false}
+                postsData={props.postsData}
+                setPostsData={props.setPostsData}
                 />
-            {!isSubmitted && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
+            {!isSubmitted && <Link className="link" to="../" style={{textDecoration: 'none'}}>Cancel</Link>}
         </div>
     );
 }

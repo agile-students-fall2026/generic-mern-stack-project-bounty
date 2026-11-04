@@ -9,6 +9,7 @@ import PublishConfirmation from './PublishConfirmation'
 import BountyChoice from './BountyChoice'
 
 function App() {
+  const [postsData, setPostsData] = useState([])
 
   // beware inevitable merge conflict
   return (
@@ -19,20 +20,20 @@ function App() {
           <div className="nav-links">
             <Link className="nav-link" to="/new-post" style={{textDecoration: 'none'}}>New</Link>
             {/* placeholder until actual post view screen is created */}
-            <Link className="nav-link" to="/edit-post" style={{textDecoration: 'none'}}>Edit</Link>
+            {/* <Link className="nav-link" to="/edit-post" style={{textDecoration: 'none'}}>Edit</Link> */}
             <Link className="nav-link" to="/messages" style={{textDecoration: 'none'}}>Messages</Link>
-            <Link className="nav-link" to="/messages" style={{textDecoration: 'none'}}>Notifications</Link>
+            <Link className="nav-link" to="/notifications" style={{textDecoration: 'none'}}>Notifications</Link>
             <Link className="nav-link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link>
-            <Link className='nav-link' to='/resolve-post' style={{textDecoration: 'none'}}>Resolve</Link>
+            {/* <Link className='nav-link' to='/resolve-post' style={{textDecoration: 'none'}}>Resolve</Link> */}
           </div>
         </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/new-post" element={<NewPost />} />
-          <Route path='/edit-post' element={<EditPost />} />
+          <Route path="/" element={<Home postsData={postsData} setPostsData={setPostsData} />} />
+          <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} />} />
+          <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} />} />
           {/* currently non-functional; i'll try it after demo */}
           <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} />
-          <Route path='/resolve-post' element={<BountyChoice />} />
+          <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} />} />
         </Routes>
 
       </Router>
