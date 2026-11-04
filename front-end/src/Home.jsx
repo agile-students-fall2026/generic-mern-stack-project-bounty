@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
@@ -27,8 +28,37 @@ const PostElement = props => {
 }
 
 function Home() {
-  const [count, setCount] = useState(0)
-
+    const [postData, setPostData] = useState([{
+    'username':"test",
+    'item':"lost item",
+    'status':"lost",
+    'text':"test text",
+    'time':"XX:XX",
+    'location':"test location",
+    'bounty':true,
+    'reward':"$XXX"}]);
+    const [lastState, setLastState] = useState()
+      const loc = useLocation()
+      const nav = useNavigate()
+  if(loc.state?.newData && lastState != loc.state?.newData){
+    const tempData = loc.state?.newData
+    setPostData([...postData,
+      { 'username': 'test',
+        'item': tempData.title,
+        'status': tempData.category,
+        'text': tempData.desc,
+        'time': tempData.time,
+        'location': tempData.location,
+        'bounty': tempData.includeBounty,
+        'reward': tempData.bounty
+       }
+        ])
+        setLastState(loc.state?.newData)
+  }
+  const presentData = []
+  postData.forEach(element => {
+    presentData.push(<PostElement username={element.username} item={element.item} status={element.status} text={element.text} time={element.time} location={element.location} bounty={element.bounty} reward={element.reward} />)
+  })
   return (
     <>
       <section id="center">
@@ -52,7 +82,7 @@ function Home() {
       <div className="ticks"></div>
 
       <section id="next-steps">
-        <PostElement username="test" item="lost item" status="lost" text="test text" time="XX:XX" location="test location" bounty={true} reward="$XXX" />
+        {presentData}
       </section>
 
       <div className="ticks"></div>
