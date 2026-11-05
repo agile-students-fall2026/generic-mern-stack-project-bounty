@@ -32,8 +32,8 @@
     place-items: center;
 }
 
-.choice, 
-.active {
+.choices > .choice, 
+.choices > .active {
     box-sizing: border-box;
     color: inherit;
     font: inherit;

@@ -5,6 +5,7 @@ import Confirmation from './Confirmation'
 
 const PostForm = props => {
     const [formData, setFormData] = useState({
+        // should include a username field, true
         category: props.category ?? 'lost',
         title: props.title ?? '',
         desc: props.desc ?? '',
@@ -47,7 +48,7 @@ const PostForm = props => {
         props.setIsSubmitted(true)
         // navigate('/new-post/publish-confirmation')
 
-        props.setPostsData(prev => [...prev, formData])
+        props.setPostsData(prev => [formData, ...prev])
     }
 
     return (

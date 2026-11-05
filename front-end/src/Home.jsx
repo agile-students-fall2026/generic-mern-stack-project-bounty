@@ -8,20 +8,24 @@ import './Home.css'
 const PostElement = props => {
     return(
         <>
-        <div id="docs">
+        <div className="docs">
           <div className='profile'>
             <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img>
-            <p>{props.username}</p>
+            <p>You</p>
           </div>
-          <h2>{props.item} | {props.status}</h2>
-          <p>{props.text}</p>
-          <h4>Date: {!props.date ? 'N/A' : props.date}</h4>
-          <h4>Time: {!props.time ? 'N/A' : props.time}</h4>
-          <h4>Location: {!props.location ? 'N/A' : props.location }</h4>
+          <div className='content'>
+            <div className='heading'>
+              <h2>{props.title} | {props.category.at(0).toUpperCase() + props.category.slice(1)}</h2>
+              <p>{props.desc}</p>
+            </div>
+            {props.date && <p><strong>Date:</strong> {props.date}</p>}
+            {props.time && <p><strong>Time:</strong> {props.time}</p>}
+            {props.location && <p><strong>Location:</strong> {props.location}</p>}
+          </div>
           <div className='bounty-image-grouping'>
             <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img>
-            <h2>{props.bounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>
-            <h2>{props.reward}</h2>
+            <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>
+            <h3>{props.bounty}</h3>
           </div>
           {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
           <div className='buttons'>
@@ -33,78 +37,43 @@ const PostElement = props => {
     )
 }
 
-function Home() {
-    const [postData, setPostData] = useState([{
-    'username':"Testing",
-    'item':"Lost my book",
-    'status':"Lost",
-    'text':"I desperately need some help",
-    'date':"",
-    'time':"",
-    'location':"",
-    'bounty':true,
-    'reward':"$1"}]);
-    const [lastState, setLastState] = useState()
-      const loc = useLocation()
-      const nav = useNavigate()
-  if(loc.state?.newData && lastState != loc.state?.newData){
-    const tempData = loc.state?.newData
-    setPostData([...postData,
-      { 'username': 'You',
-        'item': tempData.title,
-        'status': tempData.category,
-        'text': tempData.desc,
-        'date':tempData.date,
-        'time': tempData.time,
-        'location': tempData.location,
-        'bounty': tempData.includeBounty,
-        'reward': tempData.bounty
-       }
-        ])
-        setLastState(loc.state?.newData)
-  }
-  const presentData = []
-  postData.forEach((element, index) => {
-    presentData.push(<PostElement 
-      key={index}
-      username={element.username} 
-      item={element.item} 
-      status={element.status} 
-      text={element.text} 
-      date={element.date}
-      time={element.time} 
-      location={element.location} 
-      bounty={element.bounty} 
-      reward={element.reward} />)
-  })
+const Home = props => {
+
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <div>
-          <input
-                    type='text'
-                    id='title'
-                    placeholder="Search"
-                />
-                <button
-                  type="button"
-                  className="btn"
-                >
-                  Filter
-              </button>
-          </div>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
+      <div id="search">
+        <input
+          type='text'
+          id='title'
+          placeholder="Search"
+        />
+        <button
+          type="button"
+          className="btn"
+        >
+          Filter
+        </button>
+      </div>
 
       <section id="next-steps">
-        {presentData}
+        {props.postsData.length === 0 && <p>No Posts</p>}
+        {props.postsData.length !== 0 && props.postsData.map((element, index) => {
+          return (
+            <PostElement 
+              key={index}
+              username={element.username} 
+              category={element.category}
+              title={element.title}
+              desc={element.desc}
+              date={element.date}
+              time={element.time}
+              location={element.location} 
+              includeBounty={element.includeBounty} 
+              bounty={element.bounty} 
+            />
+          )
+        })}
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
     </>
   )
 }
