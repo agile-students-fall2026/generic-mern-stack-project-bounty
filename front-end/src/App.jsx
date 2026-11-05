@@ -13,6 +13,7 @@ import Profile from './profile/Profile'
 
 function App() {
   const [postsData, setPostsData] = useState([])
+  const [user, setUser] = useState("You")
 
   // beware inevitable merge conflict
   return (
