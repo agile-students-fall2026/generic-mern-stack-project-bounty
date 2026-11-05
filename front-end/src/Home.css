@@ -1,3 +1,7 @@
+#bg {
+  background-color: rgb(232, 232, 232);
+}
+
 .btn {
   font-size: 16px;
   padding: 5px 10px;
@@ -23,9 +27,7 @@
 }
 
 .profile > .icon {
-  max-width: 40px;
-  width: auto;
-  height: 50%;
+  width: min(50px, 12%);
   border-radius: 50%;
   margin: 0;
   padding: 0;
@@ -37,7 +39,7 @@
 }
 
 .bounty-image {
-  width: 80%;
+  width: 90%;
   max-width: 800px;
   height: auto;
 }
@@ -58,11 +60,12 @@
 }
 
 .docs {
+  background-color: white;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 30px;
-  border-radius: 10px;
+  padding: max(16px, 3%);
+  border-radius: 20px;
 }
 
 .docs > .content {

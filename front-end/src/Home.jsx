@@ -40,7 +40,7 @@ const PostElement = props => {
 const Home = props => {
 
   return (
-    <>
+    <div id='bg'>
       <div id="search">
         <input
           type='text'
@@ -74,7 +74,7 @@ const Home = props => {
           )
         })}
       </section>
-    </>
+    </div>
   )
 }
 
