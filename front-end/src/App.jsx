@@ -52,7 +52,7 @@ function App() {
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           {/* currently non-functional; i'll try it after demo */}
           {/* <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} /> */}
-          <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} />} />
+          <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path="/" element={<Home />} />
           {/* <Route path="/new-post" element={<NewPost />} /> */}
           <Route path="/notifications" element={<Notifications />} />

@@ -6,10 +6,13 @@ import viteLogo from './assets/vite.svg'
 import './Home.css'
 
 const PostElement = props => {
+  const [showOptions, setShowOptions] = useState(false)
+
   const toggleOptions = () => {
     console.log(props.id)
     props.setCurr(props.count - 1 - props.id)
     console.log(props.postsData[ props.id - 1])
+    setShowOptions(!showOptions)
   }
 
     return(
@@ -22,6 +25,11 @@ const PostElement = props => {
             </div>
             <button className='settings' onClick={toggleOptions} >...</button>
           </div>
+          {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
+          {showOptions && <div className='buttons'>
+            {(props.username !== 'Testing') && <Link className="option" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
+            {(props.username !== 'Testing') && <Link className="option" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
+          </div>}
           <div className='content'>
             <div className='title'>
               <h2>{props.title} | {props.category.at(0).toUpperCase() + props.category.slice(1)}</h2>
@@ -32,15 +40,12 @@ const PostElement = props => {
             {props.location && <p><strong>Location:</strong> {props.location}</p>}
           </div>
           <div className='bounty-image-grouping'>
-            <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img>
+            {/* <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img> */}
+            <img className='bounty-image' src={props.image} alt="" />
             <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>
             <h3>{props.bounty}</h3>
           </div>
-          {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
-          <div className='buttons'>
-            {(props.username !== 'Testing') && <Link className="nav-link" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
-            {(props.username !== 'Testing') && <Link className="nav-link" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
-          </div>
+          
         </div>
     </>
     )
@@ -78,6 +83,7 @@ const Home = props => {
               date={element.date}
               time={element.time}
               location={element.location} 
+              image={element.image}
               includeBounty={element.includeBounty} 
               bounty={element.bounty} 
               setCurr={props.setCurr}

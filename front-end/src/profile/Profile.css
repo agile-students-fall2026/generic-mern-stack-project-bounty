@@ -3,9 +3,14 @@
   flex-direction: column;
   gap: 16px;
   max-width: 400px;
+  width: 90vw;
   margin: 0 auto;
   padding: 20px;
   text-align: left;
+}
+
+.profile-page > h1 {
+  text-align: center;
 }
 
 .profile-header {
@@ -26,6 +31,7 @@
   flex-shrink: 0;
   overflow: hidden;
   background: #d9d9d9;
+  border-radius: 50%;
 }
 
 .profile-pfp img {

@@ -13,6 +13,7 @@ const PostForm = props => {
         date: props.date ?? '',
         time: props.time ?? '',
         location: props.location ?? '', 
+        image: props.image ?? '',
         includeBounty: props.includeBounty ?? false,
         bounty: props.bounty ?? ''
     })
@@ -37,6 +38,7 @@ const PostForm = props => {
             formData.date !== props.date ||
             formData.time !== props.time ||
             formData.location !== props.location ||
+            formData.image !== props.image ||
             formData.includeBounty !== props.includeBounty ||
             formData.bounty !== props.bounty
         )
@@ -176,6 +178,12 @@ const PostForm = props => {
                     <input
                         type='file'
                         id='image'
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                image: URL.createObjectURL(e.target.files[0]) 
+                            })
+                        }}
                     />
                 </div>
                 <div id='includeBountyField'>

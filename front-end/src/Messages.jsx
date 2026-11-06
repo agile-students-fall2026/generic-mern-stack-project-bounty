@@ -7,15 +7,15 @@ const Messages = () => {
     const [conversations, setConversations] = useState([
         {
             id: 1,
-            username: 'Username B',
+            username: 'Alice A.',
             item: 'Lost Item',
-            preview: 'Lorem ipsum dolor sit amet',
+            preview: 'dub',
             time: '2:04 PM',
             read: false
         },
         {
             id: 2,
-            username: 'Username C',
+            username: 'Bob B.',
             item: 'Lost Item',
             preview: 'Lorem ipsum dolor sit amet',
             time: '1:35 PM',
@@ -23,7 +23,7 @@ const Messages = () => {
         },
         {
             id: 3,
-            username: 'Username D',
+            username: 'Carol C.',
             item: 'Lost Item',
             preview: 'Lorem ipsum dolor sit amet',
             time: 'Yesterday',
@@ -31,13 +31,14 @@ const Messages = () => {
         },
         {
             id: 4,
-            username: 'Username E',
+            username: 'Dave D.',
             item: 'Lost Item',
             preview: 'Lorem ipsum dolor sit amet',
             time: 'Oct 17',
             read: true
         }
     ])
+    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
 
     const [search, setSearch] = useState('')
 
@@ -62,9 +63,10 @@ const Messages = () => {
             </div>
 
             <div className="messageList">
-                {filtered.map(c => (
+                {filtered.map((c, index) => (
                     <div className="messageItem" key={c.id}>
-                        <div className="messageImage">pic</div>
+                        {/* <div className="messageImage">pic</div> */}
+                        <img className='messageImage' src={`../public/pfps/${pfps[index]}`} />
 
                         <div className="messageContent">
                             <h3>{c.username}</h3>

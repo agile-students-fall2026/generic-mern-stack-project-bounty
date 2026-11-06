@@ -18,8 +18,9 @@ const PrivateChat = () => {
             <Link to="/messages">Back to Messages</Link>
 
             <div className="chatUser">
-                <div className="chatAvatar">pic</div>
-                <h2>Username B</h2>
+                {/* <div className="chatAvatar">pic</div> */}
+                <img className='chatAvatar' src={`../public/pfps/pfpA.jpg`} />
+                <h2>Alice A.</h2>
             </div>
 
             <div className="chatItem">
