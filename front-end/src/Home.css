@@ -1,31 +1,55 @@
+#bg {
+  background-color: rgb(232, 232, 232);
+  min-height: 90vh;
+  height: 90%;
+}
+
 .btn {
   font-size: 16px;
   padding: 5px 10px;
   border-radius: 5px;
   color: #000;
   background: #D3D3D3;
-  border: 2px solid transparent;
+  border: none;
   transition: border-color 0.3s;
-  margin-bottom: 24px;
 }
 
 .btn:hover {
     background: #808080;
     color: #000;
+    cursor: pointer;
+}
+
+.docs {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: max(16px, 3%);
+  border-radius: 20px;
+  gap: 12px;
+  /* min-height: 500px; */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .profile {
   display: flex;
+  justify-content: start;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  /* margin-bottom: 16px; */
 }
 
 .profile > .icon {
+  width: min(50px, 12%);
   border-radius: 50%;
   margin: 0;
   padding: 0;
-  margin-bottom: 20px;
 }
 
 .profile > p {
@@ -33,39 +57,62 @@
   padding: 0;
 }
 
+.header > .settings {
+  border: none;
+  height: 50%;
+}
+
+.header > .settings {
+  cursor: pointer;
+}
+
 .bounty-image {
-  width: 800px;
-  height: 400px;
+  width: 90%;
+  max-width: 800px;
+  height: auto;
 }
 
 .bounty-image-grouping {
-  display: grid;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
+  /* padding-bottom: 16px; */
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  text-align: center;
   gap: 20px;
 }
 
-#docs {
+.bounty-image-grouping h3, 
+.bounty-image-grouping h4 {
+  margin: 0;
+  padding: 0;
+}
+
+.docs > .content {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-  padding: 20px;
+  align-items: start;
+  padding: 10px;
+  gap: 10px;
 }
 
-#docs > p {
-  margin-bottom: 16px;
+.content > .title {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
 }
 
-#docs > h4 {
+.content p, 
+.content h4 {
   margin: 0;
-  margin-bottom: 16px;
+  padding: 0;
 }
 
-.buttons > .nav-link {
+.buttons > .option {
   background-color: black;
   color: white;
-  width: 250px;
+  max-width: 250px;
+  width: 40%;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -76,4 +123,20 @@
   display: flex;
   justify-content: space-around;
 
+}
+
+#search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+#next-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 40px;
 }

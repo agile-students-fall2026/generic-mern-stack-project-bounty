@@ -5,12 +5,15 @@ import Confirmation from './Confirmation'
 
 const PostForm = props => {
     const [formData, setFormData] = useState({
+        // should include a username field, true
+        id: props.id, 
         category: props.category ?? 'lost',
         title: props.title ?? '',
         desc: props.desc ?? '',
         date: props.date ?? '',
         time: props.time ?? '',
         location: props.location ?? '', 
+        image: props.image ?? '',
         includeBounty: props.includeBounty ?? false,
         bounty: props.bounty ?? ''
     })
@@ -35,6 +38,7 @@ const PostForm = props => {
             formData.date !== props.date ||
             formData.time !== props.time ||
             formData.location !== props.location ||
+            formData.image !== props.image ||
             formData.includeBounty !== props.includeBounty ||
             formData.bounty !== props.bounty
         )
@@ -47,7 +51,14 @@ const PostForm = props => {
         props.setIsSubmitted(true)
         // navigate('/new-post/publish-confirmation')
 
-        props.setPostsData(prev => [...prev, formData])
+        if (props.origin === 'publish') {
+            console.log("Last check of id: " + props.id)
+            props.setPostsData(prev => [formData, ...prev])
+            props.setCount(prev => prev + 1)
+        }
+        else if (props.origin === 'edit') {
+            props.setPostsData(prev => prev.map((post, index) => index === props.curr ? formData : post))
+        }
     }
 
     return (
@@ -167,6 +178,12 @@ const PostForm = props => {
                     <input
                         type='file'
                         id='image'
+                        onChange={e => {
+                            setFormData({
+                                ...formData,
+                                image: URL.createObjectURL(e.target.files[0]) 
+                            })
+                        }}
                     />
                 </div>
                 <div id='includeBountyField'>
