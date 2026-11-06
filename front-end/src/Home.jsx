@@ -6,15 +6,24 @@ import viteLogo from './assets/vite.svg'
 import './Home.css'
 
 const PostElement = props => {
+  const toggleOptions = () => {
+    console.log(props.id)
+    props.setCurr(props.count - 1 - props.id)
+    console.log(props.postsData[ props.id - 1])
+  }
+
     return(
         <>
         <div className="docs">
-          <div className='profile'>
-            <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img>
-            <p>You</p>
+          <div className='header'>
+            <div className='profile'>
+              <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img>
+              <p>You</p>
+            </div>
+            <button className='settings' onClick={toggleOptions} >...</button>
           </div>
           <div className='content'>
-            <div className='heading'>
+            <div className='title'>
               <h2>{props.title} | {props.category.at(0).toUpperCase() + props.category.slice(1)}</h2>
               <p>{props.desc}</p>
             </div>
@@ -29,8 +38,8 @@ const PostElement = props => {
           </div>
           {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
           <div className='buttons'>
-            {(props.username !== 'Testing') && <Link className="nav-link" to={`/edit-post/1`} style={{textDecoration: 'none'}}>Edit</Link>}
-            {(props.username !== 'Testing') && <Link className="nav-link" to={`/resolve-post/1`} style={{textDecoration: 'none'}}>Resolve</Link>}
+            {(props.username !== 'Testing') && <Link className="nav-link" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
+            {(props.username !== 'Testing') && <Link className="nav-link" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
           </div>
         </div>
     </>
@@ -61,6 +70,7 @@ const Home = props => {
           return (
             <PostElement 
               key={index}
+              id={props.count - 1 - index}
               username={element.username} 
               category={element.category}
               title={element.title}
@@ -70,6 +80,9 @@ const Home = props => {
               location={element.location} 
               includeBounty={element.includeBounty} 
               bounty={element.bounty} 
+              setCurr={props.setCurr}
+              postsData={props.postsData}
+              count={props.count}
             />
           )
         })}

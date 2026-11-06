@@ -6,6 +6,7 @@ import Confirmation from './Confirmation'
 const PostForm = props => {
     const [formData, setFormData] = useState({
         // should include a username field, true
+        id: props.id, 
         category: props.category ?? 'lost',
         title: props.title ?? '',
         desc: props.desc ?? '',
@@ -48,7 +49,14 @@ const PostForm = props => {
         props.setIsSubmitted(true)
         // navigate('/new-post/publish-confirmation')
 
-        props.setPostsData(prev => [formData, ...prev])
+        if (props.origin === 'publish') {
+            console.log("Last check of id: " + props.id)
+            props.setPostsData(prev => [formData, ...prev])
+            props.setCount(prev => prev + 1)
+        }
+        else if (props.origin === 'edit') {
+            props.setPostsData(prev => prev.map((post, index) => index === props.curr ? formData : post))
+        }
     }
 
     return (

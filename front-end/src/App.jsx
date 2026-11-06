@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import './App.css'
 import NewPost from './NewPost'
@@ -14,6 +14,21 @@ import Profile from './profile/Profile'
 function App() {
   const [postsData, setPostsData] = useState([])
   const [user, setUser] = useState("You")
+  const [count, setCount] = useState(0)
+  const [curr, setCurr] = useState(-1)
+
+  useEffect(() => {
+    console.log("Current post's index: " + curr)
+    console.log(postsData[curr])
+  }, [curr])
+
+  useEffect(() => {
+    console.log("Count: " + count)
+  }, [count])
+
+  useEffect(() => {
+    console.log(postsData)
+  }, [postsData])
 
   // beware inevitable merge conflict
   return (
@@ -32,12 +47,12 @@ function App() {
           </div>
         </nav>
         <Routes>
-          <Route path="/" element={<Home postsData={postsData} setPostsData={setPostsData} />} />
-          <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} />} />
-          <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} />} />
+          <Route path="/" element={<Home postsData={postsData} setPostsData={setPostsData} count={count} curr={curr} setCurr={setCurr} />} />
+          <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} count={count} setCount={setCount} />} />
+          <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           {/* currently non-functional; i'll try it after demo */}
           {/* <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} /> */}
-          <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} />} />
+          <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} />} />
           <Route path="/" element={<Home />} />
           {/* <Route path="/new-post" element={<NewPost />} /> */}
           <Route path="/notifications" element={<Notifications />} />
