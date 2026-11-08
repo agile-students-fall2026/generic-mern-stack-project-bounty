@@ -22,8 +22,8 @@ const EditPost = props => {
 
     useEffect(() => {
         // take data from back-end
-        setFormData(props.postsData.at(props.curr))
-    }, [formData])
+        setFormData(props.postsData[props.curr])
+    }, [props.curr])
 
     // remove post data; later shows confirmation screen
     const deletePost = () => {
@@ -32,7 +32,19 @@ const EditPost = props => {
         setIsDeleted(true)
         // console.log(props.count - props.curr - 1)
         // console.log(formData.id)
-        props.setPostsData(props.postsData.filter(post => post.id !== (props.count - props.curr - 1)))
+        props.setPostsData(prev => {
+            return prev
+                .filter(post => post.id !== (props.count - props.curr - 1))
+                .map(post => {
+                    if (post.id > (props.count - props.curr - 1)) {
+                        return {
+                            ...post, 
+                            id: post.id - 1
+                        }
+                    }
+                    return post;
+                })
+        })
         props.setCount(prev => prev - 1)
     }
 
