@@ -1,177 +1,99 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate, Link } from 'react-router-dom'
 import heroImg from './assets/hero.png'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
+import './Home.css'
 
-function postElement() {
+const PostElement = props => {
+  const [showOptions, setShowOptions] = useState(false)
+
+  const toggleOptions = () => {
+    console.log(props.id)
+    props.setCurr(props.count - 1 - props.id)
+    console.log(props.postsData[ props.id - 1])
+    setShowOptions(!showOptions)
+  }
+
     return(
         <>
-    <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="docs">
+          <div className='header'>
+            <div className='profile'>
+              <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img>
+              <p>You</p>
+            </div>
+            <button className='settings' onClick={toggleOptions} >...</button>
+          </div>
+          {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
+          {showOptions && <div className='buttons'>
+            {(props.username !== 'Testing') && <Link className="option" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
+            {(props.username !== 'Testing') && <Link className="option" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
+          </div>}
+          <div className='content'>
+            <div className='title'>
+              <h2>{props.title} | {props.category.at(0).toUpperCase() + props.category.slice(1)}</h2>
+              <p>{props.desc}</p>
+            </div>
+            {props.date && <p><strong>Date:</strong> {props.date}</p>}
+            {props.time && <p><strong>Time:</strong> {props.time}</p>}
+            {props.location && <p><strong>Location:</strong> {props.location}</p>}
+          </div>
+          <div className='bounty-image-grouping'>
+            {/* <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img> */}
+            <img className='bounty-image' src={props.image ? props.image : null} alt="" />
+            <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>
+            <h3>{props.bounty}</h3>
+          </div>
+          
+        </div>
     </>
     )
 }
 
-function Home() {
-  const [count, setCount] = useState(0)
+const Home = props => {
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
+    <div id='bg'>
+      <div id="search">
+        <input
+          type='text'
+          id='title'
+          placeholder="Search"
+        />
         <button
           type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+          className="btn"
         >
-          Count is {count}
+          Filter
         </button>
-      </section>
-
-      <div className="ticks"></div>
+      </div>
 
       <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
+        {props.postsData.length === 0 && <p>No Posts</p>}
+        {props.postsData.length !== 0 && props.postsData.map((element, index) => {
+          return (
+            <PostElement 
+              key={index}
+              id={props.count - 1 - index}
+              username={element.username} 
+              category={element.category}
+              title={element.title}
+              desc={element.desc}
+              date={element.date}
+              time={element.time}
+              location={element.location} 
+              image={element.image}
+              includeBounty={element.includeBounty} 
+              bounty={element.bounty} 
+              setCurr={props.setCurr}
+              postsData={props.postsData}
+              count={props.count}
+            />
+          )
+        })}
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </div>
   )
 }
 

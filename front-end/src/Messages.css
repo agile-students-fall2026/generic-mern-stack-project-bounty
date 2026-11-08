@@ -1,0 +1,93 @@
+.messages {
+    /* margin: 0;
+    margin-top: 20px; */
+    margin: 20px auto;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    max-width: 900px;
+    width: 100vw;
+    /* padding: 40px 30px; */
+    background: white;
+    color: black;
+    /* height: 80vh; */
+    text-align: left;
+}
+
+/* .messages h1 {
+    font-size: 40px;
+    font-weight: normal;
+    color: black;
+} */
+
+.messageSearch {
+    margin-bottom: 25px;
+}
+
+.messageSearch label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.messageSearch input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.messageItem {
+    max-width: 800px;
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px 0;
+    border-bottom: 1px solid lightgray;
+}
+
+.messageImage {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: lightgray;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messageContent {
+    flex: 1;
+}
+
+.messageContent h3 {
+    margin: 0;
+}
+
+.messageContent p {
+    margin: 10px 0;
+}
+
+.messageStatus {
+    display: flex;
+    gap: 15px;
+    color: gray;
+}
+
+.messageDot {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+}
+
+.backHome {
+    display: block;
+    margin-top: 25px;
+    color: black;
+}

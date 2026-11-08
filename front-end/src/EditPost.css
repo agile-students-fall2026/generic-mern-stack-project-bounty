@@ -7,14 +7,15 @@
     font: inherit;
 }
 
-.editPost > .link, 
-.editPost > #delete {
+.editPost > .link {
     font: inherit;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
+    max-width: 250px;
+    width: 50vw;
     height: 50px;
     background-color: black;
+    color: white;
 }
