@@ -19,7 +19,6 @@ const PostForm = props => {
     })
     const [isValid, setIsValid] = useState(false)
     const [isEdited, setIsEdited] = useState(false)
-    // const navigate = useNavigate()
 
     useEffect(() => {
         if (formData.includeBounty) {
@@ -49,7 +48,6 @@ const PostForm = props => {
         e.preventDefault() // prevent normal browser submit behavior
         console.log('Form Submitted')
         props.setIsSubmitted(true)
-        // navigate('/new-post/publish-confirmation')
 
         if (props.origin === 'publish') {
             console.log("Last check of id: " + props.id)
@@ -122,9 +120,9 @@ const PostForm = props => {
                     />
                 </div>
                 <div className='field' id='descField'>
-                    <label htmlFor='description' className='label'>Description*</label>
+                    <label htmlFor='desc' className='label'>Description*</label>
                     <textarea
-                        id='description'
+                        id='desc'
                         value={formData.desc}
                         required
                         onChange={e => setFormData({
