@@ -42,8 +42,8 @@ const PostElement = props => {
           <div className='bounty-image-grouping'>
             {/* <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img> */}
             <img className='bounty-image' src={props.image ? props.image : null} alt="" />
-            <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>
-            <h3>{props.bounty}</h3>
+            {props.category !== 'found' && <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>}
+            {props.includeBounty && <h3>{props.bounty}</h3>}
           </div>
           
         </div>

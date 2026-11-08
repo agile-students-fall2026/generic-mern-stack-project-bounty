@@ -8,18 +8,16 @@ const BountyChoice = props => {
     const [choices, setChoices] = useState([])
     const [personChosen, setPersonChosen] = useState('')
     const [isSubmitted, setIsSubmitted] = useState(false)
+    const [hasBounty, setHasBounty] = useState(false)
 
-    // the bounty amount should be taken from data of the post the user came from
+    // the bounty amount is taken from data of the post the user came from
     // where they clicked resolve
-    // for now, we have placeholder:
     useEffect(() => {
-        setBounty('$20')
+        setBounty(props.postsData[props.curr].bounty)
+        setHasBounty(props.postsData[props.curr].includeBounty)
         // should get choices from list of people in user's messages screen
         // for now, placeholder:
         setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
-        if (!props.postsData[props.curr].includeBounty) {
-            setIsSubmitted(true)
-        }
     }, [])
 
     const chose = name => {
@@ -34,15 +32,26 @@ const BountyChoice = props => {
         }
     }
 
-    // when submitting form button, obv save the user who was chosen to receive the bounty
+    // when submitting form button, save the user who was chosen to receive the bounty
     const submitForm = e => {
         e.preventDefault()
         console.log(`Final decision made: give bounty to ${personChosen}!`)
-        // redirect to confirmation page afterwards
+        // show confirmation notice afterwards
         setIsSubmitted(true)
         console.log("huh: " + (props.count - props.curr - 1))
-        // console.log(formData.id)
-        props.setPostsData(props.postsData.filter(post => post.id !== (props.count - props.curr - 1)))
+        props.setPostsData(prev => {
+            return prev
+                .filter(post => post.id !== (props.count - props.curr - 1))
+                .map(post => {
+                    if (post.id > (props.count - props.curr - 1)) {
+                        return {
+                            ...post, 
+                            id: post.id - 1
+                        }
+                    }
+                    return post;
+                })
+        })
         props.setCount(prev => prev - 1)
     }
 
@@ -52,34 +61,42 @@ const BountyChoice = props => {
 
     return (
         <div className='bountyChoice'>
-            {!isSubmitted && <h1>Choose Bounty Receiver</h1>}
-            {!isSubmitted && <p id='text'>Among the people you have messaged, you may select who will receive 
-                the bounty you have set. Selecting them will notify them immediately. </p>}
-            {!isSubmitted && <div className='bountyDisplay'>
-                <h2>Bounty</h2>
-                <p>{bounty}</p>
-            </div>}
-                
-            {!isSubmitted && <div className='choices'>
-                {/* need to make list out of people in mesages history */}
-                {/* for this part, might be better to change to mapping for each */}
-                
-                {choices.map((choice, index) => (
-                    <button
-                        key={choice}
-                        className={personChosen === choice ? 'active' : 'choice'}
-                        onClick={() => chose(choice)}>
-                        <img className='pfp' src={`../public/pfps/${pfps[index]}`} />
-                        <p className='name'>{choice}</p>
-                    </button>
-                ))}
-            </div>}
+            {hasBounty && 
+                <>
+                    {!isSubmitted && <h1>Choose Bounty Receiver</h1>}
+                    {!isSubmitted && <p id='text'>Among the people you have messaged, you may select who will receive 
+                        the bounty you have set. Selecting them will notify them immediately. </p>}
+                    {!isSubmitted && <div className='bountyDisplay'>
+                        <h2>Bounty</h2>
+                        <p>{bounty}</p>
+                    </div>}
+                        
+                    {!isSubmitted && <div className='choices'>
+                        {choices.map((choice, index) => (
+                            <button
+                                key={choice}
+                                className={personChosen === choice ? 'active' : 'choice'}
+                                onClick={() => chose(choice)}>
+                                <img className='pfp' src={`../public/pfps/${pfps[index]}`} />
+                                <p className='name'>{choice}</p>
+                            </button>
+                        ))}
+                    </div>}
+                </>
+            }
+
+            {!hasBounty &&
+                <>
+                    {!isSubmitted && <h1>No Bounty to Award</h1>}
+                    {!isSubmitted && <p id='text'>Are you sure you want to resolve? </p>}
+                </>
+            }
 
             {!isSubmitted && <form onSubmit={submitForm}>
                 <button 
                     type='submit' 
-                    id={!personChosen ? 'disabled' : 'submit'} 
-                    disabled={!personChosen}>
+                    id={(!personChosen && hasBounty) ? 'disabled' : 'submit'} 
+                    disabled={!personChosen && hasBounty}>
                     Confirm
                 </button>
             </form>}
