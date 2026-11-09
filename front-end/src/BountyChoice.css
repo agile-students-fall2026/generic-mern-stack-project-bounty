@@ -5,9 +5,16 @@
     margin: 20px;
     align-items: center;
     font: inherit;
+    color: black;
 }
 
-#text {
+h1, 
+h2, 
+p {
+    color: black;
+}
+
+.text {
     max-width: 500px;
     width: 90vw;
     margin-bottom: 20px;
@@ -28,16 +35,15 @@
 
 .choices {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
     width: 90vw;
     place-items: center;
 }
 
-.choices > .choice, 
-.choices > .active {
-    box-sizing: border-box;
-    color: inherit;
+.choices .choice, 
+.choices .active {
+    /* box-sizing: border-box; */
     font: inherit;
     background: none;
     border: none;
@@ -46,26 +52,35 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
-    max-width: 150px;
-    aspect-ratio: 4 / 3;
+    width: calc(0.25 * 90vw);
+    padding: 10px;
+    max-width: 120px;
+    border-radius: 20px;
 }
 
-.choice:hover, 
-.active:hover {
+.choices .choice:hover, 
+.choices .active:hover {
     cursor: pointer;
-    background-color: black;
+}
+
+.choices .choice:hover {
+    background-color: rgb(190, 190, 190);
 }
 
 .choices .active {
-    background-color: black;
+    background-color: #8C68C4;
     color: white;
 }
 
-.pfp {
+.choices .active .name {
+    color: white;
+}
+
+.choices .pfp {
     border: none;
     border-radius: 50%;
     max-width: 100px;
-    width: 20vw;
+    width: calc(0.2 * 90vw);
 }
 
 #submit, 
@@ -79,20 +94,20 @@
 }
 
 #disabled {
-    background-color: rgb(18, 18, 20);
-    color: gray;
+    background-color: gray;
+    color: rgb(195, 195, 195);
 }
 
-#submit, 
-#cancel {
-    background-color: black;
-    color: white;
+#submit {
+    background-color: #8C68C4;
 }
 
 #cancel {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
+    color: white;
 }
 
 #submit:hover, 

@@ -10,12 +10,9 @@ const Confirmation = props => {
             <p>{props.message}</p>
             <p>{props.info}</p>
             <nav className='confirmationButtons'>
-                {/* rather, it should go to specific post link i think, so it prob
-                has its own id or smth */}
-                {/* temporarily set to false; typically props.viewPost */}
-                {false && 
-                    <Link className="link" to="/post" state={{newData : props.data}} style={{textDecoration: 'none'}}>View Post</Link>}
-                <Link className="link" to="/" state={{newData : props.data}} style={{textDecoration: 'none'}}>Back to Home</Link>
+                {props.viewPost && 
+                    <Link className='link' id='view' to='/post' state={{newData : props.data}}>View Post</Link>}
+                <Link className='link' to='/' state={{newData : props.data}}>Back to Home</Link>
             </nav>
 
         </div>

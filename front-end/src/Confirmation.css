@@ -3,7 +3,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* margin: 20px; */
     gap: 20px;
 }
 
@@ -20,11 +19,16 @@
     justify-content: center;
     align-items: center;
     background-color: black;
-    width: 250px;
+    max-width: 250px;
+    width: 50vw;
     height: 50px;
     color: white;
 }
 
 .link:hover {
     cursor: pointer;
+}
+
+#view {
+    background-color: #8C68C4;
 }

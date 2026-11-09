@@ -21,17 +21,15 @@ const EditPost = props => {
     const [isDeleted, setIsDeleted] = useState(false)
 
     useEffect(() => {
-        // take data from back-end
         setFormData(props.postsData[props.curr])
     }, [props.curr])
 
     // remove post data; later shows confirmation screen
     const deletePost = () => {
-        console.log("Removed Post")
-        // remove data from back-end
+        // show confirmation notice afterwards
         setIsDeleted(true)
-        // console.log(props.count - props.curr - 1)
-        // console.log(formData.id)
+
+        // delete specific post
         props.setPostsData(prev => {
             return prev
                 .filter(post => post.id !== (props.count - props.curr - 1))
@@ -61,8 +59,8 @@ const EditPost = props => {
                 isSubmitted={isSubmitted} 
                 setIsSubmitted={setIsSubmitted} 
                 curr={props.curr} />}
-            {(!isSubmitted && !isDeleted) && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
-            {(!isSubmitted && !isDeleted) && <button className='link' onClick={deletePost}>Delete</button>}
+            {(!isSubmitted && !isDeleted) && <Link className='link' id='cancel' to='/'>Cancel</Link>}
+            {(!isSubmitted && !isDeleted) && <button className='link' id='delete' onClick={deletePost}>Delete</button>}
             {(!isSubmitted && isDeleted) && <Confirmation 
                 title={`Post Deleted!`}
                 message={`Your ${formData.category} item post is no longer visible to NYU students.`}

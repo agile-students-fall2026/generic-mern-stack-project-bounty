@@ -31,9 +31,10 @@
     cursor: pointer;
 }
 
-.active {
-    background-color: black;
+.types .active {
+    background-color: #8C68C4;
     color: white;
+    border-color: #8C68C4;
 }
 
 .field {
@@ -88,14 +89,17 @@
     width: 50vw;
     height: 50px;
     border: none;
-    background-color: black;
     font-size: inherit;
     color: white;
 }
 
+.postForm .submit {
+    background-color: #8C68C4;
+}
+
 .postForm .disabled {
-    background-color: rgb(18, 18, 20);
-    color: gray;
+    background-color: gray;
+    color: rgb(195, 195, 195);
 }
 
 .postForm .submit:hover {
