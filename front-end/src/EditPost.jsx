@@ -6,6 +6,7 @@ import Confirmation from './Confirmation'
 
 const EditPost = props => {
     const [formData, setFormData] = useState({
+        id: -1,
         category: 'lost',
         title: '',
         desc: '',
@@ -21,25 +22,30 @@ const EditPost = props => {
 
     useEffect(() => {
         // take data from back-end
-        // setFormData({
-        //     category: 'lost', 
-        //     title: 'Missing Airpods', 
-        //     desc: 'Lost them during class', 
-        //     date: '2026-10-30', 
-        //     time: '14:00', 
-        //     location: 'Bobst Library', 
-        //     includeBounty: true, 
-        //     bounty: '$20', 
-        //     submitLabel: 'Save Changes'
-        // })
-        setFormData(props.postsData.at(-1))
-    }, [])
+        setFormData(props.postsData[props.curr])
+    }, [props.curr])
 
     // remove post data; later shows confirmation screen
     const deletePost = () => {
         console.log("Removed Post")
         // remove data from back-end
         setIsDeleted(true)
+        // console.log(props.count - props.curr - 1)
+        // console.log(formData.id)
+        props.setPostsData(prev => {
+            return prev
+                .filter(post => post.id !== (props.count - props.curr - 1))
+                .map(post => {
+                    if (post.id > (props.count - props.curr - 1)) {
+                        return {
+                            ...post, 
+                            id: post.id - 1
+                        }
+                    }
+                    return post;
+                })
+        })
+        props.setCount(prev => prev - 1)
     }
 
     return (
@@ -53,7 +59,8 @@ const EditPost = props => {
                 origin='edit'
                 submitLabel='Save Changes' 
                 isSubmitted={isSubmitted} 
-                setIsSubmitted={setIsSubmitted} />}
+                setIsSubmitted={setIsSubmitted} 
+                curr={props.curr} />}
             {(!isSubmitted && !isDeleted) && <Link className="link" to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
             {(!isSubmitted && !isDeleted) && <button className='link' onClick={deletePost}>Delete</button>}
             {(!isSubmitted && isDeleted) && <Confirmation 

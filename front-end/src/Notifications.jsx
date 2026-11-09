@@ -7,35 +7,35 @@ const Notifications = () => {
     const [notifications, setNotifications] = useState([
         {
             id: 1,
-            title: 'New message • Username B',
-            description: 'Lorem ipsum dolor sit amet',
+            title: 'New message • Alice A.',
+            description: 'ok coming',
             time: 'Today · 2:04 PM',
             read: false,
             link: 'Open Conversation'
         },
         {
             id: 2,
-            title: 'New message • Username C',
+            title: 'New message • Bob B.',
             description: 'Lorem ipsum dolor sit amet',
             time: 'Today · 1:35 PM',
             read: false,
-            // link: 'Open Conversation'
+            link: 'Open Conversation'
         },
         {
             id: 3,
-            title: 'Post resolved • Username D',
+            title: 'Post resolved • Carol C.',
             description: 'Lorem ipsum dolor sit amet',
             time: 'Yesterday · 4:10 PM',
             read: true,
-            // link: 'View Post'
+            link: 'View Post'
         },
         {
             id: 4,
-            title: 'Request fulfilled • Username E',
+            title: 'Request fulfilled • Dave D.',
             description: 'Lorem ipsum dolor sit amet',
             time: 'Oct 17 · 5:20 PM',
             read: true,
-            // link: 'View Post'
+            link: 'View Post'
         }
     ])
 
@@ -47,6 +47,8 @@ const Notifications = () => {
             read: true
         })))
     }
+
+    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
 
     return (
         <div className="notifications">
@@ -60,9 +62,11 @@ const Notifications = () => {
             </div>
 
             <div className="notificationList">
-                {notifications.map(n => (
+                {notifications.map((n, index) => (
                     <div className="notificationItem" key={n.id}>
-                        <div className="notificationImage">pic</div>
+                        {/* <div className="notificationImage">pic</div>
+                         */}
+                         <img className='notificationImage' src={`../public/pfps/${pfps[index]}`} />
 
                         <div className="notificationContent">
                             <h3>{n.title}</h3>

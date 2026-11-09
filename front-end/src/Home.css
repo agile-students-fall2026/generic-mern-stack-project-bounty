@@ -1,5 +1,7 @@
 #bg {
   background-color: rgb(232, 232, 232);
+  min-height: 90vh;
+  height: 90%;
 }
 
 .btn {
@@ -18,12 +20,29 @@
     cursor: pointer;
 }
 
+.docs {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: max(16px, 3%);
+  border-radius: 20px;
+  gap: 12px;
+  /* min-height: 500px; */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .profile {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 }
 
 .profile > .icon {
@@ -38,6 +57,15 @@
   padding: 0;
 }
 
+.header > .settings {
+  border: none;
+  height: 50%;
+}
+
+.header > .settings {
+  cursor: pointer;
+}
+
 .bounty-image {
   width: 90%;
   max-width: 800px;
@@ -47,7 +75,7 @@
 .bounty-image-grouping {
   margin: 0;
   padding: 0;
-  padding-bottom: 16px;
+  /* padding-bottom: 16px; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,15 +85,7 @@
 .bounty-image-grouping h3, 
 .bounty-image-grouping h4 {
   margin: 0;
-}
-
-.docs {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: max(16px, 3%);
-  border-radius: 20px;
+  padding: 0;
 }
 
 .docs > .content {
@@ -76,7 +96,7 @@
   gap: 10px;
 }
 
-.content > .heading {
+.content > .title {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -88,10 +108,11 @@
   padding: 0;
 }
 
-.buttons > .nav-link {
+.buttons > .option {
   background-color: black;
   color: white;
-  width: 250px;
+  max-width: 250px;
+  width: 40%;
   height: 50px;
   display: flex;
   justify-content: center;

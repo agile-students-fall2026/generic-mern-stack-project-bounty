@@ -17,7 +17,7 @@ const BountyChoice = props => {
         // should get choices from list of people in user's messages screen
         // for now, placeholder:
         setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
-        if (!props.postsData[0].includeBounty) {
+        if (!props.postsData[props.curr].includeBounty) {
             setIsSubmitted(true)
         }
     }, [])
@@ -35,11 +35,15 @@ const BountyChoice = props => {
     }
 
     // when submitting form button, obv save the user who was chosen to receive the bounty
-    const submit = e => {
+    const submitForm = e => {
         e.preventDefault()
         console.log(`Final decision made: give bounty to ${personChosen}!`)
         // redirect to confirmation page afterwards
         setIsSubmitted(true)
+        console.log("huh: " + (props.count - props.curr - 1))
+        // console.log(formData.id)
+        props.setPostsData(props.postsData.filter(post => post.id !== (props.count - props.curr - 1)))
+        props.setCount(prev => prev - 1)
     }
 
     // should get the associated pfps from back-end according to users
@@ -71,7 +75,7 @@ const BountyChoice = props => {
                 ))}
             </div>}
 
-            {!isSubmitted && <form onSubmit={submit}>
+            {!isSubmitted && <form onSubmit={submitForm}>
                 <button 
                     type='submit' 
                     id={!personChosen ? 'disabled' : 'submit'} 
