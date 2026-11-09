@@ -10,7 +10,9 @@ const Confirmation = props => {
             <p>{props.message}</p>
             <p>{props.info}</p>
             <nav className='confirmationButtons'>
-                {props.viewPost && 
+                {/* originally going to be props.viewPost &&, but decided to not include viewPost screen since
+                it kinda did nothing as all our buttons still work */}
+                {false && 
                     <Link className='link' id='view' to='/post' state={{newData : props.data}}>View Post</Link>}
                 <Link className='link' to='/' state={{newData : props.data}}>Back to Home</Link>
             </nav>

@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate, Link } from 'react-router-dom'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './Home.css'
 
 const PostElement = props => {
@@ -18,15 +15,17 @@ const PostElement = props => {
         <div className="docs">
           <div className='header'>
             <div className='profile'>
-              <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img>
-              <p>You</p>
+              {/* <img className="icon" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"></img> */}
+              <img className='icon' src={props.pfp} alt="" />
+              <p>{props.username}</p>
             </div>
             <button className='settings' onClick={toggleOptions} >...</button>
           </div>
           {/* doesn't work yet. needs to be based on ids not text, but yeah it works for demo */}
           {showOptions && <div className='buttons'>
-            {(props.username !== 'Testing') && <Link className="option" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
-            {(props.username !== 'Testing') && <Link className="option" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
+            {(props.username === 'You') && <Link className="option" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
+            {(props.username === 'You') && <Link className="option" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
+            {(props.username !== 'You') && <Link className="option" to={`/messages/1`} style={{textDecoration: 'none'}}>Message</Link>}
           </div>}
           <div className='content'>
             <div className='title'>
@@ -75,6 +74,7 @@ const Home = props => {
               key={index}
               id={props.count - 1 - index}
               username={element.username} 
+              pfp={element.pfp}
               category={element.category}
               title={element.title}
               desc={element.desc}
