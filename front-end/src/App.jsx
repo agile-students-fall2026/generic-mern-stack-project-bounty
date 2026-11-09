@@ -17,6 +17,31 @@ function App() {
   const [count, setCount] = useState(0)
   const [curr, setCurr] = useState(-1)
 
+  // for production
+  const [notifications, setNotifications] = useState([])
+
+  // temporary mock notifications until notification creation is implemented
+  // const [notifications, setNotifications] = useState([
+  //   {
+  //     id: 1,
+  //     title: 'New message • Alice A.',
+  //     description: 'Hey, did you find my wallet?',
+  //     time: 'Today · 2:04 PM',
+  //     read: false,
+  //     link: 'Open Conversation',
+  //     path: '/messages/1'
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'New message • Bob B.',
+  //     description: 'I think I found your keys!',
+  //     time: 'Today · 1:35 PM',
+  //     read: false,
+  //     link: 'Open Conversation',
+  //     path: '/messages/1'
+  //   }
+  // ])
+
   useEffect(() => {
     console.log("Current post's index: " + curr)
     console.log(postsData[curr])
@@ -55,14 +80,20 @@ function App() {
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path="/" element={<Home />} />
           {/* <Route path="/new-post" element={<NewPost />} /> */}
-          <Route path="/notifications" element={<Notifications />} />
+          <Route
+            path="/notifications"
+            element={
+              <Notifications
+                notifications={notifications}
+                setNotifications={setNotifications}
+              />
+            }
+          />
           <Route path="/messages" element={<Messages />} />
           <Route path="/messages/1" element={<PrivateChat />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
-
       </Router>
-      
     </>
   )
 }
