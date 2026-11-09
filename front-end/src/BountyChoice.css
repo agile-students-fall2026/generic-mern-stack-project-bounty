@@ -8,12 +8,6 @@
     color: black;
 }
 
-h1, 
-h2, 
-p {
-    color: black;
-}
-
 .text {
     max-width: 500px;
     width: 90vw;
@@ -43,7 +37,6 @@ p {
 
 .choices .choice, 
 .choices .active {
-    /* box-sizing: border-box; */
     font: inherit;
     background: none;
     border: none;
@@ -95,11 +88,12 @@ p {
 
 #disabled {
     background-color: gray;
-    color: rgb(195, 195, 195);
+    color: white;
 }
 
 #submit {
     background-color: #8C68C4;
+    color: white;
 }
 
 #cancel {

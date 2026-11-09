@@ -1,14 +1,21 @@
 body {
   background-color: white;
-  color: black;
   margin: 0;
 }
 
 input, 
 textarea {
-  background-color: rgb(236, 236, 236);
+  background-color: rgb(245, 245, 245);
   border: solid 1px rgb(198, 198, 198);
   color: black;
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+p {
+    color: black;
 }
 
 .docs {
