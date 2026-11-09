@@ -5,15 +5,9 @@ import ProfilePicture from './ProfilePicture'
 import './Profile.css'
 
 function Profile({ setIsLoggedIn }) {
-const [profile, setProfile] = useState(null)
-// placeholder data until the back-end is hooked up
-const defaultProfile = {
-  name: 'Username A',
-  bio: 'Lorem ipsum dolor sit amet',
-  picture: null,
-}
-  // const [profile, setProfile] = useState(defaultProfile)
+  const [profile, setProfile] = useState(null)
   const [editing, setEditing] = useState(false)
+
   const navigate = useNavigate()
 
   useEffect(() => {

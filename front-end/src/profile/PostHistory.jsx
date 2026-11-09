@@ -1,16 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Profile.css'
 
-// resolving a post deletes it from postsData, so these are placeholders until the back-end keeps old posts
-const resolvedPosts = [
-  { title: 'Lost AirPods', category: 'lost', location: 'Bobst Library', date: '2026-10-20' },
-  { title: 'Found Student ID', category: 'found', location: 'Kimmel Center', date: '2026-10-12' },
-]
-
 function PostHistory({ postsData }) {
   const [tab, setTab] = useState('active')
+  const [resolvedPosts, setResolvedPosts] = useState([])
   const navigate = useNavigate()
+
+  // resolving a post deletes it, so old posts come from mock data until the back-end keeps them
+  useEffect(() => {
+    fetch('/api/mockData')
+      .then((res) => res.json())
+      .then((data) => setResolvedPosts(data.resolvedPosts))
+      .catch((err) => console.error(err))
+  }, [])
+
 
   const activePosts = postsData.filter((post) => post.username === 'You')
   const posts = tab === 'active' ? activePosts : resolvedPosts
