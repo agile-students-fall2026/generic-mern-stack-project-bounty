@@ -12,6 +12,8 @@ import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
 import PostHistory from './profile/PostHistory'
 import AccountSettings from './profile/AccountSettings'
+import Login from './Login'
+import SignUp from './SignUp'
 
 
 function App() {
@@ -48,6 +50,7 @@ function App() {
   ])
   const [count, setCount] = useState(2)
   const [curr, setCurr] = useState(-1)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // useEffect(() => {
   //   console.log(postsData)
@@ -156,7 +159,7 @@ function App() {
   return (
     <>
       <Router>
-        <nav className="nav">
+        {isLoggedIn && <nav className="nav">
           <Link className="nav-logo" to="/" style={{textDecoration: 'none'}}>Bounty</Link>
           <div className="nav-links">
             <Link className="nav-link" to="/new-post" style={{textDecoration: 'none'}}>New</Link>
@@ -164,18 +167,20 @@ function App() {
             <Link className="nav-link" to="/notifications" style={{textDecoration: 'none'}}>Notifications</Link>
             <Link className="nav-link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link>
           </div>
-        </nav>
+        </nav>}
         <Routes>
-          <Route path="/" element={<Home postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
           <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} count={count} setCount={setCount} />} />
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
           <Route path="/messages" element={<Messages conversations={conversations} />} />
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/profile/posts' element={<PostHistory postsData={postsData} />} />
           <Route path='/profile/settings' element={<AccountSettings />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </Router>
     </>
