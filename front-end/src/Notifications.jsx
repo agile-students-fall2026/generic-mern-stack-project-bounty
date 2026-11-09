@@ -26,11 +26,10 @@ const Notifications = ({ notifications, setNotifications }) => {
             time: 'Today · Just now',
             read: false,
             link: 'Open Conversation',
-            path: '/messages/1'
+            path: '/messages/1',
+            pfp: 'pfpA.jpg'
         }, ...prev])
     }
-
-    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
 
     return (
         <div className="notifications">
@@ -53,11 +52,11 @@ const Notifications = ({ notifications, setNotifications }) => {
                     <p>No notifications yet.</p>
                 )}
 
-                {notifications.map((n, index) => (
+                {notifications.map(n => (
                     <div className="notificationItem" key={n.id}>
                         <img
                             className="notificationImage"
-                            src={`/pfps/${pfps[index % pfps.length]}`}
+                            src={`/pfps/${n.pfp ?? 'pfpA.jpg'}`}
                             alt=""
                         />
 

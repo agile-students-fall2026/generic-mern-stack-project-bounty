@@ -33,6 +33,21 @@ function App() {
           time: '2:04 PM'
         }
       ]
+    },
+    {
+      id: '2',
+      postId: 2,
+      username: 'Bob B.',
+      item: 'Lost Keys',
+      read: false,
+      messages: [
+        {
+          id: '2',
+          sender: 'other',
+          text: 'I think I found your keys!',
+          time: '1:35 PM'
+        }
+      ]
     }
   ])
 
@@ -45,7 +60,8 @@ function App() {
       time: 'Today · 2:04 PM',
       read: false,
       link: 'Open Conversation',
-      path: '/messages/1'
+      path: '/messages/1',
+      pfp: 'pfpA.jpg'
     },
     {
       id: 2,
@@ -54,7 +70,8 @@ function App() {
       time: 'Today · 1:35 PM',
       read: false,
       link: 'Open Conversation',
-      path: '/messages/1'
+      path: '/messages/2',
+      pfp: 'pfpB.jpg'
     }
   ])
 
@@ -135,34 +152,9 @@ function App() {
           {/* currently non-functional; i'll try it after demo */}
           {/* <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} /> */}
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
-          {/* <Route path="/new-post" element={<NewPost />} /> */}
-
-          <Route
-            path="/notifications"
-            element={
-              <Notifications
-                notifications={notifications}
-                setNotifications={setNotifications}
-              />
-            }
-          />
-
-          <Route
-            path="/messages"
-            element={<Messages conversations={conversations} />}
-          />
-
-          <Route
-            path="/messages/:id"
-            element={
-              <PrivateChat
-                conversations={conversations}
-                setConversations={setConversations}
-                sendMessage={sendMessage}
-              />
-            }
-          />
-
+          <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
+          <Route path="/messages" element={<Messages conversations={conversations} />} />
+          <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
       </Router>
