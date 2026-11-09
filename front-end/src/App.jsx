@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from "react-router-dom"
 import './App.css'
 import NewPost from './NewPost'
@@ -12,10 +12,43 @@ import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
 
 function App() {
-  const [postsData, setPostsData] = useState([])
-  const [user, setUser] = useState("You")
-  const [count, setCount] = useState(1)
+  // Two placeholder posts for testing
+  const [postsData, setPostsData] = useState([
+    {
+      id: 1, 
+      username: 'Alice A.', 
+      pfp: '/pfps/pfpA.jpg', 
+      category: 'lost',
+      title: 'Lost Wallet',
+      desc:'Has anyone seen my wallet?',
+      date: '',
+      time:'',
+      location: 'Warren Weaver Hall, Rm. 109', 
+      image: '',
+      includeBounty: false,
+      bounty: ''
+    }, 
+    {
+      id: 0, 
+      username: 'You', 
+      pfp: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail',      
+      category: 'lost',
+      title: 'Lost Keys',
+      desc:'Please help!!!',
+      date: '2026-11-02',
+      time:'',
+      location: 'Bobst Library', 
+      image: '',
+      includeBounty: false,
+      bounty: ''
+    }
+  ])
+  const [count, setCount] = useState(2)
   const [curr, setCurr] = useState(-1)
+
+  // useEffect(() => {
+  //   console.log(postsData)
+  // }, [postsData])
 
   // Temporary mock conversations for testing
   const [conversations, setConversations] = useState([
