@@ -46,9 +46,9 @@ function App() {
   const [count, setCount] = useState(2)
   const [curr, setCurr] = useState(-1)
 
-  useEffect(() => {
-    console.log(postsData)
-  }, [postsData])
+  // useEffect(() => {
+  //   console.log(postsData)
+  // }, [postsData])
 
   // Temporary mock conversations for testing
   const [conversations, setConversations] = useState([
