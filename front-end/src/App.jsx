@@ -17,30 +17,95 @@ function App() {
   const [count, setCount] = useState(0)
   const [curr, setCurr] = useState(-1)
 
-  // for production
+  // For production
+  const [conversations, setConversations] = useState([])
   const [notifications, setNotifications] = useState([])
 
-  // temporary mock notifications until notification creation is implemented
-  // const [notifications, setNotifications] = useState([
-  //   {
-  //     id: 1,
-  //     title: 'New message • Alice A.',
-  //     description: 'Hey, did you find my wallet?',
-  //     time: 'Today · 2:04 PM',
-  //     read: false,
-  //     link: 'Open Conversation',
-  //     path: '/messages/1'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'New message • Bob B.',
-  //     description: 'I think I found your keys!',
-  //     time: 'Today · 1:35 PM',
-  //     read: false,
-  //     link: 'Open Conversation',
-  //     path: '/messages/1'
-  //   }
-  // ])
+  /*
+  Temporary mock conversation until conversation creation is implemented
+  const [conversations, setConversations] = useState([
+    {
+      id: '1',
+      postId: 1,
+      username: 'Alice A.',
+      item: 'Lost Wallet',
+      read: false,
+      messages: [
+        {
+          id: '1',
+          sender: 'other',
+          text: 'Hey, did you find my wallet?',
+          time: '2:04 PM'
+        }
+      ]
+    }
+  ])
+  */
+
+  /*
+  Temporary mock notifications until notification creation is implemented
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      title: 'New message • Alice A.',
+      description: 'Hey, did you find my wallet?',
+      time: 'Today · 2:04 PM',
+      read: false,
+      link: 'Open Conversation',
+      path: '/messages/1'
+    },
+    {
+      id: 2,
+      title: 'New message • Bob B.',
+      description: 'I think I found your keys!',
+      time: 'Today · 1:35 PM',
+      read: false,
+      link: 'Open Conversation',
+      path: '/messages/1'
+    }
+  ])
+  */
+
+  const startConversation = post => {
+    const existing = conversations.find(c => c.postId === post.id)
+
+    if (existing) return existing.id
+
+    const id = crypto.randomUUID()
+
+    setConversations(prev => [{
+      id,
+      postId: post.id,
+      username: post.username ?? 'Unknown',
+      item: post.title,
+      read: true,
+      messages: []
+    }, ...prev])
+
+    return id
+  }
+
+  const sendMessage = (convoId, text, sender = 'you') => {
+    if (!text.trim()) return
+
+    setConversations(prev => prev.map(c =>
+      c.id === convoId
+        ? {
+            ...c,
+            read: sender === 'you',
+            messages: [...c.messages, {
+              id: crypto.randomUUID(),
+              sender,
+              text: text.trim(),
+              time: new Date().toLocaleTimeString([], {
+                hour: 'numeric',
+                minute: '2-digit'
+              })
+            }]
+          }
+        : c
+    ))
+  }
 
   useEffect(() => {
     console.log("Current post's index: " + curr)
@@ -72,7 +137,7 @@ function App() {
           </div>
         </nav>
         <Routes>
-          <Route path="/" element={<Home postsData={postsData} setPostsData={setPostsData} count={count} curr={curr} setCurr={setCurr} />} />
+          <Route path="/" element={<Home postsData={postsData} setPostsData={setPostsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
           <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} count={count} setCount={setCount} />} />
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           {/* currently non-functional; i'll try it after demo */}
@@ -80,6 +145,7 @@ function App() {
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path="/" element={<Home />} />
           {/* <Route path="/new-post" element={<NewPost />} /> */}
+
           <Route
             path="/notifications"
             element={
@@ -89,8 +155,23 @@ function App() {
               />
             }
           />
-          <Route path="/messages" element={<Messages />} />
-          <Route path="/messages/1" element={<PrivateChat />} />
+
+          <Route
+            path="/messages"
+            element={<Messages conversations={conversations} />}
+          />
+
+          <Route
+            path="/messages/:id"
+            element={
+              <PrivateChat
+                conversations={conversations}
+                setConversations={setConversations}
+                sendMessage={sendMessage}
+              />
+            }
+          />
+
           <Route path='/profile' element={<Profile />} />
         </Routes>
       </Router>

@@ -1,51 +1,77 @@
-
 import './PrivateChat.css'
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 
-const PrivateChat = () => {
-    const [messages] = useState([
-        { id: 1, text: 'yo you got my stuff', sender: 'other', time: '1:58 PM' },
-        { id: 2, text: 'yea i got it', sender: 'you', time: '2:00 PM' },
-        { id: 3, text: 'where', sender: 'other', time: '2:04 PM' },
-        { id: 4, text: 'bobst', sender: 'you', time: '2:04 PM' },
-        { id: 5, text: 'ok coming', sender: 'other', time: '2:04 PM' },
-        { id: 6, text: 'dub', sender: 'you', time: '2:05 PM' }
-    ])
+const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
+    const { id } = useParams()
+    const [text, setText] = useState('')
+
+    const convo = conversations.find(c => String(c.id) === id)
+
+    useEffect(() => {
+        if (!convo || convo.read) return
+
+        setConversations(prev => prev.map(c =>
+            String(c.id) === id ? { ...c, read: true } : c
+        ))
+    }, [id, convo?.read, setConversations])
+
+    const handleSubmit = e => {
+        e.preventDefault()
+
+        if (!text.trim() || !convo) return
+
+        sendMessage(convo.id, text.trim())
+        setText('')
+    }
+
+    if (!convo) {
+        return (
+            <div className="privateChat">
+                <Link to="/messages">Back to Messages</Link>
+                <h2>Conversation not found</h2>
+            </div>
+        )
+    }
 
     return (
         <div className="privateChat">
             <Link to="/messages">Back to Messages</Link>
 
             <div className="chatUser">
-                {/* <div className="chatAvatar">pic</div> */}
-                <img className='chatAvatar' src={`../public/pfps/pfpA.jpg`} />
-                <h2>Alice A.</h2>
+                <img className="chatAvatar" src="/pfps/pfpA.jpg" alt="" />
+                <h2>{convo.username}</h2>
             </div>
 
             <div className="chatItem">
-                <h3>Lost Item</h3>
+                <h3>{convo.item}</h3>
                 <p>Item Location · Bounty: $XXX</p>
             </div>
 
             <div className="chatMessages">
-                {messages.map(m => (
+                {convo.messages.map(m => (
                     <div className={`chatMessage ${m.sender}`} key={m.id}>
                         <div className="chatBubble">{m.text}</div>
-                        <span>{m.sender === 'you' ? 'You' : 'Username B'} · {m.time}</span>
+                        <span>
+                            {m.sender === 'you' ? 'You' : convo.username} · {m.time}
+                        </span>
                     </div>
                 ))}
             </div>
 
-            <form className="chatForm">
+            <form className="chatForm" onSubmit={handleSubmit}>
                 <label htmlFor="messageInput">Message</label>
                 <div className="chatInput">
                     <input
                         id="messageInput"
                         type="text"
                         placeholder="Type a message..."
+                        value={text}
+                        onChange={e => setText(e.target.value)}
                     />
-                    <button type="button">Send</button>
+                    <button type="submit" disabled={!text.trim()}>
+                        Send
+                    </button>
                 </div>
             </form>
         </div>
