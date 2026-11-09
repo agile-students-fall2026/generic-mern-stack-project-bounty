@@ -50,7 +50,7 @@ function Profile() {
           <button type="button" onClick={() => navigate('/profile/posts')}>View All Posts <span>›</span></button>
         </li>
         <li>
-          <button type="button">Account settings <span>›</span></button>
+          <button type="button" onClick={() => navigate('/profile/settings')}>Account settings <span>›</span></button>
         </li>
       </ul>
 

@@ -11,6 +11,7 @@ import PrivateChat from './PrivateChat'
 import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
 import PostHistory from './profile/PostHistory'
+import AccountSettings from './profile/AccountSettings'
 
 
 function App() {
@@ -174,6 +175,7 @@ function App() {
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/profile/posts' element={<PostHistory postsData={postsData} />} />
+          <Route path='/profile/settings' element={<AccountSettings />} />
         </Routes>
       </Router>
     </>
