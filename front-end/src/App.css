@@ -110,6 +110,9 @@
   border-left: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   border-top: 1px solid var(--border);
+  overflow-wrap: anywhere;
+  min-width: 0;
+  white-space: pre-wrap;
 
   /* @media (max-width: 1024px) {
     border-right: none;

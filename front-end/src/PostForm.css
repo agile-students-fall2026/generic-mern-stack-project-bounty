@@ -68,7 +68,7 @@
     width: 90vw;
 }
 
-#description {
+#desc {
     resize: none;
     field-sizing: content;
     min-height: 50px;
@@ -80,8 +80,8 @@
     flex-direction: row;
 }
 
-.postForm > .submit, 
-.postForm > .disabled {
+.postForm .submit, 
+.postForm .disabled {
     font: inherit;
     margin-top: 10px;
     max-width: 250px;
@@ -93,11 +93,15 @@
     color: white;
 }
 
-.postForm > .disabled {
+.postForm .disabled {
     background-color: rgb(18, 18, 20);
     color: gray;
 }
 
-.postForm > .submit:hover {
+.postForm .submit:hover {
     cursor: pointer;
+}
+
+.required {
+    color: red;
 }

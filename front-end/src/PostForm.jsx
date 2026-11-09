@@ -1,6 +1,6 @@
 import './PostForm.css'
 import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Confirmation from './Confirmation'
 
 const PostForm = props => {
@@ -184,7 +184,7 @@ const PostForm = props => {
                         }}
                     />
                 </div>
-                <div id='includeBountyField'>
+                {formData.category !== 'found' && <div id='includeBountyField'>
                     <label htmlFor='includeBounty' className='label'>Include Bounty?</label>
                     <input
                         type='checkbox'
@@ -197,8 +197,8 @@ const PostForm = props => {
                             })
                         }}
                     />
-                </div>
-                {formData.includeBounty && <div className='field'>
+                </div>}
+                {formData.includeBounty && formData.category !== 'found' && <div className='field'>
                     <label htmlFor='bounty' className='label'>Bounty*</label>
                     <input
                         type='text'
@@ -219,8 +219,7 @@ const PostForm = props => {
             </form>}
             {props.isSubmitted && <div className='confirm'>
                 <Confirmation 
-                data={formData}
-                    title={`Post ${props.origin === 'publish' ? 'Published!' : props.origin === 'edit' ? 'Edited!' : 'Resolved!'}`}
+                    title={`Post ${props.origin === 'publish' ? 'Published!' : 'Edited!'}`}
                     message={`Your ${formData.category} item post is now visible to NYU students.`}
                     info={`${formData.category.charAt(0).toUpperCase() + formData.category.slice(1)} Item
                         ${formData.date ? ` • ${formData.date}` : ''}
