@@ -17,20 +17,6 @@ const Notifications = ({ notifications, setNotifications }) => {
         ))
     }
 
-    // Temporary testing function until notification creation is implemented
-    const simulateNotification = () => {
-        setNotifications(prev => [{
-            id: crypto.randomUUID(),
-            title: 'New message • Alice A.',
-            description: 'Testing a new notification!',
-            time: 'Today · Just now',
-            read: false,
-            link: 'Open Conversation',
-            path: '/messages/1',
-            pfp: 'pfpA.jpg'
-        }, ...prev])
-    }
-
     return (
         <div className="notifications">
             <h1>Notifications</h1>
@@ -41,12 +27,6 @@ const Notifications = ({ notifications, setNotifications }) => {
                     Mark all as read
                 </button>
             </div>
-
-            {/* Temporary testing button */}
-            <button type="button" onClick={simulateNotification}>
-                Simulate Notification
-            </button>
-
             <div className="notificationList">
                 {notifications.length === 0 && (
                     <p>No notifications yet.</p>
@@ -56,7 +36,7 @@ const Notifications = ({ notifications, setNotifications }) => {
                     <div className="notificationItem" key={n.id}>
                         <img
                             className="notificationImage"
-                            src={`/pfps/${n.pfp ?? 'pfpA.jpg'}`}
+                            src={n.pfp}
                             alt=""
                         />
 

@@ -17,102 +17,26 @@ import SignUp from './SignUp'
 
 
 function App() {
-  // Two placeholder posts for testing
-  const [postsData, setPostsData] = useState([
-    {
-      id: 1, 
-      username: 'Alice A.', 
-      pfp: '/pfps/pfpA.jpg', 
-      category: 'lost',
-      title: 'Lost Wallet',
-      desc:'Has anyone seen my wallet?',
-      date: '',
-      time:'',
-      location: 'Warren Weaver Hall, Rm. 109', 
-      image: '',
-      includeBounty: false,
-      bounty: ''
-    }, 
-    {
-      id: 0, 
-      username: 'You', 
-      pfp: 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail',      
-      category: 'lost',
-      title: 'Lost Keys',
-      desc:'Please help!!!',
-      date: '2026-11-02',
-      time:'',
-      location: 'Bobst Library', 
-      image: '',
-      includeBounty: false,
-      bounty: ''
-    }
-  ])
-  const [count, setCount] = useState(2)
+  const [postsData, setPostsData] = useState([])
+  const [count, setCount] = useState(0)
   const [curr, setCurr] = useState(-1)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [conversations, setConversations] = useState([])
+  const [notifications, setNotifications] = useState([])
 
-  // useEffect(() => {
-  //   console.log(postsData)
-  // }, [postsData])
+  useEffect(() => {
+    fetch('/api/mockData')
+      .then(res => res.json())
+      .then(data => {
+        // console.log('Mock posts:', data.posts)
 
-  // Temporary mock conversations for testing
-  const [conversations, setConversations] = useState([
-    {
-      id: '1',
-      postId: 1,
-      username: 'Alice A.',
-      item: 'Lost Wallet',
-      read: false,
-      messages: [
-        {
-          id: '1',
-          sender: 'other',
-          text: 'Hey, did you find my wallet?',
-          time: '2:04 PM'
-        }
-      ]
-    },
-    {
-      id: '2',
-      postId: 2,
-      username: 'Bob B.',
-      item: 'Lost Keys',
-      read: false,
-      messages: [
-        {
-          id: '2',
-          sender: 'other',
-          text: 'I think I found your keys!',
-          time: '1:35 PM'
-        }
-      ]
-    }
-  ])
+        setPostsData(data.posts)
+        setCount(data.posts.length)
+        setConversations(data.conversations)
+        setNotifications(data.notifications)
+      })
+  }, [])
 
-  // Temporary mock notifications for testing
-  const [notifications, setNotifications] = useState([
-    {
-      id: 1,
-      title: 'New message • Alice A.',
-      description: 'Hey, did you find my wallet?',
-      time: 'Today · 2:04 PM',
-      read: false,
-      link: 'Open Conversation',
-      path: '/messages/1',
-      pfp: 'pfpA.jpg'
-    },
-    {
-      id: 2,
-      title: 'New message • Bob B.',
-      description: 'I think I found your keys!',
-      time: 'Today · 1:35 PM',
-      read: false,
-      link: 'Open Conversation',
-      path: '/messages/2',
-      pfp: 'pfpB.jpg'
-    }
-  ])
 
   const startConversation = post => {
     const existing = conversations.find(c => c.postId === post.id)
@@ -127,7 +51,11 @@ function App() {
       username: post.username ?? 'Unknown',
       item: post.title,
       read: true,
-      messages: []
+      messages: [],
+      pfp: post.pfp,
+      location: post.location,
+      includeBounty: post.includeBounty,
+      bounty: post.bounty,
     }, ...prev])
 
     return id
