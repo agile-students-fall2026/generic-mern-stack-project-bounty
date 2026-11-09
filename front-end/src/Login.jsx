@@ -24,10 +24,10 @@ const Login = props => {
 
                 <div className='field'>
                     <label htmlFor="password">Password</label>
-                    <input id='password' type="password" required />
+                    <input id='password' type="password" autoComplete='on' required />
                 </div>
 
-                <Link >Sign Up</Link>
+                <Link to='/signup'>Sign Up</Link>
                 
                 <button className='submit' type='submit'>Log In</button>
             </form>

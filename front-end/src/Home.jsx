@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'
 
 const PostElement = props => {
@@ -49,6 +49,13 @@ const PostElement = props => {
 }
 
 const Home = props => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!props.isLoggedIn) {
+      navigate('/login')
+    }
+  }, [])
 
   return (
     <div id='bg'>
