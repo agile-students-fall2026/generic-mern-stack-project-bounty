@@ -4,8 +4,20 @@ import EditProfile from './EditProfile'
 import ProfilePicture from './ProfilePicture'
 import './Profile.css'
 
+<<<<<<< HEAD
 function Profile() {
   const [profile, setProfile] = useState(null)
+=======
+// placeholder data until the back-end is hooked up
+const defaultProfile = {
+  name: 'Username A',
+  bio: 'Lorem ipsum dolor sit amet',
+  picture: null,
+}
+
+function Profile({ setIsLoggedIn }) {
+  const [profile, setProfile] = useState(defaultProfile)
+>>>>>>> e9f1e9d6c2af125a9a44381cc13db4b346a4ccdd
   const [editing, setEditing] = useState(false)
   const navigate = useNavigate()
 
@@ -54,14 +66,24 @@ function Profile() {
 
       <ul className="profile-links">
         <li>
-          <button type="button" onClick={() => navigate('/')}>View All Posts <span>›</span></button>
+          <button type="button" onClick={() => navigate('/profile/posts')}>View All Posts <span>›</span></button>
         </li>
         <li>
-          <button type="button">Account settings <span>›</span></button>
+          <button type="button" onClick={() => navigate('/profile/settings')}>Account settings <span>›</span></button>
         </li>
       </ul>
 
-      <button type="button" className="profile-btn-solid">Log Out</button>
+      <button
+        type="button"
+        className="profile-btn-solid"
+        onClick={() => {
+          setIsLoggedIn(false)
+          navigate('/login')
+        }}
+      >
+        Log Out
+      </button>
+
     </div>
   )
 }

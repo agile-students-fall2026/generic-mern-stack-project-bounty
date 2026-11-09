@@ -10,8 +10,11 @@ import Messages from './Messages'
 import PrivateChat from './PrivateChat'
 import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
+import PostHistory from './profile/PostHistory'
+import AccountSettings from './profile/AccountSettings'
 import Login from './Login'
 import SignUp from './SignUp'
+
 
 function App() {
   const [postsData, setPostsData] = useState([])
@@ -101,7 +104,9 @@ function App() {
           <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
           <Route path="/messages" element={<Messages conversations={conversations} />} />
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path='/profile/posts' element={<PostHistory postsData={postsData} />} />
+          <Route path='/profile/settings' element={<AccountSettings />} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
