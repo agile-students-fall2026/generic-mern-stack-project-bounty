@@ -9,6 +9,7 @@
 .types {
     display: flex;
     justify-content: center;
+    width: 90vw;
 }
 
 .types .active, 
@@ -38,7 +39,8 @@
 .field {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    max-width: 200px;
+    width: 40vw;
     gap: 5px;
     margin: 0 20px 0 20px;
 }
@@ -62,7 +64,8 @@
 }
 
 #descField {
-    width: 500px;
+    max-width: 500px;
+    width: 90vw;
 }
 
 #description {
@@ -81,7 +84,8 @@
 .postForm > .disabled {
     font: inherit;
     margin-top: 10px;
-    width: 250px;
+    max-width: 250px;
+    width: 50vw;
     height: 50px;
     border: none;
     background-color: black;
