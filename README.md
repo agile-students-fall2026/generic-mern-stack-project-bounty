@@ -25,4 +25,10 @@ We've all lost something at some point, whether it be something as trivial as a 
 Open to [contributions](https://github.com/agile-students-fall2026/generic-mern-stack-project-bounty/blob/master/CONTRIBUTING.md).
 
 ## Instructions
-To be updated once the project reaches that stage.
+1. Fork this repository
+2. Clone your fork of this repository to your local machine
+3. Navigate into the project directory
+4. Navigate into the front-end directory
+5. Run npm install to install all dependencies listed in the package.json file.
+6. Run npm run dev to launch the React.js development web server
+7. Navigate your web browser to http://localhost:5173
