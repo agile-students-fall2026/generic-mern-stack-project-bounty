@@ -1,54 +1,35 @@
-
 import './Notifications.css'
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const Notifications = () => {
-    const [notifications, setNotifications] = useState([
-        {
-            id: 1,
-            title: 'New message • Alice A.',
-            description: 'ok coming',
-            time: 'Today · 2:04 PM',
-            read: false,
-            link: 'Open Conversation'
-        },
-        {
-            id: 2,
-            title: 'New message • Bob B.',
-            description: 'Lorem ipsum dolor sit amet',
-            time: 'Today · 1:35 PM',
-            read: false,
-            link: 'Open Conversation'
-        },
-        {
-            id: 3,
-            title: 'Post resolved • Carol C.',
-            description: 'Lorem ipsum dolor sit amet',
-            time: 'Yesterday · 4:10 PM',
-            read: true,
-            link: 'View Post'
-        },
-        {
-            id: 4,
-            title: 'Request fulfilled • Dave D.',
-            description: 'Lorem ipsum dolor sit amet',
-            time: 'Oct 17 · 5:20 PM',
-            read: true,
-            link: 'View Post'
-        }
-    ])
-
+const Notifications = ({ notifications, setNotifications }) => {
     const unreadCount = notifications.filter(n => !n.read).length
 
     const markAllRead = () => {
-        setNotifications(notifications.map(n => ({
+        setNotifications(prev => prev.map(n => ({
             ...n,
             read: true
         })))
     }
 
-    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
+    const markRead = id => {
+        setNotifications(prev => prev.map(n =>
+            n.id === id ? { ...n, read: true } : n
+        ))
+    }
+
+    // Temporary testing function until notification creation is implemented
+    const simulateNotification = () => {
+        setNotifications(prev => [{
+            id: crypto.randomUUID(),
+            title: 'New message • Alice A.',
+            description: 'Testing a new notification!',
+            time: 'Today · Just now',
+            read: false,
+            link: 'Open Conversation',
+            path: '/messages/1',
+            pfp: 'pfpA.jpg'
+        }, ...prev])
+    }
 
     return (
         <div className="notifications">
@@ -61,12 +42,23 @@ const Notifications = () => {
                 </button>
             </div>
 
+            {/* Temporary testing button */}
+            <button type="button" onClick={simulateNotification}>
+                Simulate Notification
+            </button>
+
             <div className="notificationList">
-                {notifications.map((n, index) => (
+                {notifications.length === 0 && (
+                    <p>No notifications yet.</p>
+                )}
+
+                {notifications.map(n => (
                     <div className="notificationItem" key={n.id}>
-                        {/* <div className="notificationImage">pic</div>
-                         */}
-                         <img className='notificationImage' src={`../public/pfps/${pfps[index]}`} />
+                        <img
+                            className="notificationImage"
+                            src={`/pfps/${n.pfp ?? 'pfpA.jpg'}`}
+                            alt=""
+                        />
 
                         <div className="notificationContent">
                             <h3>{n.title}</h3>
@@ -74,9 +66,12 @@ const Notifications = () => {
                             <span>
                                 {n.time} · {n.read ? 'Read' : 'Unread'}
                             </span>
-                            <a href="http://localhost:5173/messages/1">
+                            <Link
+                                to={n.path}
+                                onClick={() => markRead(n.id)}
+                            >
                                 {n.link}
-                            </a>
+                            </Link>
                         </div>
 
                         {!n.read && <div className="unreadDot"></div>}

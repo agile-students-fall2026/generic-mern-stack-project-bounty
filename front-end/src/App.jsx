@@ -16,10 +16,8 @@ function App() {
   const [user, setUser] = useState("You")
   const [count, setCount] = useState(1)
   const [curr, setCurr] = useState(-1)
-  const [conversations, setConversations] = useState([])
 
-  /*
-  Temporary mock conversation until conversation creation is implemented
+  // Temporary mock conversations for testing
   const [conversations, setConversations] = useState([
     {
       id: '1',
@@ -35,9 +33,47 @@ function App() {
           time: '2:04 PM'
         }
       ]
+    },
+    {
+      id: '2',
+      postId: 2,
+      username: 'Bob B.',
+      item: 'Lost Keys',
+      read: false,
+      messages: [
+        {
+          id: '2',
+          sender: 'other',
+          text: 'I think I found your keys!',
+          time: '1:35 PM'
+        }
+      ]
     }
   ])
-  */
+
+  // Temporary mock notifications for testing
+  const [notifications, setNotifications] = useState([
+    {
+      id: 1,
+      title: 'New message • Alice A.',
+      description: 'Hey, did you find my wallet?',
+      time: 'Today · 2:04 PM',
+      read: false,
+      link: 'Open Conversation',
+      path: '/messages/1',
+      pfp: 'pfpA.jpg'
+    },
+    {
+      id: 2,
+      title: 'New message • Bob B.',
+      description: 'I think I found your keys!',
+      time: 'Today · 1:35 PM',
+      read: false,
+      link: 'Open Conversation',
+      path: '/messages/2',
+      pfp: 'pfpB.jpg'
+    }
+  ])
 
   const startConversation = post => {
     const existing = conversations.find(c => c.postId === post.id)
@@ -98,7 +134,7 @@ function App() {
           <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} count={count} setCount={setCount} />} />
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
           <Route path="/messages" element={<Messages conversations={conversations} />} />
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile />} />
