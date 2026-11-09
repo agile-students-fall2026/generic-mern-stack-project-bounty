@@ -4,20 +4,15 @@ import EditProfile from './EditProfile'
 import ProfilePicture from './ProfilePicture'
 import './Profile.css'
 
-<<<<<<< HEAD
-function Profile() {
-  const [profile, setProfile] = useState(null)
-=======
+function Profile({ setIsLoggedIn }) {
+const [profile, setProfile] = useState(null)
 // placeholder data until the back-end is hooked up
 const defaultProfile = {
   name: 'Username A',
   bio: 'Lorem ipsum dolor sit amet',
   picture: null,
 }
-
-function Profile({ setIsLoggedIn }) {
-  const [profile, setProfile] = useState(defaultProfile)
->>>>>>> e9f1e9d6c2af125a9a44381cc13db4b346a4ccdd
+  // const [profile, setProfile] = useState(defaultProfile)
   const [editing, setEditing] = useState(false)
   const navigate = useNavigate()
 
