@@ -1,20 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import EditProfile from './EditProfile'
 import ProfilePicture from './ProfilePicture'
 import './Profile.css'
 
-// placeholder data until the back-end is hooked up
-const defaultProfile = {
-  name: 'Username A',
-  bio: 'Lorem ipsum dolor sit amet',
-  picture: null,
-}
-
 function Profile() {
-  const [profile, setProfile] = useState(defaultProfile)
+  const [profile, setProfile] = useState(null)
   const [editing, setEditing] = useState(false)
   const navigate = useNavigate()
+
+  useEffect(() => {
+    fetch('/api/mockData')
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to fetch profile')
+        return res.json()
+      })
+      .then(data => setProfile(data.profile))
+      .catch(err => console.error(err))
+  }, [])
+
+  if (!profile) {
+    return <div className="profile-page">Loading profile...</div>
+  }
 
   if (editing) {
     return (
