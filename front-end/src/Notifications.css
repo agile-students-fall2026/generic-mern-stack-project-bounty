@@ -72,5 +72,11 @@
 }
 
 .unreadDot {
-    color: black;
+    width: 10px;
+    height: 10px;
+    min-width: 10px;
+    background-color: #2563eb;
+    border-radius: 50%;
+    flex-shrink: 0;
+    align-self: center;
 }
