@@ -12,6 +12,7 @@ import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
 import PostHistory from './profile/PostHistory'
 
+import Login from './Login'
 
 function App() {
   // Two placeholder posts for testing
@@ -47,6 +48,7 @@ function App() {
   ])
   const [count, setCount] = useState(2)
   const [curr, setCurr] = useState(-1)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // useEffect(() => {
   //   console.log(postsData)
@@ -174,6 +176,8 @@ function App() {
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/profile/posts' element={<PostHistory postsData={postsData} />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
+          {/* <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} /> */}
         </Routes>
       </Router>
     </>

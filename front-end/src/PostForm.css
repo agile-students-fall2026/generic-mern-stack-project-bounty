@@ -81,7 +81,7 @@
     flex-direction: row;
 }
 
-.postForm .submit, 
+.submit, 
 .postForm .disabled {
     font: inherit;
     margin-top: 10px;
@@ -93,7 +93,7 @@
     color: white;
 }
 
-.postForm .submit {
+.submit {
     background-color: #8C68C4;
 }
 
