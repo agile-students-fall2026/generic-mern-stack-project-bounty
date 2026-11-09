@@ -7,7 +7,7 @@ const PostForm = props => {
     const [formData, setFormData] = useState({
         id: props.id, 
         username: props.username ?? '', 
-        pfp: props.pfp ?? 'https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Profile_avatar_placeholder_large.png/250px-Profile_avatar_placeholder_large.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail',
+        pfp: props.pfp ?? 'https://picsum.photos/200?random=2',
         category: props.category ?? 'lost',
         title: props.title ?? '',
         desc: props.desc ?? '',
