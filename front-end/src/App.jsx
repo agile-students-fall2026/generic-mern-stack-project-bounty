@@ -48,9 +48,9 @@ function App() {
   const [curr, setCurr] = useState(-1)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  useEffect(() => {
-    console.log(postsData)
-  }, [postsData])
+  // useEffect(() => {
+  //   console.log(postsData)
+  // }, [postsData])
 
   // Temporary mock conversations for testing
   const [conversations, setConversations] = useState([
