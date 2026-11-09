@@ -11,7 +11,7 @@ const defaultProfile = {
   picture: null,
 }
 
-function Profile() {
+function Profile({ setIsLoggedIn }) {
   const [profile, setProfile] = useState(defaultProfile)
   const [editing, setEditing] = useState(false)
   const navigate = useNavigate()
@@ -50,11 +50,21 @@ function Profile() {
           <button type="button" onClick={() => navigate('/profile/posts')}>View All Posts <span>›</span></button>
         </li>
         <li>
-          <button type="button">Account settings <span>›</span></button>
+          <button type="button" onClick={() => navigate('/profile/settings')}>Account settings <span>›</span></button>
         </li>
       </ul>
 
-      <button type="button" className="profile-btn-solid">Log Out</button>
+      <button
+        type="button"
+        className="profile-btn-solid"
+        onClick={() => {
+          setIsLoggedIn(false)
+          navigate('/login')
+        }}
+      >
+        Log Out
+      </button>
+
     </div>
   )
 }
