@@ -1,0 +1,63 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import './Profile.css'
+
+function AccountSettings() {
+  const [current, setCurrent] = useState('')
+  const [next, setNext] = useState('')
+  const [confirm, setConfirm] = useState('')
+  const [error, setError] = useState('')
+  const [saved, setSaved] = useState(false)
+  const navigate = useNavigate()
+
+  // not sent anywhere yet; the back-end will check the current password
+  function handleSubmit(e) {
+    e.preventDefault()
+    if (next.length < 8) return setError('New password must be at least 8 characters.')
+    if (next !== confirm) return setError('New passwords do not match.')
+    if (next === current) return setError('New password must be different from your current one.')
+    setError('')
+    setSaved(true)
+  }
+
+  if (saved) {
+    return (
+      <div className="profile-page">
+        <h1>Password Updated</h1>
+        <p>Your password has been changed.</p>
+        <button type="button" className="profile-btn-solid" onClick={() => navigate('/profile')}>
+          Back to Profile
+        </button>
+      </div>
+    )
+  }
+
+  return (
+    <form className="profile-page" onSubmit={handleSubmit}>
+      <h1>Account Settings</h1>
+      <h2>Change Password</h2>
+
+      <label>
+        Current password
+        <input type="password" value={current} onChange={(e) => setCurrent(e.target.value)} required />
+      </label>
+
+      <label>
+        New password
+        <input type="password" value={next} onChange={(e) => setNext(e.target.value)} required />
+      </label>
+
+      <label>
+        Confirm new password
+        <input type="password" value={confirm} onChange={(e) => setConfirm(e.target.value)} required />
+      </label>
+
+      {error && <p className="profile-error">{error}</p>}
+
+      <button type="submit" className="profile-btn-solid">Update Password</button>
+      <button type="button" className="profile-btn-link" onClick={() => navigate('/profile')}>Cancel</button>
+    </form>
+  )
+}
+
+export default AccountSettings
