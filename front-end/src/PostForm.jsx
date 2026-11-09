@@ -5,7 +5,6 @@ import Confirmation from './Confirmation'
 
 const PostForm = props => {
     const [formData, setFormData] = useState({
-        // should include a username field, true
         id: props.id, 
         category: props.category ?? 'lost',
         title: props.title ?? '',
@@ -43,14 +42,12 @@ const PostForm = props => {
         )
     }, [formData])
 
-    // actually put the post form data into backend... will do in next sprint
+    // put the post form data into backend... will do in next sprint
     const submitForm = e => {
         e.preventDefault() // prevent normal browser submit behavior
-        console.log('Form Submitted')
         props.setIsSubmitted(true)
 
         if (props.origin === 'publish') {
-            console.log("Last check of id: " + props.id)
             props.setPostsData(prev => [formData, ...prev])
             props.setCount(prev => prev + 1)
         }
@@ -66,43 +63,30 @@ const PostForm = props => {
                     <input 
                         type='button' 
                         className={formData.category === 'lost' ? 'active' : 'inactive'} 
-                        onClick={() => {
-                            // must set to true instead of just !isLost b/c this choice is
-                            // necessary, so can't unselect
-                                setFormData({
-                                    ...formData,
-                                    category: 'lost'
-                                })
-                            }
-                        }
+                        onClick={() => setFormData({
+                            ...formData,
+                            category: 'lost'
+                        })}
                         value='Lost'
                     />
                     <input 
                         type='button' 
                         className={formData.category === 'found' ? 'active' : 'inactive'} 
-                        onClick={() => {
-                            // must set to true instead of just !isLost b/c this choice is
-                            // necessary, so can't unselect
-                                setFormData({
-                                    ...formData,
-                                    category: 'found'
-                                })
-                            }
-                        }
+                        onClick={() => setFormData({
+                            ...formData,
+                            includeBounty: false,
+                            bounty: '',
+                            category: 'found'
+                        })}
                         value='Found'
                     />
                     <input 
                         type='button' 
                         className={formData.category === 'request' ? 'active' : 'inactive'} 
-                        onClick={() => {
-                            // must set to true instead of just !isLost b/c this choice is
-                            // necessary, so can't unselect
-                                setFormData({
-                                    ...formData,
-                                    category: 'request'
-                                })
-                            }
-                        }
+                        onClick={() => setFormData({
+                            ...formData,
+                            category: 'request'
+                        })}
                         value='Request'
                     />
                 </div>
@@ -169,8 +153,6 @@ const PostForm = props => {
                         })}
                     />
                 </div>
-                {/* would like to change this so that it looks nicer, but will keep it
-                as is for now for functionality */}
                 <div className='field'>
                     <label htmlFor='image' className='label'>Image</label>
                     <input
@@ -193,7 +175,8 @@ const PostForm = props => {
                         onChange={() => {
                             setFormData({
                                 ...formData, 
-                                includeBounty: !formData.includeBounty
+                                includeBounty: !formData.includeBounty, 
+                                bounty: ''
                             })
                         }}
                     />

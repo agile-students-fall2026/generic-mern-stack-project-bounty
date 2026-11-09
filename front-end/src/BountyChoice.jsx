@@ -20,25 +20,25 @@ const BountyChoice = props => {
         setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
     }, [])
 
+
     const chose = name => {
         if (name === personChosen) {
-            console.log('Person has been unchosen!')
             setPersonChosen('')
         }
         else {
-            console.log('Person has been chosen!')
             setPersonChosen(name)
-            console.log(name)
         }
     }
 
     // when submitting form button, save the user who was chosen to receive the bounty
     const submitForm = e => {
         e.preventDefault()
-        console.log(`Final decision made: give bounty to ${personChosen}!`)
+
         // show confirmation notice afterwards
         setIsSubmitted(true)
-        console.log("huh: " + (props.count - props.curr - 1))
+
+        // resolving the post is equivalent to deleting the post, so same
+        // code here
         props.setPostsData(prev => {
             return prev
                 .filter(post => post.id !== (props.count - props.curr - 1))
@@ -64,7 +64,7 @@ const BountyChoice = props => {
             {hasBounty && 
                 <>
                     {!isSubmitted && <h1>Choose Bounty Receiver</h1>}
-                    {!isSubmitted && <p id='text'>Among the people you have messaged, you may select who will receive 
+                    {!isSubmitted && <p className='text'>Among the people you have messaged, you may select who will receive 
                         the bounty you have set. Selecting them will notify them immediately. </p>}
                     {!isSubmitted && <div className='bountyDisplay'>
                         <h2>Bounty</h2>
@@ -88,7 +88,7 @@ const BountyChoice = props => {
             {!hasBounty &&
                 <>
                     {!isSubmitted && <h1>No Bounty to Award</h1>}
-                    {!isSubmitted && <p id='text'>Are you sure you want to resolve? </p>}
+                    {!isSubmitted && <p className='text'>Are you sure you want to resolve? </p>}
                 </>
             }
 
@@ -102,7 +102,7 @@ const BountyChoice = props => {
             </form>}
             {/* return to post user came from; for now, as we don't have post view screen,
             this is going to route to home */}
-            {!isSubmitted && <Link className="link" id='cancel' to="/" style={{textDecoration: 'none'}}>Cancel</Link>}
+            {!isSubmitted && <Link className='link' id='cancel' to='/' style={{textDecoration: 'none'}}>Cancel</Link>}
             {isSubmitted && <Confirmation 
                 title={`Post Resolved!`}
                 message={`Your post has been marked as resolved.`}

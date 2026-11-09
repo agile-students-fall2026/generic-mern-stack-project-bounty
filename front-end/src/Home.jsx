@@ -9,9 +9,7 @@ const PostElement = props => {
   const [showOptions, setShowOptions] = useState(false)
 
   const toggleOptions = () => {
-    console.log(props.id)
     props.setCurr(props.count - 1 - props.id)
-    console.log(props.postsData[ props.id - 1])
     setShowOptions(!showOptions)
   }
 
@@ -41,9 +39,9 @@ const PostElement = props => {
           </div>
           <div className='bounty-image-grouping'>
             {/* <img className="bounty-image" src="https://static0.srcdn.com/wordpress/wp-content/uploads/2019/12/Persona-5-Joker-Mask-Phantom-Thieves-Edition-Game.jpg"></img> */}
-            <img className='bounty-image' src={props.image ? props.image : null} alt="" />
+            {props.image && <img className='bounty-image' src={props.image} alt="" />}
             {props.category !== 'found' && <h2>{props.includeBounty ? 'BOUNTY' : 'NO BOUNTY'}</h2>}
-            {props.includeBounty && <h3>{props.bounty}</h3>}
+            {props.category !== 'found' && <h3>{props.bounty}</h3>}
           </div>
           
         </div>
@@ -85,7 +83,7 @@ const Home = props => {
               location={element.location} 
               image={element.image}
               includeBounty={element.includeBounty} 
-              bounty={element.bounty} 
+              bounty={element.category === 'found' ? '' : element.bounty} 
               setCurr={props.setCurr}
               postsData={props.postsData}
               count={props.count}
