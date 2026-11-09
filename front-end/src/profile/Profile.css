@@ -113,3 +113,44 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+.profile-tabs {
+  display: flex;
+}
+
+.profile-tabs button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile-tabs .profile-tab-selected {
+  background: #000;
+  color: #fff;
+}
+
+.profile-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-post-list li {
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-post-list p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.profile-error {
+  margin: 0;
+  color: #c00;
+}
