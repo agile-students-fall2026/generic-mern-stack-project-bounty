@@ -1,0 +1,24 @@
+.signUp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signUp .logo {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signUp .signUpForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#email, 
+#password, 
+#name {
+    height: 20px;
+}

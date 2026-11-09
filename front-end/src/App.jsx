@@ -11,6 +11,7 @@ import PrivateChat from './PrivateChat'
 import BountyChoice from './BountyChoice'
 import Profile from './profile/Profile'
 import Login from './Login'
+import SignUp from './SignUp'
 
 function App() {
   // Two placeholder posts for testing
@@ -155,7 +156,7 @@ function App() {
   return (
     <>
       <Router>
-        <nav className="nav">
+        {isLoggedIn && <nav className="nav">
           <Link className="nav-logo" to="/" style={{textDecoration: 'none'}}>Bounty</Link>
           <div className="nav-links">
             <Link className="nav-link" to="/new-post" style={{textDecoration: 'none'}}>New</Link>
@@ -163,9 +164,9 @@ function App() {
             <Link className="nav-link" to="/notifications" style={{textDecoration: 'none'}}>Notifications</Link>
             <Link className="nav-link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link>
           </div>
-        </nav>
+        </nav>}
         <Routes>
-          <Route path="/" element={<Home postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
+          <Route path="/" element={<Home isLoggedIn={isLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
           <Route path="/new-post" element={<NewPost postsData={postsData} setPostsData={setPostsData} count={count} setCount={setCount} />} />
           <Route path='/edit-post/:id' element={<EditPost postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
@@ -173,8 +174,8 @@ function App() {
           <Route path="/messages" element={<Messages conversations={conversations} />} />
           <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
-          {/* <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} postsData={postsData} count={count} curr={curr} setCurr={setCurr} startConversation={startConversation} />} /> */}
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+          <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} />} />
         </Routes>
       </Router>
     </>

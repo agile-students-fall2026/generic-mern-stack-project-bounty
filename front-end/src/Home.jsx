@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import './Home.css'
 
 const PostElement = props => {
@@ -25,7 +25,7 @@ const PostElement = props => {
           {showOptions && <div className='buttons'>
             {(props.username === 'You') && <Link className="option" to={`/edit-post/${props.id}`} style={{textDecoration: 'none'}}>Edit</Link>}
             {(props.username === 'You') && <Link className="option" to={`/resolve-post/${props.id}`} style={{textDecoration: 'none'}}>Resolve</Link>}
-            {(props.username !== 'You') && <Link className="option" to={`/messages/1`} style={{textDecoration: 'none'}}>Message</Link>}
+            {(props.username !== 'You') && <Link className="option" to={`/messages/${props.id}`} style={{textDecoration: 'none'}}>Message</Link>}
           </div>}
           <div className='content'>
             <div className='title'>
@@ -49,6 +49,14 @@ const PostElement = props => {
 }
 
 const Home = props => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!props.isLoggedIn) {
+      navigate('/login')
+    }
+  }, [])
+
   const [titleFilter, setTitleFilter] = useState("")
   const [categoryFilter, setCategoryFilter] = useState("all")
   const handleFilter = () => {
@@ -109,17 +117,17 @@ const Home = props => {
         })}
       </section>
       <dialog id="dialog">
-  <p>Item Status</p>
+        <p>Item Status</p>
 
-<select id="categorySelect">
-  <option value="all"></option>
-  <option value="lost">Lost</option>
-  <option value="found">Found</option>
-  <option value="request">Request</option>
-</select>
-  <button commandfor="dialog" command="close" onClick={() => handleFilter()}>Apply Filter</button>
-  <button commandfor="dialog" command="close" >Cancel</button>
-</dialog>
+        <select id="categorySelect">
+          <option value="all"></option>
+          <option value="lost">Lost</option>
+          <option value="found">Found</option>
+          <option value="request">Request</option>
+        </select>
+        <button commandfor="dialog" command="close" onClick={() => handleFilter()}>Apply Filter</button>
+        <button commandfor="dialog" command="close" >Cancel</button>
+      </dialog>
     </div>
   )
 }
