@@ -17,18 +17,18 @@ const Notifications = ({ notifications, setNotifications }) => {
         ))
     }
 
-    // // Temporary testing function until notification creation is implemented
-    // const simulateNotification = () => {
-    //     setNotifications(prev => [{
-    //         id: crypto.randomUUID(),
-    //         title: 'New message • Alice A.',
-    //         description: 'Testing a new notification!',
-    //         time: 'Today · Just now',
-    //         read: false,
-    //         link: 'Open Conversation',
-    //         path: '/messages/1'
-    //     }, ...prev])
-    // }
+    // Temporary testing function until notification creation is implemented
+    const simulateNotification = () => {
+        setNotifications(prev => [{
+            id: crypto.randomUUID(),
+            title: 'New message • Alice A.',
+            description: 'Testing a new notification!',
+            time: 'Today · Just now',
+            read: false,
+            link: 'Open Conversation',
+            path: '/messages/1'
+        }, ...prev])
+    }
 
     const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
 

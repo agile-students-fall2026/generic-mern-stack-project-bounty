@@ -17,12 +17,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [curr, setCurr] = useState(-1)
 
-  // For production
-  const [conversations, setConversations] = useState([])
-  const [notifications, setNotifications] = useState([])
-
-  /*
-  Temporary mock conversation until conversation creation is implemented
+  // Temporary mock conversations for testing
   const [conversations, setConversations] = useState([
     {
       id: '1',
@@ -40,10 +35,8 @@ function App() {
       ]
     }
   ])
-  */
 
-  /*
-  Temporary mock notifications until notification creation is implemented
+  // Temporary mock notifications for testing
   const [notifications, setNotifications] = useState([
     {
       id: 1,
@@ -64,7 +57,6 @@ function App() {
       path: '/messages/1'
     }
   ])
-  */
 
   const startConversation = post => {
     const existing = conversations.find(c => c.postId === post.id)
@@ -143,7 +135,6 @@ function App() {
           {/* currently non-functional; i'll try it after demo */}
           {/* <Route path='/new-post/publish-confirmation' element={<PublishConfirmation />} /> */}
           <Route path='/resolve-post/:id' element={<BountyChoice postsData={postsData} setPostsData={setPostsData} curr={curr} count={count} setCount={setCount} />} />
-          <Route path="/" element={<Home />} />
           {/* <Route path="/new-post" element={<NewPost />} /> */}
 
           <Route
