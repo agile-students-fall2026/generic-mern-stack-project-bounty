@@ -50,18 +50,29 @@ const PostElement = props => {
 }
 
 const Home = props => {
-
+  const [titleFilter, setTitleFilter] = useState("")
+  const [categoryFilter, setCategoryFilter] = useState("All")
+  const handleFilter = () => {
+    const categorySelect = document.getElementById("categorySelect")
+    setCategoryFilter(categorySelect.value)
+  }
+  const titleFilterHandler = () => {
+    const search = document.getElementById("searchFilter")
+    setTitleFilter(search.value)
+  }
   return (
     <div id='bg'>
       <div id="search">
         <input
           type='text'
-          id='title'
+          id='searchFilter'
           placeholder="Search"
+          onChange={() => titleFilterHandler()}
         />
         <button
           type="button"
           className="btn"
+          command="show-modal" commandfor="dialog"
         >
           Filter
         </button>
@@ -69,7 +80,13 @@ const Home = props => {
 
       <section id="next-steps">
         {props.postsData.length === 0 && <p>No Posts</p>}
-        {props.postsData.length !== 0 && props.postsData.map((element, index) => {
+        {props.postsData.length !== 0 && props.postsData.filter(e => {
+          console.log(e.category)
+          if((e.category == categoryFilter || categoryFilter == "all")
+          && (e.title.toLowerCase().includes(titleFilter.toLowerCase()) || titleFilter == "")){
+            return e
+          }
+        }).map((element, index) => {
           return (
             <PostElement 
               key={index}
@@ -91,6 +108,18 @@ const Home = props => {
           )
         })}
       </section>
+      <dialog id="dialog">
+  <p>Item Status</p>
+
+<select id="categorySelect">
+  <option value="all"></option>
+  <option value="lost">Lost</option>
+  <option value="found">Found</option>
+  <option value="request">Request</option>
+</select>
+  <button commandfor="dialog" command="close" onClick={() => handleFilter()}>Apply Filter</button>
+  <button commandfor="dialog" command="close" >Cancel</button>
+</dialog>
     </div>
   )
 }
