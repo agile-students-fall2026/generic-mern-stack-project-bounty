@@ -50,7 +50,7 @@ const PostElement = props => {
 
 const Home = props => {
   const [titleFilter, setTitleFilter] = useState("")
-  const [categoryFilter, setCategoryFilter] = useState("All")
+  const [categoryFilter, setCategoryFilter] = useState("all")
   const handleFilter = () => {
     const categorySelect = document.getElementById("categorySelect")
     setCategoryFilter(categorySelect.value)

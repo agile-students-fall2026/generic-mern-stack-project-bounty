@@ -4,8 +4,6 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const Messages = ({ conversations }) => {
-    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
-
     const [search, setSearch] = useState('')
 
     const filtered = conversations.filter(c =>
@@ -29,7 +27,7 @@ const Messages = ({ conversations }) => {
             </div>
 
             <div className="messageList">
-                {filtered.map((c, index) => (
+                {filtered.map((c) => (
                     <Link
                         className="messageItem"
                         key={c.id}
@@ -38,7 +36,7 @@ const Messages = ({ conversations }) => {
                     >
                         <img
                             className="messageImage"
-                            src={`/pfps/${pfps[index % pfps.length]}`}
+                            src={c.pfp}
                             alt=""
                         />
 

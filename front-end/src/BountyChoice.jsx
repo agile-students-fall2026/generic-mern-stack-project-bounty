@@ -13,11 +13,17 @@ const BountyChoice = props => {
     // the bounty amount is taken from data of the post the user came from
     // where they clicked resolve
     useEffect(() => {
-        setBounty(props.postsData[props.curr].bounty)
-        setHasBounty(props.postsData[props.curr].includeBounty)
+        const post = props.postsData[props.curr]
+        if (!post) return
+
+        setBounty(post.bounty)
+        setHasBounty(post.includeBounty)
         // should get choices from list of people in user's messages screen
         // for now, placeholder:
-        setChoices(['Alice A.', 'Bob B.', 'Carol C.', 'Dave D.'])
+        fetch('/api/mockData')
+            .then(res => res.json())
+            .then(data => setChoices(data.users))
+            .catch(err => console.error(err))
     }, [])
 
 
@@ -55,10 +61,6 @@ const BountyChoice = props => {
         props.setCount(prev => prev - 1)
     }
 
-    // should get the associated pfps from back-end according to users
-    // from messages
-    const pfps = ['pfpA.jpg', 'pfpB.jpg', 'pfpC.jpg', 'pfpD.jpg']
-
     return (
         <div className='bountyChoice'>
             {hasBounty && 
@@ -72,13 +74,13 @@ const BountyChoice = props => {
                     </div>}
                         
                     {!isSubmitted && <div className='choices'>
-                        {choices.map((choice, index) => (
+                        {choices.map(choice => (
                             <button
-                                key={choice}
-                                className={personChosen === choice ? 'active' : 'choice'}
-                                onClick={() => chose(choice)}>
-                                <img className='pfp' src={`/pfps/${pfps[index]}`} />
-                                <p className='name'>{choice}</p>
+                                key={choice.id}
+                                className={personChosen === choice.username ? 'active' : 'choice'}
+                                onClick={() => chose(choice.username)}>
+                                <img className='pfp' src={choice.pfp} alt="" />
+                                <p className='name'>{choice.username}</p>
                             </button>
                         ))}
                     </div>}

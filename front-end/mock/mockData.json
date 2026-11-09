@@ -1,0 +1,121 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "username": "Alice A.",
+      "pfp": "https://picsum.photos/100?random=1",
+      "category": "lost",
+      "title": "Lost Wallet",
+      "desc": "Has anyone seen my wallet?",
+      "date": "",
+      "time": "",
+      "location": "Warren Weaver Hall, Rm. 109",
+      "image": "",
+      "includeBounty": false,
+      "bounty": ""
+    },
+    {
+      "id": 0,
+      "username": "You",
+      "pfp": "https://picsum.photos/100?random=2",
+      "category": "lost",
+      "title": "Lost Keys",
+      "desc": "Please help!!!",
+      "date": "2026-11-02",
+      "time": "",
+      "location": "Bobst Library",
+      "image": "",
+      "includeBounty": false,
+      "bounty": ""
+    }
+  ],
+  "conversations": [
+    {
+      "id": "1",
+      "postId": 1,
+      "username": "Alice A.",
+      "pfp": "https://picsum.photos/100?random=1",
+      "item": "Lost Wallet",
+      "location": "Warren Weaver Hall, Rm. 109",
+      "includeBounty": false,
+      "bounty": "",
+      "read": false,
+      "messages": [
+        {
+          "id": "1",
+          "sender": "other",
+          "text": "Hey, did you find my wallet?",
+          "time": "2:04 PM"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "postId": 2,
+      "username": "Bob B.",
+      "pfp": "https://picsum.photos/100?random=3",
+      "item": "Lost Keys",
+      "location": "Bobst Library",
+      "includeBounty": false,
+      "bounty": "",
+      "read": false,
+      "messages": [
+        {
+          "id": "2",
+          "sender": "other",
+          "text": "I think I found your keys!",
+          "time": "1:35 PM"
+        }
+      ]
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "title": "New message • Alice A.",
+      "description": "Hey, did you find my wallet?",
+      "time": "Today · 2:04 PM",
+      "read": false,
+      "link": "Open Conversation",
+      "path": "/messages/1",
+      "pfp": "https://picsum.photos/100?random=1"
+    },
+    {
+      "id": 2,
+      "title": "New message • Bob B.",
+      "description": "I think I found your keys!",
+      "time": "Today · 1:35 PM",
+      "read": false,
+      "link": "Open Conversation",
+      "path": "/messages/2",
+      "pfp": "https://picsum.photos/100?random=3"
+    }
+  ],
+  "profile": {
+    "name": "Username A",
+    "bio": "Lorem ipsum dolor sit amet",
+    "picture": "https://picsum.photos/100?random=2"
+  },
+  "users": [
+    {
+      "id": "1",
+      "username": "Alice A.",
+      "pfp": "https://picsum.photos/100?random=1"
+    },
+    {
+      "id": "2",
+      "username": "Bob B.",
+      "pfp": "https://picsum.photos/100?random=3"
+    },
+    {
+      "id": "3",
+      "username": "Carol C.",
+      "pfp": "https://picsum.photos/100?random=4"
+    },
+    {
+      "id": "4",
+      "username": "Dave D.",
+      "pfp": "https://picsum.photos/100?random=5"
+    }
+  ]
+}

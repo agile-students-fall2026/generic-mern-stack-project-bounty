@@ -39,13 +39,16 @@ const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
             <Link to="/messages">Back to Messages</Link>
 
             <div className="chatUser">
-                <img className="chatAvatar" src="/pfps/pfpA.jpg" alt="" />
+                <img className="chatAvatar" src={convo.pfp} alt="" />
                 <h2>{convo.username}</h2>
             </div>
 
             <div className="chatItem">
                 <h3>{convo.item}</h3>
-                <p>Item Location · Bounty: $XXX</p>
+                <p>
+                {convo.location ?? 'Location not provided'}
+                {convo.includeBounty && ` · Bounty: $${convo.bounty}`}
+            </p>
             </div>
 
             <div className="chatMessages">
