@@ -77,7 +77,7 @@ const BountyChoice = props => {
                                 key={choice}
                                 className={personChosen === choice ? 'active' : 'choice'}
                                 onClick={() => chose(choice)}>
-                                <img className='pfp' src={`../public/pfps/${pfps[index]}`} />
+                                <img className='pfp' src={`/pfps/${pfps[index]}`} />
                                 <p className='name'>{choice}</p>
                             </button>
                         ))}

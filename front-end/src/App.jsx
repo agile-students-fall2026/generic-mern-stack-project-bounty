@@ -17,7 +17,7 @@ function App() {
     {
       id: 1, 
       username: 'Alice A.', 
-      pfp: '../public/pfps/pfpA.jpg', 
+      pfp: '/pfps/pfpA.jpg', 
       category: 'lost',
       title: 'Lost Wallet',
       desc:'Has anyone seen my wallet?',
