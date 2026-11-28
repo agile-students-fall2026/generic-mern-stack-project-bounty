@@ -25,7 +25,6 @@ describe('GET /api/conversations', () => {
 
 describe('GET /api/conversations/:id', () => {
   beforeEach(() => {
-    resetConversations()
     setCurrentUser(testUser())
   })
 
@@ -48,8 +47,7 @@ describe('GET /api/conversations/:id', () => {
 })
 
 describe('POST /api/conversations', () => {
-    beforeEach(() => {
-    resetConversations()
+  beforeEach(() => {
     setCurrentUser(testUser())
   })
 
@@ -81,8 +79,7 @@ describe('POST /api/conversations', () => {
 })
 
 describe('PATCH /api/conversations/:id/read', () => {
-    beforeEach(() => {
-    resetConversations()
+  beforeEach(() => {
     setCurrentUser(testUser())
   })
 
@@ -104,8 +101,7 @@ describe('PATCH /api/conversations/:id/read', () => {
 })
 
 describe('POST /api/conversations/:id/messages', () => {
-    beforeEach(() => {
-    resetConversations()
+  beforeEach(() => {
     setCurrentUser(testUser())
   })
 

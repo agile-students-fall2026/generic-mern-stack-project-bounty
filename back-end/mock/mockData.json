@@ -32,23 +32,6 @@
   ],
   "conversations": [
     {
-      "id": "20ce0588-5833-4e2a-b72a-2ca2a329833a",
-      "postId": "notification-test-post",
-      "email": "",
-      "owners": [
-        null,
-        null
-      ],
-      "username": "Test User",
-      "pfp": "",
-      "item": "Test Item",
-      "location": "",
-      "includeBounty": false,
-      "bounty": "",
-      "read": true,
-      "messages": []
-    },
-    {
       "id": "0",
       "postId": 0,
       "email": "test0@gmail.com",
@@ -99,7 +82,7 @@
   ],
   "notifications": [
     {
-      "id": 1,
+      "id": "0",
       "title": "New message • Alice A.",
       "description": "Hey, did you find my wallet?",
       "time": "Today · 2:04 PM",
@@ -109,7 +92,7 @@
       "pfp": "https://picsum.photos/200?random=1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "New message • Bob B.",
       "description": "I think I found your keys!",
       "time": "Today · 1:35 PM",

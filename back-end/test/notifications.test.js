@@ -1,6 +1,15 @@
 import { expect } from 'chai'
 import request from 'supertest'
-import app from '../app.js'
+import app, { setCurrentUser, resetConversations, resetNotifications } from '../app.js'
+
+const testUser = () => ({
+  email: 'tester@gmail.com', 
+  profile: { 
+    name: 'Tester', 
+    bio: 'Hi', 
+    picture: '/uploads/test.png'
+  }
+})
 
 describe('GET /api/notifications', () => {
   it('responds with a list of notifications', async () => {
@@ -45,10 +54,19 @@ describe('notifications for new messages', () => {
     convoId = res.body.id
   })
 
+  beforeEach(() => {
+    setCurrentUser(testUser())
+  })
+
+  afterEach(() => {
+    resetNotifications()
+    resetConversations()
+  })
+
   it('creates a notification when the other person sends a message', async () => {
     await request(app)
       .post(`/api/conversations/${convoId}/messages`)
-      .send({ text: 'I found it!', sender: 'other' })
+      .send({ text: 'I found it!', sender: 'other@gmail.com' })
     const res = await request(app).get('/api/notifications')
     const newest = res.body[0]
     expect(newest.path).to.equal(`/messages/${convoId}`)
@@ -61,7 +79,7 @@ describe('notifications for new messages', () => {
     const start = await request(app).get('/api/notifications')
     await request(app)
       .post(`/api/conversations/${convoId}/messages`)
-      .send({ text: 'Thank you!' })
+      .send({ text: 'Thank you!', sender: 'other@gmail.com' })
     const end = await request(app).get('/api/notifications')
     expect(end.body.length).to.equal(start.body.length)
   })

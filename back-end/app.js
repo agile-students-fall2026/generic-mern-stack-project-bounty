@@ -223,6 +223,32 @@ app.post('/api/profile', upload.single('image'), (req, res) => {
 
 let notifications = JSON.parse(fs.readFileSync(mockDataPath, 'utf8')).notifications
 
+export const resetNotifications = () => {
+  notifications = [
+    {
+      "id": "0",
+      "title": "New message • Alice A.",
+      "description": "Hey, did you find my wallet?",
+      "time": "Today · 2:04 PM",
+      "read": false,
+      "link": "Open Conversation",
+      "path": "/messages/0",
+      "pfp": "https://picsum.photos/200?random=1"
+    },
+    {
+      "id": "2",
+      "title": "New message • Bob B.",
+      "description": "I think I found your keys!",
+      "time": "Today · 1:35 PM",
+      "read": false,
+      "link": "Open Conversation",
+      "path": "/messages/2",
+      "pfp": "https://picsum.photos/200?random=3"
+    }
+  ]
+  updateMockData("notifications", notifications)
+}
+
 app.get('/api/notifications', (req, res) => {
   res.json(notifications)
 })
@@ -298,10 +324,7 @@ export const resetConversations = () => {
 }
 
 app.get('/api/conversations', (req, res) => {
-  console.log(currentUser)
-  console.log(currentUser.email)
   const ownedConversations = conversations.filter(c => currentUser && (c.owners ?? []).includes(String(currentUser.email)))
-  console.log(ownedConversations)
   res.json(ownedConversations)
 })
 
@@ -361,8 +384,6 @@ app.post('/api/conversations/:id/messages', upload.single('image'), (req, res) =
   if (typeof text !== 'string' || !text.trim()) {
     return res.status(400).json({ error: 'Message text is required' })
   }
-  console.log("Sent")
-  console.log(sender)
   const yours = convo.owners.indexOf(currentUser.email)
   const other = 1 - yours
   const message = {
@@ -376,7 +397,6 @@ app.post('/api/conversations/:id/messages', upload.single('image'), (req, res) =
   // console.log(message)
   convo.messages.push(message)
   convo.read = message.sender === currentUser.email
-  console.log(message.sender)
   
   if (message.sender !== currentUser.email) {
     notifications.unshift({
@@ -390,11 +410,10 @@ app.post('/api/conversations/:id/messages', upload.single('image'), (req, res) =
       path: `/messages/${convo.id}`,
       pfp: convo.pfp
     })
+    updateMockData("notifications", notifications)
   }
-  console.log("AHHHHH")
   conversations[index] = convo
   updateMockData("conversations", conversations)
-  console.log(convo)
   res.status(201).json(message)
 })
 
