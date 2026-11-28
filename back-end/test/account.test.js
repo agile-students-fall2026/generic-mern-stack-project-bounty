@@ -6,14 +6,12 @@ import app, { setCurrentUser } from "../app.js";
 
 describe("POST /api/account/create", function () {
   it("rejects an email that already has an account", async function () {
-    const res = await request(app)
-      .post("/api/account/create")
-      .send({
-        fullName: "Test",
-        email: "test@gmail.com",
-        password: "password123",
-        securityAnswer: "dog",
-      });
+    const res = await request(app).post("/api/account/create").send({
+      fullName: "Test",
+      email: "test@gmail.com",
+      password: "password123",
+      securityAnswer: "dog",
+    });
     expect(res.status).to.equal(401);
     expect(res.body.error).to.equal("Account with email already exists.");
   });
@@ -58,24 +56,20 @@ describe("GET /api/profile/security/:email", function () {
 
 describe("POST /api/account/recovery", function () {
   it("rejects an email with no account", async function () {
-    const res = await request(app)
-      .post("/api/account/recovery")
-      .send({
-        email: "nobody@nyu.edu",
-        answer: "dog",
-        password: "newpassword1",
-      });
+    const res = await request(app).post("/api/account/recovery").send({
+      email: "nobody@nyu.edu",
+      answer: "dog",
+      password: "newpassword1",
+    });
     expect(res.status).to.equal(400);
   });
 
   it("rejects a wrong security answer", async function () {
-    const res = await request(app)
-      .post("/api/account/recovery")
-      .send({
-        email: "oops@gmail.com",
-        answer: "definitelywrong",
-        password: "newpassword1",
-      });
+    const res = await request(app).post("/api/account/recovery").send({
+      email: "oops@gmail.com",
+      answer: "definitelywrong",
+      password: "newpassword1",
+    });
     expect(res.status).to.equal(401);
   });
 });

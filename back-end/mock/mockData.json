@@ -50,10 +50,7 @@
           "time": "2:04 PM"
         }
       ],
-      "owners": [
-        "test0@gmail.com",
-        "tester@gmail.com"
-      ]
+      "owners": ["test0@gmail.com", "tester@gmail.com"]
     },
     {
       "id": "2",
@@ -74,10 +71,7 @@
           "time": "1:35 PM"
         }
       ],
-      "owners": [
-        "test2@gmail.com",
-        "tester@gmail.com"
-      ]
+      "owners": ["test2@gmail.com", "tester@gmail.com"]
     }
   ],
   "notifications": [

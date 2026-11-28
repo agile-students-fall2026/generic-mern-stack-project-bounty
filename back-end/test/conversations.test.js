@@ -29,8 +29,8 @@ describe("GET /api/conversations", function () {
   });
 });
 
-describe("GET /api/conversations/:id", function() {
-  beforeEach(function() {
+describe("GET /api/conversations/:id", function () {
+  beforeEach(function () {
     setCurrentUser(testUser());
   });
 
@@ -52,8 +52,8 @@ describe("GET /api/conversations/:id", function() {
   });
 });
 
-describe("POST /api/conversations", function() {
-  beforeEach(function() {
+describe("POST /api/conversations", function () {
+  beforeEach(function () {
     setCurrentUser(testUser());
   });
 
@@ -88,8 +88,8 @@ describe("POST /api/conversations", function() {
   });
 });
 
-describe("PATCH /api/conversations/:id/read", function() {
-  beforeEach(function() {
+describe("PATCH /api/conversations/:id/read", function () {
+  beforeEach(function () {
     setCurrentUser(testUser());
   });
 
@@ -112,8 +112,8 @@ describe("PATCH /api/conversations/:id/read", function() {
   });
 });
 
-describe("POST /api/conversations/:id/messages", function() {
-  beforeEach(function() {
+describe("POST /api/conversations/:id/messages", function () {
+  beforeEach(function () {
     setCurrentUser(testUser());
   });
 

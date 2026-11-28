@@ -54,26 +54,24 @@ describe("notifications for new messages", function () {
   let convoId;
 
   before(async function () {
-    const res = await request(app)
-      .post("/api/conversations")
-      .send({
-        postId: "notification-test-post",
-        username: "Test User",
-        item: "Test Item",
-      });
+    const res = await request(app).post("/api/conversations").send({
+      postId: "notification-test-post",
+      username: "Test User",
+      item: "Test Item",
+    });
     convoId = res.body.id;
   });
 
-  beforeEach(function() {
+  beforeEach(function () {
     setCurrentUser(testUser());
   });
 
-  afterEach(function() {
+  afterEach(function () {
     resetNotifications();
     resetConversations();
   });
 
-  it("creates a notification when the other person sends a message", async function() {
+  it("creates a notification when the other person sends a message", async function () {
     await request(app)
       .post(`/api/conversations/${convoId}/messages`)
       .send({ text: "I found it!", sender: "other@gmail.com" });

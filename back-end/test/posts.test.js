@@ -19,38 +19,32 @@ describe("POST /api/posts", function () {
   });
 
   it("rejects if no title", async function () {
-    const res = await request(app)
-      .post("/api/posts")
-      .send({
-        title: "",
-        desc: "placeholder",
-        includeBounty: false,
-        bounty: "placeholder",
-      });
+    const res = await request(app).post("/api/posts").send({
+      title: "",
+      desc: "placeholder",
+      includeBounty: false,
+      bounty: "placeholder",
+    });
     expect(res.status).to.equal(400);
   });
 
   it("rejects if no description", async function () {
-    const res = await request(app)
-      .post("/api/posts")
-      .send({
-        title: "placeholder",
-        desc: " ",
-        includeBounty: false,
-        bounty: "placeholder",
-      });
+    const res = await request(app).post("/api/posts").send({
+      title: "placeholder",
+      desc: " ",
+      includeBounty: false,
+      bounty: "placeholder",
+    });
     expect(res.status).to.equal(400);
   });
 
   it("ignores empty bounty if not including bounty", async function () {
-    const res = await request(app)
-      .post("/api/posts")
-      .send({
-        title: "title",
-        desc: "desc",
-        includeBounty: false,
-        bounty: " ",
-      });
+    const res = await request(app).post("/api/posts").send({
+      title: "title",
+      desc: "desc",
+      includeBounty: false,
+      bounty: " ",
+    });
     expect(res.status).to.equal(201);
   });
 
