@@ -103,10 +103,10 @@
     }
   ],
   "profile": {
-    "name": "Username A",
-    "bio": "Lorem ipsum dolor sit amet",
-    "picture": "https://picsum.photos/200?random=0",
-    "email": ""
+    "name": "new name",
+    "bio": "",
+    "picture": "https://picsum.photos/200?random=2",
+    "email": "test1@gmail.com"
   },
   "users": [
     {

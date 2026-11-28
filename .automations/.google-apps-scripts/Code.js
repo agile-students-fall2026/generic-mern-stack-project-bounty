@@ -33,7 +33,9 @@ function doGet(e) {
     const email = decodeURIComponent(e.parameter["email"]);
     Logger.log(`GET request to send grades to email ${email}`);
     const rowNum = getRowNumByEmail(email);
-    if (rowNum) {SEND_ONE_ROW_NOW(config.debug_mode, rowNum);} // send it!
+    if (rowNum) {
+      SEND_ONE_ROW_NOW(config.debug_mode, rowNum);
+    } // send it!
   }
 }
 
@@ -213,7 +215,11 @@ function sendGrades(rows, debug_mode = getConfig().debug_mode) {
       // }
 
       try {
-        const message = createMessageFromTemplate(data["email"], data, template);
+        const message = createMessageFromTemplate(
+          data["email"],
+          data,
+          template,
+        );
         // Logger.log(`MESSAGE: ${message}`)
         MailApp.sendEmail({
           to: to,

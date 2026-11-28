@@ -114,7 +114,6 @@
   cursor: pointer;
 }
 
-
 .profile-tabs {
   display: flex;
 }
@@ -156,7 +155,7 @@
   align-self: center;
 }
 
-.profile-page > h2, 
+.profile-page > h2,
 .profile-page > p {
   align-self: center;
   text-align: center;

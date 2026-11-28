@@ -1,167 +1,309 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { useState, useEffect } from 'react'
-import { Link } from "react-router-dom"
-import './App.css'
-import NewPost from './NewPost'
-import EditPost from './EditPost'
-import Home from './Home'
-import Notifications from './Notifications'
-import Messages from './Messages'
-import PrivateChat from './PrivateChat'
-import BountyChoice from './BountyChoice'
-import Profile from './profile/Profile'
-import PostHistory from './profile/PostHistory'
-import AccountSettings from './profile/AccountSettings'
-import Login from './Login'
-import SignUp from './SignUp'
-import ForgotPassword from "./ForgotPassword"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./App.css";
+import NewPost from "./NewPost";
+import EditPost from "./EditPost";
+import Home from "./Home";
+import Notifications from "./Notifications";
+import Messages from "./Messages";
+import PrivateChat from "./PrivateChat";
+import BountyChoice from "./BountyChoice";
+import Profile from "./profile/Profile";
+import PostHistory from "./profile/PostHistory";
+import AccountSettings from "./profile/AccountSettings";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import ForgotPassword from "./ForgotPassword";
 
 function App() {
-  const [openMenu, setOpenMenu] = useState(false)
-  const [postsData, setPostsData] = useState([])
-  const [curr, setCurr] = useState(-1)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [conversations, setConversations] = useState([])
-  const [notifications, setNotifications] = useState([])
-  const [currentUser, setCurrentUser] = useState(null)
+  const [openMenu, setOpenMenu] = useState(false);
+  const [postsData, setPostsData] = useState([]);
+  const [curr, setCurr] = useState(-1);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [conversations, setConversations] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    fetchPosts()
-    fetchConversations()
+    fetchPosts();
+    fetchConversations();
 
-    fetch('/api/notifications')
-      .then(res => res.json())
-      .then(data => setNotifications(data))
-      .catch(err => console.error(err))
-  }, [isLoggedIn])
+    fetch("/api/notifications")
+      .then((res) => res.json())
+      .then((data) => setNotifications(data))
+      .catch((err) => console.error(err));
+  }, [isLoggedIn]);
 
   useEffect(() => {
-    fetch('/api/user')
-      .then(res => res.json())
-      .then(user => {
-        setCurrentUser(user)
-        console.log(user)
+    fetch("/api/user")
+      .then((res) => res.json())
+      .then((user) => {
+        setCurrentUser(user);
+        console.log(user);
       })
-      .catch(err => console.error(err))
-  }, [isLoggedIn])
+      .catch((err) => console.error(err));
+  }, [isLoggedIn]);
 
   // used so that bountyChoice can update back-end of posts
   const fetchPosts = () => {
-    fetch('/api/posts')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch posts')
-        return res.json()
+    fetch("/api/posts")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch posts");
+        return res.json();
       })
-      .then(data => {
-        setPostsData(data)
+      .then((data) => {
+        setPostsData(data);
       })
-      .catch(err => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
 
   // loads the chats from the back-end
   const fetchConversations = () => {
-    fetch('/api/conversations')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch conversations')
-        return res.json()
+    fetch("/api/conversations")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch conversations");
+        return res.json();
       })
-      .then(data => setConversations(data))
-      .catch(err => console.error(err))
-  }
+      .then((data) => setConversations(data))
+      .catch((err) => console.error(err));
+  };
 
   const toggle = () => {
-    setOpenMenu(prev => !prev)
-  }
+    setOpenMenu((prev) => !prev);
+  };
 
   const close = () => {
-    setOpenMenu(false)
-  }
+    setOpenMenu(false);
+  };
 
   const handleLogo = () => {
-    setOpenMenu(false)
+    setOpenMenu(false);
     window.scrollTo({
-      top: 0, 
-      behavior: 'smooth'
-    })
-  }
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // starts a chat about a post on the back-end, or gets the one that already exists
-  const startConversation = async post => {
-    const res = await fetch('/api/conversations', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+  const startConversation = async (post) => {
+    const res = await fetch("/api/conversations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         postId: post.id,
-        email: post.email, 
+        email: post.email,
         username: post.username,
         pfp: post.pfp,
         item: post.title,
         location: post.location,
         includeBounty: post.includeBounty,
         bounty: post.bounty,
-        email: post.email
-      })
-    })
-    if (!res.ok) throw new Error('Failed to start conversation')
-    const convo = await res.json()
-    setConversations(prev => [convo, ...prev.filter(c => String(c.id) !== String(convo.id))])
-    return convo.id
-  }
+        email: post.email,
+      }),
+    });
+    if (!res.ok) throw new Error("Failed to start conversation");
+    const convo = await res.json();
+    setConversations((prev) => [
+      convo,
+      ...prev.filter((c) => String(c.id) !== String(convo.id)),
+    ]);
+    return convo.id;
+  };
 
   // saves a message on the back-end, then adds it to the chat on screen
   const sendMessage = async (formData) => {
-    const sender = currentUser.email
-    const text = formData.get('text')
-    if (!text.trim()) return
-    const convoId = formData.get('id')
-    formData.append("sender", sender)
+    const sender = currentUser.email;
+    const text = formData.get("text");
+    if (!text.trim()) return;
+    const convoId = formData.get("id");
+    formData.append("sender", sender);
     const res = await fetch(`/api/conversations/${convoId}/messages`, {
-      method: 'POST',
-      body: formData
-    })
-    if (!res.ok) throw new Error('Failed to send message')
-    const message = await res.json()
+      method: "POST",
+      body: formData,
+    });
+    if (!res.ok) throw new Error("Failed to send message");
+    const message = await res.json();
 
-    setConversations(prev => prev.map(c =>
-      String(c.id) === String(convoId)
-        ? { ...c, read: sender === 'you', messages: [...c.messages, message] }
-        : c
-    ))
-  }
+    setConversations((prev) =>
+      prev.map((c) =>
+        String(c.id) === String(convoId)
+          ? { ...c, read: sender === "you", messages: [...c.messages, message] }
+          : c,
+      ),
+    );
+  };
 
   return (
     <>
       <Router>
-          {isLoggedIn && <nav className="nav">
-            <Link onClick={handleLogo} className="nav-logo" to="/" style={{textDecoration: 'none'}}>Bounty</Link>
-            <button className='sidemenu' onClick={toggle}>Menu</button>
-          </nav>}
-          {openMenu && <ul className='open-sidemenu' onClick={close}>
-            <li><Link onClick={toggle} className="nav-link" to="/new-post" style={{textDecoration: 'none'}}>New Post</Link></li>
-            <li><Link onClick={toggle} className="nav-link" to="/messages" style={{textDecoration: 'none'}}>Messages</Link></li>
-            <li><Link onClick={toggle} className="nav-link" to="/notifications" style={{textDecoration: 'none'}}>Notifications</Link></li>
-            <li><Link onClick={toggle} className="nav-link" to="/profile" style={{textDecoration: 'none'}}>Profile</Link></li>
-          </ul>}
-          {openMenu && <div id='close-sidemenu' onClick={close}></div>}
-        
+        {isLoggedIn && (
+          <nav className="nav">
+            <Link
+              onClick={handleLogo}
+              className="nav-logo"
+              to="/"
+              style={{ textDecoration: "none" }}
+            >
+              Bounty
+            </Link>
+            <button className="sidemenu" onClick={toggle}>
+              Menu
+            </button>
+          </nav>
+        )}
+        {openMenu && (
+          <ul className="open-sidemenu" onClick={close}>
+            <li>
+              <Link
+                onClick={toggle}
+                className="nav-link"
+                to="/new-post"
+                style={{ textDecoration: "none" }}
+              >
+                New Post
+              </Link>
+            </li>
+            <li>
+              <Link
+                onClick={toggle}
+                className="nav-link"
+                to="/messages"
+                style={{ textDecoration: "none" }}
+              >
+                Messages
+              </Link>
+            </li>
+            <li>
+              <Link
+                onClick={toggle}
+                className="nav-link"
+                to="/notifications"
+                style={{ textDecoration: "none" }}
+              >
+                Notifications
+              </Link>
+            </li>
+            <li>
+              <Link
+                onClick={toggle}
+                className="nav-link"
+                to="/profile"
+                style={{ textDecoration: "none" }}
+              >
+                Profile
+              </Link>
+            </li>
+          </ul>
+        )}
+        {openMenu && <div id="close-sidemenu" onClick={close}></div>}
+
         <Routes>
-          <Route path="/" element={<Home currentUser={currentUser} isLoggedIn={isLoggedIn} postsData={postsData} curr={curr} setCurr={setCurr} startConversation={startConversation} />} />
-          <Route path="/new-post" element={<NewPost currentUser={currentUser} postsData={postsData} setPostsData={setPostsData} />} />
-          <Route path='/edit-post/:id' element={<EditPost currentUser={currentUser} fetchPosts={fetchPosts} postsData={postsData} setPostsData={setPostsData} curr={curr} />} />
-          <Route path='/resolve-post/:id' element={<BountyChoice conversations={conversations} fetchConversations={fetchConversations} fetchPosts={fetchPosts} postsData={postsData} setPostsData={setPostsData} curr={curr} />} />
-          <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
-          <Route path="/messages" element={<Messages conversations={conversations} />} />
-          <Route path="/messages/:id" element={<PrivateChat currentUser={currentUser} setCurrentUser={setCurrentUser} conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
-          <Route path='/profile' element={<Profile setCurrentUser={setCurrentUser} setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path='/profile/posts' element={<PostHistory currentUser={currentUser} postsData={postsData} />} />
-          <Route path='/profile/settings' element={<AccountSettings />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/signup" element={<SignUp setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/forgotpassword" element={<ForgotPassword setIsLoggedIn={setIsLoggedIn} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                currentUser={currentUser}
+                isLoggedIn={isLoggedIn}
+                postsData={postsData}
+                curr={curr}
+                setCurr={setCurr}
+                startConversation={startConversation}
+              />
+            }
+          />
+          <Route
+            path="/new-post"
+            element={
+              <NewPost
+                currentUser={currentUser}
+                postsData={postsData}
+                setPostsData={setPostsData}
+              />
+            }
+          />
+          <Route
+            path="/edit-post/:id"
+            element={
+              <EditPost
+                currentUser={currentUser}
+                fetchPosts={fetchPosts}
+                postsData={postsData}
+                setPostsData={setPostsData}
+                curr={curr}
+              />
+            }
+          />
+          <Route
+            path="/resolve-post/:id"
+            element={
+              <BountyChoice
+                conversations={conversations}
+                fetchConversations={fetchConversations}
+                fetchPosts={fetchPosts}
+                postsData={postsData}
+                setPostsData={setPostsData}
+                curr={curr}
+              />
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <Notifications
+                notifications={notifications}
+                setNotifications={setNotifications}
+              />
+            }
+          />
+          <Route
+            path="/messages"
+            element={<Messages conversations={conversations} />}
+          />
+          <Route
+            path="/messages/:id"
+            element={
+              <PrivateChat
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
+                conversations={conversations}
+                setConversations={setConversations}
+                sendMessage={sendMessage}
+              />
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <Profile
+                setCurrentUser={setCurrentUser}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          />
+          <Route
+            path="/profile/posts"
+            element={
+              <PostHistory currentUser={currentUser} postsData={postsData} />
+            }
+          />
+          <Route path="/profile/settings" element={<AccountSettings />} />
+          <Route
+            path="/login"
+            element={<Login setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/signup"
+            element={<SignUp setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/forgotpassword"
+            element={<ForgotPassword setIsLoggedIn={setIsLoggedIn} />}
+          />
         </Routes>
       </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

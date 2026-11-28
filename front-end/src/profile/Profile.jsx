@@ -1,52 +1,52 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import EditProfile from './EditProfile'
-import ProfilePicture from './ProfilePicture'
-import './Profile.css'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import EditProfile from "./EditProfile";
+import ProfilePicture from "./ProfilePicture";
+import "./Profile.css";
 
 function Profile({ setCurrentUser, setIsLoggedIn }) {
-  const [profile, setProfile] = useState(null)
-  const [editing, setEditing] = useState(false)
+  const [profile, setProfile] = useState(null);
+  const [editing, setEditing] = useState(false);
 
   const logOut = () => {
-    fetch('/api/profile/logout', {
-      method: 'POST',
+    fetch("/api/profile/logout", {
+      method: "POST",
     })
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to logout')
-        setIsLoggedIn(false)
-        navigate('/login')
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to logout");
+        setIsLoggedIn(false);
+        navigate("/login");
       })
-      .catch(err => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
   const callProfile = () => {
-    fetch('/api/profile')
-      .then(res => {
-        if (!res.ok) throw new Error('Failed to fetch profile')
-        return res.json()
+    fetch("/api/profile")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch profile");
+        return res.json();
       })
       .then(saveProfile)
-      .catch(err => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
-    callProfile()
-  }, [])
+    callProfile();
+  }, []);
 
   // send the edited profile to the back-end
   function saveProfile(updated) {
-    setProfile(updated)
-    setEditing(false)
-    setCurrentUser(prev => ({
-      ...prev, 
-      ...updated
-    }))
+    setProfile(updated);
+    setEditing(false);
+    setCurrentUser((prev) => ({
+      ...prev,
+      ...updated,
+    }));
   }
 
   if (!profile) {
-    return <div className="profile-page">Loading profile...</div>
+    return <div className="profile-page">Loading profile...</div>;
   }
 
   if (editing) {
@@ -57,7 +57,7 @@ function Profile({ setCurrentUser, setIsLoggedIn }) {
         onCancel={() => setEditing(false)}
         callProfile={callProfile}
       />
-    )
+    );
   }
 
   return (
@@ -72,16 +72,24 @@ function Profile({ setCurrentUser, setIsLoggedIn }) {
         </div>
       </div>
 
-      <button type="button" className="profile-btn-outline" onClick={() => setEditing(true)}>
+      <button
+        type="button"
+        className="profile-btn-outline"
+        onClick={() => setEditing(true)}
+      >
         Edit Profile
       </button>
 
       <ul className="profile-links">
         <li>
-          <button type="button" onClick={() => navigate('/profile/posts')}>View All Posts <span>›</span></button>
+          <button type="button" onClick={() => navigate("/profile/posts")}>
+            View All Posts <span>›</span>
+          </button>
         </li>
         <li>
-          <button type="button" onClick={() => navigate('/profile/settings')}>Account settings <span>›</span></button>
+          <button type="button" onClick={() => navigate("/profile/settings")}>
+            Account settings <span>›</span>
+          </button>
         </li>
       </ul>
 
@@ -89,14 +97,13 @@ function Profile({ setCurrentUser, setIsLoggedIn }) {
         type="button"
         className="profile-btn-solid"
         onClick={() => {
-          logOut()
+          logOut();
         }}
       >
         Log Out
       </button>
-
     </div>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

@@ -10,15 +10,15 @@
   padding: 5px 10px;
   border-radius: 5px;
   color: #000;
-  background: #D3D3D3;
+  background: #d3d3d3;
   border: 1px solid gray;
   transition: border-color 0.3s;
 }
 
 .filter-btn:hover {
-    background: gray;
-    color: #000;
-    cursor: pointer;
+  background: gray;
+  color: #000;
+  cursor: pointer;
 }
 
 .docs {
@@ -58,7 +58,7 @@
   padding: 0;
 }
 
-.header > .settings, 
+.header > .settings,
 .header > .closeSettings {
   border: none;
   height: 50%;
@@ -88,7 +88,7 @@
   gap: 20px;
 }
 
-.bounty-image-grouping h3, 
+.bounty-image-grouping h3,
 .bounty-image-grouping h4 {
   margin: 0;
   padding: 0;
@@ -109,14 +109,14 @@
   text-align: left;
 }
 
-.content p, 
+.content p,
 .content h4 {
   margin: 0;
   padding: 0;
 }
 
 .buttons > .option {
-  background-color: #8C68C4;
+  background-color: #8c68c4;
   color: white;
   max-width: 250px;
   width: 40%;
@@ -142,7 +142,7 @@
 
 .docs #menu {
   border: none;
-  background-color: #8C68C4;
+  background-color: #8c68c4;
   color: white;
 }
 
@@ -212,7 +212,7 @@
 }
 
 #dialog-contents #filter {
-  background-color: #8C68C4;
+  background-color: #8c68c4;
 }
 
 #dialog-contents select {
@@ -221,7 +221,7 @@
   width: 75%;
 }
 
-#dialog-contents button, 
+#dialog-contents button,
 #dialog-contents select {
   cursor: pointer;
 }

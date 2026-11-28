@@ -1,113 +1,113 @@
 .postForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    font: inherit;
-    width: 100%;
-    margin: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font: inherit;
+  width: 100%;
+  margin: none;
 }
 
 .types {
-    display: flex;
-    justify-content: center;
-    width: 90%;
+  display: flex;
+  justify-content: center;
+  width: 90%;
 }
 
-.types .active, 
+.types .active,
 .types .inactive {
-    border-radius: 0px;
-    border: solid black 1px;
-    width: 200px;
-    height: 50px;
-    font: inherit;
+  border-radius: 0px;
+  border: solid black 1px;
+  width: 200px;
+  height: 50px;
+  font: inherit;
 }
 
 .inactive {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 .types > .inactive:hover {
-    background-color: gray;
-    cursor: pointer;
+  background-color: gray;
+  cursor: pointer;
 }
 
 .types .active {
-    background-color: #8C68C4;
-    color: white;
-    border-color: #8C68C4;
+  background-color: #8c68c4;
+  color: white;
+  border-color: #8c68c4;
 }
 
 .field {
-    display: flex;
-    flex-direction: column;
-    max-width: 200px;
-    width: 40%;
-    gap: 5px;
-    margin: 0 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  width: 40%;
+  gap: 5px;
+  margin: 0 20px 0 20px;
 }
 
 .dateTimeField {
-    display: flex;
+  display: flex;
 }
 
 .field > .label {
-    align-self: start;
+  align-self: start;
 }
 
-#title, 
-#date, 
-#time, 
-#location, 
-#image, 
-#includeBounty, 
+#title,
+#date,
+#time,
+#location,
+#image,
+#includeBounty,
 #bounty {
-    height: 20px;
+  height: 20px;
 }
 
 #descField {
-    max-width: 500px;
-    width: 90%;
+  max-width: 500px;
+  width: 90%;
 }
 
 #desc {
-    resize: none;
-    field-sizing: content;
-    min-height: 50px;
-    max-height: 100px;
+  resize: none;
+  field-sizing: content;
+  min-height: 50px;
+  max-height: 100px;
 }
 
 #includeBountyField {
-    margin-top: 5px;
-    flex-direction: row;
+  margin-top: 5px;
+  flex-direction: row;
 }
 
-.submit, 
+.submit,
 .postForm .disabled {
-    font: inherit;
-    margin-top: 10px;
-    max-width: 250px;
-    width: 50vw;
-    height: 50px;
-    border: none;
-    font-size: inherit;
-    color: white;
+  font: inherit;
+  margin-top: 10px;
+  max-width: 250px;
+  width: 50vw;
+  height: 50px;
+  border: none;
+  font-size: inherit;
+  color: white;
 }
 
 .submit {
-    background-color: #8C68C4;
+  background-color: #8c68c4;
 }
 
 .postForm .disabled {
-    background-color: gray;
-    color: rgb(195, 195, 195);
+  background-color: gray;
+  color: rgb(195, 195, 195);
 }
 
 .postForm .submit:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .required {
-    color: red;
+  color: red;
 }

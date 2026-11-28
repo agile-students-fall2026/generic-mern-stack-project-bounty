@@ -4,19 +4,19 @@ body {
   margin: 0;
 }
 
-input, 
+input,
 textarea {
   background-color: rgb(245, 245, 245);
   border: solid 1px rgb(198, 198, 198);
   color: black;
 }
 
-h1, 
-h2, 
-h3, 
-h4, 
+h1,
+h2,
+h3,
+h4,
 p {
-    color: black;
+  color: black;
 }
 
 .docs {
@@ -82,22 +82,22 @@ p {
 }
 
 .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #000;
-    padding: 12px 24px;
-    position: sticky;
-    top: 0;
-    background-color: white;
-    z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #000;
+  padding: 12px 24px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 5;
 }
 
 .nav-logo {
-    font-size: 24px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #000;
 }
 
 .nav-logo:hover {
@@ -105,18 +105,18 @@ p {
 }
 
 .nav-link {
-    padding: 4px 8px;
-    display: flex;
-    color: white;
+  padding: 4px 8px;
+  display: flex;
+  color: white;
 }
 
 .nav-link:hover {
-    color: #c5c5c5;
-    background-color: #644399;
+  color: #c5c5c5;
+  background-color: #644399;
 }
 
 .sidemenu {
-  background-color: #8C68C4;
+  background-color: #8c68c4;
   color: white;
   border: none;
   width: 75px;
@@ -139,7 +139,7 @@ p {
   width: 20vw;
   min-width: 150px;
   height: 100vh;
-  background-color: #8C68C4;
+  background-color: #8c68c4;
   color: white;
   margin: 0;
   z-index: 4;

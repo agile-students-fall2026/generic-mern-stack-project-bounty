@@ -1,25 +1,25 @@
 .link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .editPost {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    margin: 20px;
-    align-items: center;
-    font: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+  align-items: center;
+  font: inherit;
 }
 
 .editPost > .link {
-    font: inherit;
-    border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 250px;
-    width: 50vw;
-    height: 50px;
-    background-color: black;
-    color: white;
+  font: inherit;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  width: 50vw;
+  height: 50px;
+  background-color: black;
+  color: white;
 }
