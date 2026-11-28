@@ -41,14 +41,18 @@
       "location": "Warren Weaver Hall, Rm. 109",
       "includeBounty": false,
       "bounty": "",
-      "read": false,
+      "read": true,
       "messages": [
         {
           "id": "1",
-          "sender": "other",
+          "sender": "test0@gmail.com",
           "text": "Hey, did you find my wallet?",
           "time": "2:04 PM"
         }
+      ],
+      "owners": [
+        "test0@gmail.com",
+        "tester@gmail.com"
       ]
     },
     {
@@ -65,16 +69,20 @@
       "messages": [
         {
           "id": "2",
-          "sender": "other",
+          "sender": "test2@gmail.com",
           "text": "I think I found your keys!",
           "time": "1:35 PM"
         }
+      ],
+      "owners": [
+        "test2@gmail.com",
+        "tester@gmail.com"
       ]
     }
   ],
   "notifications": [
     {
-      "id": 1,
+      "id": "0",
       "title": "New message • Alice A.",
       "description": "Hey, did you find my wallet?",
       "time": "Today · 2:04 PM",
@@ -84,7 +92,7 @@
       "pfp": "https://picsum.photos/200?random=1"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "New message • Bob B.",
       "description": "I think I found your keys!",
       "time": "Today · 1:35 PM",
@@ -97,7 +105,8 @@
   "profile": {
     "name": "Username A",
     "bio": "Lorem ipsum dolor sit amet",
-    "picture": "https://picsum.photos/200?random=0"
+    "picture": "https://picsum.photos/200?random=0",
+    "email": ""
   },
   "users": [
     {
@@ -168,6 +177,32 @@
         "name": "testere",
         "bio": "Lorem ipsum dolor sit amet",
         "picture": "/uploads/image-1795427554035.png"
+      }
+    },
+    {
+      "fullName": "hoo",
+      "email": "hoo@gmail.com",
+      "password": "$2b$10$VgoHlgGN8YNHWMVf0UYXxuujFsJ/HhA9b5P14/0gMTbNtifim8UXS",
+      "securityQuestion": "What was your first pet's name?",
+      "securityAnswer": "$2b$10$CW88S5E6LruS//aENG5l4udcmd2vIXxYuWsG/q.kpoCeIHygyTzbq",
+      "profile": {
+        "name": "Username A",
+        "bio": "Lorem ipsum dolor sit amet",
+        "picture": "https://picsum.photos/200?random=0",
+        "email": "hoo@gmail.com"
+      }
+    },
+    {
+      "fullName": "oop",
+      "email": "up@gmail.com",
+      "password": "$2b$10$TsuVLx3uVHpVD.EAh2BuC.g63ghY5P0Et8Mnd/ybAIzdQUA2v6Fm6",
+      "securityQuestion": "What was your first pet's name?",
+      "securityAnswer": "$2b$10$cwmRGv6Zk5T42R5k6znSqepa2IzyQaTVwRPWCmUalZs3ceTy6yi4y",
+      "profile": {
+        "name": "Username A",
+        "bio": "Lorem ipsum dolor sit amet",
+        "picture": "https://picsum.photos/200?random=0",
+        "email": "up@gmail.com"
       }
     }
   ],
