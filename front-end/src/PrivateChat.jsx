@@ -4,14 +4,14 @@ import { Link, useParams } from 'react-router-dom'
 import { RiImageUploadLine } from "react-icons/ri";
 import { IconContext } from "react-icons";
 
-const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
+const PrivateChat = ({ currentUser, setCurrentUser, conversations, setConversations, sendMessage }) => {
     const { id } = useParams()
     const [text, setText] = useState('')
     const [error, setError] = useState('')
     const [fileName, setFileName] = useState('No File Selected')
     const [pictureFile, setPictureFile] = useState(undefined)
     const fileInputRef = useRef(null)
-    const [currentUser, setCurrentUser] = useState('')
+    // const [currentUser, setCurrentUser] = useState('')
 
     const convo = conversations.find(c => String(c.id) === id)
     useEffect(() => {
@@ -23,13 +23,13 @@ const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
 
     useEffect(() => {
         if (!convo || convo.read) return
-            fetch('/api/user')
+      fetch('/api/user')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch profile')
         return res.json()
       })
       .then(data => {
-        setCurrentUser(data.email)
+        setCurrentUser(data)
       })
       .catch(err => console.error(err))
 
@@ -42,6 +42,22 @@ const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
             })
             .catch(err => console.error(err))
     }, [id, convo?.read, setConversations])
+
+    const otherUser = convo.owners.find(owner => owner !== currentUser.email)
+
+    // useEffect(() => {
+    //   if (currentUser) return
+
+    //   fetch('/api/user')
+    //   .then(res => {
+    //     if (!res.ok) throw new Error('Failed to fetch profile')
+    //     return res.json()
+    //   })
+    //   .then(data => {
+    //     setCurrentUser(data)
+    //   })
+    //   .catch(err => console.error(err))
+    // }, [currentUser, setCurrentUser])
 
     const getFileName = (e) => {
         const file = e.target.files[0]
@@ -113,12 +129,12 @@ const PrivateChat = ({ conversations, setConversations, sendMessage }) => {
             </div>
 
             <div className="chatMessages">
-                {convo.messages.map(m => (
-                    <div className={`chatMessage ${m.sender === currentUser ? 'you' : 'other'}`} key={m.id}>
+                {currentUser && convo.messages.map(m => (
+                    <div className={`chatMessage ${m.sender === currentUser.email ? 'you' : 'other'}`} key={m.id}>
                         <div className="chatBubble">{m.text}</div>
                             {m.image && <div className="chatBubble"><img src={m.image}/></div>}
                         <span>
-                            {m.sender === currentUser ? currentUser : convo.email} · {m.time}
+                            {m.sender === currentUser.email ? currentUser.email : otherUser} · {m.time}
                         </span>
                     </div>
                 ))}

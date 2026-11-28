@@ -151,7 +151,7 @@ function App() {
           <Route path='/resolve-post/:id' element={<BountyChoice conversations={conversations} fetchConversations={fetchConversations} fetchPosts={fetchPosts} postsData={postsData} setPostsData={setPostsData} curr={curr} />} />
           <Route path="/notifications" element={<Notifications notifications={notifications} setNotifications={setNotifications} />} />
           <Route path="/messages" element={<Messages conversations={conversations} />} />
-          <Route path="/messages/:id" element={<PrivateChat conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
+          <Route path="/messages/:id" element={<PrivateChat currentUser={currentUser} setCurrentUser={setCurrentUser} conversations={conversations} setConversations={setConversations} sendMessage={sendMessage} />} />
           <Route path='/profile' element={<Profile setCurrentUser={setCurrentUser} setIsLoggedIn={setIsLoggedIn} />} />
           <Route path='/profile/posts' element={<PostHistory currentUser={currentUser} postsData={postsData} />} />
           <Route path='/profile/settings' element={<AccountSettings />} />

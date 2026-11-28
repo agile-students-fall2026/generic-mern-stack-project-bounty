@@ -25,7 +25,8 @@
 .chatAvatar {
     border-radius: 50%;
     width: 60px;
-    height: 60px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     background: lightgray;
     display: flex;
     align-items: center;
