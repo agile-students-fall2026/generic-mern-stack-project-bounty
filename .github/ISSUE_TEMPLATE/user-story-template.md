@@ -1,9 +1,9 @@
 ---
 name: User Story Template
 about: A template to use for User Stories
-title: ""
+title: ''
 labels: user story
-assignees: ""
+assignees: ''
 ---
 
 ## Estimation of effort (optional)
