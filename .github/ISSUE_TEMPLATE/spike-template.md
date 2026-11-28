@@ -1,9 +1,9 @@
 ---
 name: Spike Template
 about: A template to use for Spikes
-title: ""
+title: ''
 labels: spike
-assignees: ""
+assignees: ''
 ---
 
 _By definition, this `spike` is not related to any specific User Story._

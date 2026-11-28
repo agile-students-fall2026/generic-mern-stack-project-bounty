@@ -1,33 +1,33 @@
 .signUp {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .signUp .logo {
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signUp .signUpForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .signUp .field {
-  width: 40vw;
+    width: 40vw;
 }
 
 .error {
-  color: red;
+    color: red;
 }
 
 #email,
 #password,
 #name {
-  height: 20px;
+    height: 20px;
 }

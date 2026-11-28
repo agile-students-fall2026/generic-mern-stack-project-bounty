@@ -1,233 +1,233 @@
 #bg {
-  background-color: rgb(232, 232, 232);
-  min-height: calc(100vh - 51px);
-  display: flex;
-  flex-direction: column;
+    background-color: rgb(232, 232, 232);
+    min-height: calc(100vh - 51px);
+    display: flex;
+    flex-direction: column;
 }
 
 .filter-btn {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #000;
-  background: #d3d3d3;
-  border: 1px solid gray;
-  transition: border-color 0.3s;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #000;
+    background: #d3d3d3;
+    border: 1px solid gray;
+    transition: border-color 0.3s;
 }
 
 .filter-btn:hover {
-  background: gray;
-  color: #000;
-  cursor: pointer;
+    background: gray;
+    color: #000;
+    cursor: pointer;
 }
 
 .docs {
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-  padding: max(16px, 3%);
-  border-radius: 20px;
-  gap: 12px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: max(16px, 3%);
+    border-radius: 20px;
+    gap: 12px;
 }
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .profile {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
 }
 
 .profile > .icon {
-  width: min(45px, 8vw);
-  border-radius: 50%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  margin: 0;
-  padding: 0;
+    width: min(45px, 8vw);
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
 }
 
 .profile > p {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .header > .settings,
 .header > .closeSettings {
-  border: none;
-  height: 50%;
-  cursor: pointer;
-  width: 35px;
-  height: 20px;
-  min-width: 35px;
-  white-space: nowrap;
-  writing-mode: horizontal-tb;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    border: none;
+    height: 50%;
+    cursor: pointer;
+    width: 35px;
+    height: 20px;
+    min-width: 35px;
+    white-space: nowrap;
+    writing-mode: horizontal-tb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bounty-image {
-  width: 90%;
-  max-width: 800px;
-  height: auto;
+    width: 90%;
+    max-width: 800px;
+    height: auto;
 }
 
 .bounty-image-grouping {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
 }
 
 .bounty-image-grouping h3,
 .bounty-image-grouping h4 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .docs > .content {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  padding: 10px;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 10px;
+    gap: 10px;
 }
 
 .content > .title {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    text-align: left;
 }
 
 .content p,
 .content h4 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 .buttons > .option {
-  background-color: #8c68c4;
-  color: white;
-  max-width: 250px;
-  width: 40%;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: #8c68c4;
+    color: white;
+    max-width: 250px;
+    width: 40%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .settings {
-  z-index: 2;
+    z-index: 2;
 }
 
 .closeSettings {
-  z-index: 0;
+    z-index: 0;
 }
 
 .buttons {
-  display: flex;
-  justify-content: space-around;
-  z-index: 2;
+    display: flex;
+    justify-content: space-around;
+    z-index: 2;
 }
 
 .docs #menu {
-  border: none;
-  background-color: #8c68c4;
-  color: white;
+    border: none;
+    background-color: #8c68c4;
+    color: white;
 }
 
 .closeOptions {
-  display: hidden;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  z-index: 1;
+    display: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
 }
 
 #search {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
 }
 
 #searchFilter {
-  width: 25%;
-  min-width: 150px;
-  box-sizing: border-box;
-  background-color: white;
-  color: black;
-  border: 1px solid gray;
-  padding: 10px;
+    width: 25%;
+    min-width: 150px;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    border: 1px solid gray;
+    padding: 10px;
 }
 
 #next-steps {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
 }
 
 #dialog {
-  background-color: white;
-  border: solid 1px gray;
+    background-color: white;
+    border: solid 1px gray;
 }
 
 #dialog-contents {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font: inherit;
-  max-width: 250px;
-  width: 50vw;
-  font-size: inherit;
-  color: white;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font: inherit;
+    max-width: 250px;
+    width: 50vw;
+    font-size: inherit;
+    color: white;
+    align-items: center;
 }
 
 #dialog-contents button {
-  font: inherit;
-  margin-top: 10px;
-  max-width: 250px;
-  width: 50%;
-  height: 35px;
-  border: none;
-  font-size: inherit;
-  color: white;
-  background-color: black;
+    font: inherit;
+    margin-top: 10px;
+    max-width: 250px;
+    width: 50%;
+    height: 35px;
+    border: none;
+    font-size: inherit;
+    color: white;
+    background-color: black;
 }
 
 #dialog-contents #filter {
-  background-color: #8c68c4;
+    background-color: #8c68c4;
 }
 
 #dialog-contents select {
-  height: 35px;
-  font-size: 18px;
-  width: 75%;
+    height: 35px;
+    font-size: 18px;
+    width: 75%;
 }
 
 #dialog-contents button,
 #dialog-contents select {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 #dialog-contents p {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
